@@ -1,6 +1,7 @@
 INF5750 Group Assignment
 
-Member
+Members
+
 - Joakim Kristiansen 
 - Vivek Kaul
 - Sigurhjörtur Snorrason
