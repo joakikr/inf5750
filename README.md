@@ -1,6 +1,6 @@
 INF5750 Group Assignment
 
-Members
+Members:
 
 - Joakim Kristiansen 
 - Vivek Kaul
