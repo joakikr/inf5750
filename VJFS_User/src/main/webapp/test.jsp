@@ -27,13 +27,21 @@
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion"
 						href="#collapseOne" aria-expanded="false" data-parent="#accordion"
-						aria-controls="collapseOne"> Course 1 </a>
+						aria-controls="collapseOne"> Course 1 <span
+						class="label label-success">Finished</span></a>
 				</h4>
 			</div>
 			<div id="collapseOne" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingOne">
 				<div class="panel-body">
-					
+					<a href="questions.jsp" class="list-group-item">Quiz 1 <span
+						class="label label-success">Finished</span></a> <a href="#"
+						class="list-group-item">Quiz 2 <span
+						class="label label-success">Finished</span></a> <a href="#"
+						class="list-group-item">Quiz 3 <span
+						class="label label-success">Finished</span></a> <a href="#"
+						class="list-group-item">Quiz 4 <span
+						class="label label-success">Finished</span></a>
 				</div>
 			</div>
 		</div>
@@ -42,16 +50,17 @@
 				<h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse"
 						data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-						aria-controls="collapseTwo"> Course 2 </a>
+						aria-controls="collapseTwo"> Course 2 <span
+						class="label label-danger">Not started</span></a>
 				</h4>
 			</div>
 			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
 				aria-labelledby="headingTwo">
 				<div class="panel-body">
-					<a href="questions" class="list-group-item">Quiz 1</a> <a
-						href="questions" class="list-group-item">Quiz 2</a> <a
-						href="questions" class="list-group-item">Quiz 3</a> <a
-						href="questions" class="list-group-item">Quiz 4</a>
+					<a href="#" class="list-group-item">Quiz 1</a> <a href="#"
+						class="list-group-item">Quiz 2</a> <a href="#"
+						class="list-group-item">Quiz 3</a> <a href="#"
+						class="list-group-item">Quiz 4</a>
 				</div>
 			</div>
 		</div>
@@ -61,16 +70,21 @@
 					<a class="collapsed" data-toggle="collapse"
 						data-parent="#accordion" href="#collapseThree"
 						aria-expanded="false" aria-controls="collapseThree"> Course 3
+						<span class="label label-warning">Started</span>
 					</a>
 				</h4>
 			</div>
 			<div id="collapseThree" class="panel-collapse collapse"
 				role="tabpanel" aria-labelledby="headingThree">
 				<div class="panel-body">
-					<a href="questions.jsp" class="list-group-item">Quiz 1</a> <a
-						href="questions.jsp" class="list-group-item">Quiz 2</a> <a
-						href="questions.jsp" class="list-group-item">Quiz 3</a> <a
-						href="questions.jsp" class="list-group-item">Quiz 4</a>
+					<a href="questions.jsp" class="list-group-item">Quiz 1 <span
+						class="label label-success">Finished</span></a></a> <a
+						href="questions.jsp" class="list-group-item">Quiz 2 <span
+						class="label label-success">Finished</span></a></a> <a
+						href="questions.jsp" class="list-group-item">Quiz 3 <span
+						class="label label-warning">Started</span></a> <a 
+						href="questions.jsp" class="list-group-item">Quiz 4 <span
+						class="label label-danger">Not started</span></a>
 				</div>
 			</div>
 		</div>
