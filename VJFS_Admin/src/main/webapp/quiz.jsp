@@ -21,22 +21,55 @@
     <![endif]-->
   </head>
   <body>
-	<div> 
-		<textarea rows="1" cols="1">Quiz name</textarea>
-		<select class="selectpicker">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-		</select>
-		<ul>
-		   	<li class="list-group-item"  id="quiz_1_id"><a href="quiz.jsp">Quiz 1</a></li>   
-		   	<li class="list-group-item"  id="quiz_2_id"><a href="quiz.jsp">Quiz 2</a></li>
-			<li class="list-group-item"  id="quiz_3_id"><a href="quiz.jsp">Quiz 3</a></li>    	
-		</ul>
-		<a href="localhost:8080/VJFS_Admin/NewText" class="btn btn-default">New Text Question</a>
-		<a href="localhost:8080/VJFS_Admin/NewMulti" class="btn btn-default">New Multiple Choice Question</a>
-  		<a href="localhost:8080/VJFS_Admin/quiz.jsp" class="btn btn-default">Save</a>
-	</div>
+  
+  	<div class="container">
+  		<div class="row">
+  			<!-- padd content to center -->
+  			<div class="col-xs-3"></div>
+  			
+	  		<form role="form" class="col-xs-6">
+				<div class="form-group row">
+					<div class="col-xs-9">
+						<label for="quizTitle">Quiz Title</label> 
+						<input type="text" class="form-control" id="quizTitle" value="Quiz 1">
+					</div>
+					
+					<div class="col-xs-3">
+						<label for="quizLevel">Level</label>
+						<select class="selectpicker form-control" id="quizLevel">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+				</div>
+	
+				<button type="submit" class="btn btn-default">Save</button>
+				
+			</form>
+  		</div>
+	  
+	  	<br><br>
+	  	
+	  	<div class="row">
+  			<!-- padd content to center -->
+  			<div class="col-xs-3"></div>
+  			
+	  		<div class="col-xs-6">
+	  			<label>Questions</label> 
+	  	
+				<ul>
+					<li class="list-group-item" id="question_1_id"><a href="question.jsp">Question 1</a></li>
+					<li class="list-group-item" id="question_2_id"><a href="question.jsp">Question 2</a></li>
+					<li class="list-group-item" id="question_3_id"><a href="question.jsp">Question 3</a></li>
+				</ul>
+		  
+				<a href="question_text.jsp" class="btn btn-default">New Text Question</a>
+				<a href="question_multiplechoice.jsp" class="btn btn-default">New Multiple Choice Question</a>
+	  		</div>
+	  	</div>
+  	</div>
+  
 	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
