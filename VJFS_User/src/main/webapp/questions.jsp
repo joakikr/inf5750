@@ -18,6 +18,10 @@
 </head>
 <body>
 
+<div class="page-header">
+  <h1>Quiz information</h1>
+</div>
+
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -130,7 +134,7 @@
 		</div>
 	</div>
 
-	<a href="new_quiz.jsp" class="btn btn-default">Send</a>
+	<a href="index.jsp" class="btn btn-default">Send</a>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
