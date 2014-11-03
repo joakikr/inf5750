@@ -20,12 +20,10 @@
 
 	<a href="#" class="list-group-item active"> Courses </a>
 	
-	<a href="#" class="list-group-item">Course 1</a>
-	<a href="	#" class="list-group-item">Course 2</a>
-	<a href="#" class="list-group-item">Course 3</a>
-	<a href="#" class="list-group-item">Course 4</a>
-
- <button type="button" class="btn btn-default">Middle</button>
+	<a href="questions" class="list-group-item">Course 1</a>
+	<a href="questions" class="list-group-item">Course 2</a>
+	<a href="questions" class="list-group-item">Course 3</a>
+	<a href="questions" class="list-group-item">Course 4</a>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
