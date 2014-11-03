@@ -34,29 +34,9 @@
 						<label for="courseDescription">Description</label>
 						<textarea class="form-control" rows="6" cols="60">This is the description of Course 1.</textarea>
 					</div>
-		
-					<button type="submit" class="btn btn-default">Save</button>
+					<a href="index.jsp" class="btn btn-default">Save</a>	
 				</form>
   			</div>
-		</div>
-		
-		<br>
-	
-	  	<div class="row">
-  			<!-- padd content to center -->
-  			<div class="col-xs-3"></div>
-  			
-	  		<div class="col-xs-6">
-				<label>Quiz</label> 		
-				
-				<ul>
-					<li class="list-group-item" id="quiz_1_id"><a href="quiz.jsp">Quiz 1</a></li>
-					<li class="list-group-item" id="quiz_2_id"><a href="quiz.jsp">Quiz 2</a></li>
-					<li class="list-group-item" id="quiz_3_id"><a href="quiz.jsp">Quiz 3</a></li>
-				</ul>
-				
-				<a href="new_quiz.jsp" class="btn btn-default">New Quiz</a>
-			</div>
 		</div>
 	</div>
 

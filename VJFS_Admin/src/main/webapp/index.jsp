@@ -36,7 +36,7 @@
 		   			<li class="list-group-item"  id="course_3_id"><a href="course.jsp">Course 3</a></li>    	
 		    	</ul>
 		    	
-			   <a href="course.jsp" class="btn btn-default">New Course</a>
+			   <a href="new_course.jsp" class="btn btn-default">New Course</a>
 	    	</div>
 	    </div>
   	</div>
