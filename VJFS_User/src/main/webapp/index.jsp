@@ -18,12 +18,29 @@
 </head>
 <body>
 
-	<a href="#" class="list-group-item active"> Courses </a>
+	<div class="list-group">
+		<a class="list-group-item active"> Course 1  <span class="label label-success">Finished</span></a> <a
+			href="questions.jsp" class="list-group-item">Quiz 1 <span class="label label-success">Finished</span></a> <a
+			href="#" class="list-group-item">Quiz 2 <span class="label label-success">Finished</span></a> <a 
+			href="#" class="list-group-item">Quiz 3 <span class="label label-success">Finished</span></a> <a 
+			href="#" class="list-group-item">Quiz 4 <span class="label label-success">Finished</span></a>
+	</div>
 	
-	<a href="questions" class="list-group-item">Course 1</a>
-	<a href="questions" class="list-group-item">Course 2</a>
-	<a href="questions" class="list-group-item">Course 3</a>
-	<a href="questions" class="list-group-item">Course 4</a>
+		<div class="list-group">
+		<a class="list-group-item active"> Course 1  <span class="label label-warning">Started</span></a> <a
+			href="#" class="list-group-item">Quiz 1 <span class="label label-success">Finished</span></a> <a
+			href="#" class="list-group-item">Quiz 2 <span class="label label-success">Finished</span></a> <a 
+			href="#" class="list-group-item">Quiz 3 <span class="label label-warning">Started</span></a> <a 
+			href="#" class="list-group-item">Quiz 4 <span class="label label-warning">Started</span></a>
+	</div>
+
+	<div class="list-group">
+		<a class="list-group-item active"> Course 2 <span class="label label-danger">Not started</span></a> <a
+			href="#" class="list-group-item">Quiz 1</a> <a
+			href="#" class="list-group-item">Quiz 2</a> <a 
+			href="#" class="list-group-item">Quiz 3</a> <a 
+			href="#" class="list-group-item">Quiz 4</a>
+	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
