@@ -134,7 +134,7 @@
 		</div>
 	</div>
 
-	<a href="index.html" class="btn btn-default">Send</a>
+	<a href="index.jsp" class="btn btn-default">Send</a>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script

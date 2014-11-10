@@ -20,7 +20,7 @@
 
 	<div class="list-group">
 		<a class="list-group-item active"> Course 1  <span class="label label-success">Finished</span></a> <a
-			href="questions.html" class="list-group-item">Quiz 1 <span class="label label-success">Finished</span></a> <a
+			href="questions.jsp" class="list-group-item">Quiz 1 <span class="label label-success">Finished</span></a> <a
 			href="#" class="list-group-item">Quiz 2 <span class="label label-success">Finished</span></a> <a 
 			href="#" class="list-group-item">Quiz 3 <span class="label label-success">Finished</span></a> <a 
 			href="#" class="list-group-item">Quiz 4 <span class="label label-success">Finished</span></a>
