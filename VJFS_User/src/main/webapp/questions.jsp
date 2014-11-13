@@ -17,119 +17,130 @@
     <![endif]-->
 </head>
 <body>
+	<div class="container">
+		<div class="row">
 
-<div class="page-header">
-  <h1>Quiz information</h1>
-</div>
+			<!-- padd content to center -->
+			<div class="col-xs-3"></div>
 
+			<div class="col-xs-6 list-group">
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Question 3</h3>
-		</div>
-		<div class="panel-body">
-			<div class="row">
-				<!-- padd content to center -->
-				<div class="col-xs-3"></div>
-				<div class="col-xs-6">
-					<form role="form">
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 1">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 2">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 3">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 4">
-						</div>
-
-					</form>
+				<div class="page-header">
+					<h1>Quiz information</h1>
 				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Question 3</h3>
-		</div>
-		<div class="panel-body">
-			<div class="row">
-				<!-- padd content to center -->
-				<div class="col-xs-3"></div>
-				<div class="col-xs-6">
-					<form role="form">
 
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 1">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Question 3</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<!-- padd content to center -->
+							<div class="col-xs-3"></div>
+							<div class="col-xs-6">
+								<form role="form">
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 1">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 2">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 3">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 4">
+									</div>
+
+								</form>
+							</div>
 						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 2">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 3">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 4">
-						</div>
-
-					</form>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Question 3</h3>
-		</div>
-		<div class="panel-body">
-			<div class="row">
-				<!-- padd content to center -->
-				<div class="col-xs-3"></div>
-				<div class="col-xs-6">
-					<form role="form">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Question 3</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<!-- padd content to center -->
+							<div class="col-xs-3"></div>
+							<div class="col-xs-6">
+								<form role="form">
 
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 1">
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 1">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 2">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 3">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 4">
+									</div>
+
+								</form>
+							</div>
 						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 2">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 3">
-						</div>
-
-						<div class="checkbox form-inline">
-							<input type="checkbox"> <input type="text"
-								class="form-control" value="Alternative 4">
-						</div>
-
-					</form>
+					</div>
 				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Question 3</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<!-- padd content to center -->
+							<div class="col-xs-3"></div>
+							<div class="col-xs-6">
+								<form role="form">
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 1">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 2">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 3">
+									</div>
+
+									<div class="checkbox form-inline">
+										<input type="checkbox"> <input type="text"
+											class="form-control" value="Alternative 4">
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
