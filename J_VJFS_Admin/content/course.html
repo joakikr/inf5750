@@ -24,8 +24,10 @@
   			<!-- padd content to center -->
   			<div class="col-xs-3"></div>
   			
-  			<div class="col-xs-6">
-				<form role="form">
+  			<div class="col-xs-6 list-group" id="course">
+				<label class="list-group-item active" id="courseHeader"></label>
+
+				<form role="form" class="list-group-item">
 					<div class="form-group">
 						<label for="courseTitle">Title</label>
 						<input type="text" class="form-control"
@@ -37,28 +39,10 @@
 								  id="courseDescription" name="courseDescription" placeholder="What is the description for the course?"></textarea>
 					</div>
 		
-					<button type="submit" class="btn btn-default" onclick="return setCourse(this.form)">Save</button>
+					<button type="button" class="btn btn-default list-group-item" id="courseSave" onclick="saveCourse(this.form, course_id);"></button>
 				</form>
+
   			</div>
-		</div>
-		
-		<br>
-	
-	  	<div class="row">
-  			<!-- padd content to center -->
-  			<div class="col-xs-3"></div>
-  			
-	  		<div class="col-xs-6">
-				<label>Quiz</label> 		
-				
-				<ul>
-					<li class="list-group-item" id="quiz_1_id"><a href="quiz.html">Quiz 1</a></li>
-					<li class="list-group-item" id="quiz_2_id"><a href="quiz.html">Quiz 2</a></li>
-					<li class="list-group-item" id="quiz_3_id"><a href="quiz.html">Quiz 3</a></li>
-				</ul>
-				
-				<a href="quiz.html" class="btn btn-default">New Quiz</a>
-			</div>
 		</div>
 	</div>
 
@@ -69,16 +53,34 @@
     <script src="../js/bootstrap.min.js"></script>
   	<script src="../js/main.js"></script>
 	<script src="../js/course.js"></script>
+	<script src="../js/quiz.js"></script>
   	<script>
 
-		getCourse(function(course) {
-			console.log("Course: " + course);
+		// Fetch URL
+		var url = window.location;
 
-			if(course != null) {
-				$('#courseTitle').val(course['courseTitle']);
-				$('#courseDescription').val(course['courseDescription']);
-			}
-		});
+		// Check if a specific course is chosen
+		var course_id = getURLParameter(url, 'course_id');
+		if(course_id != null) {
+			getCourse(course_id, function(course) {
+				console.log("Course: " + JSON.stringify(course));
+
+				if(course != null) {
+					// Display course and a save button
+					$('#courseHeader').html(course['courseTitle']);
+					$('#courseTitle').val(course['courseTitle']);
+					$('#courseDescription').val(course['courseDescription']);
+					$('#courseSave').html('Save Course');
+
+					// Display quiz's for course
+					displayQuiz(course);
+				}
+			});
+		} else {
+			// Display a new course label and an add course button
+			$('#courseHeader').html('New Course');
+			$('#courseSave').html('Add Course');
+		}
 
   	</script>
   </body>

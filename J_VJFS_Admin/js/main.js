@@ -41,3 +41,12 @@ function getURLParameter(url, parameter_key)
 		}
 	}
 }
+
+/**
+ * Function will return an unique ID
+ */
+function getUniqueID() {
+	var time = new Date().getTime();
+	while (time == new Date().getTime());
+	return new Date().getTime();
+}
