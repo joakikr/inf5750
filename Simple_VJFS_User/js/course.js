@@ -14,29 +14,23 @@ function displayCourses() {
 			// Display courses
 			for(key in courses['courses']) {
 
-				var l = '<div class="list-group" id="list_courses"> '
+				var l = '<div class="list-group" id="list_courses"> ';
+
+				l+= '<a href="#" class="list-group-item disabled">';
+    			l+=	'<h4 class="list-group-item-heading">'+ courses['courses'][key].courseTitle +'</h4>';
+    			l+=	'<p class="list-group-item-text">'+courses['courses'][key].courseDescription+'</p>';
+ 				l+= '</a>'
+
+
+ 				//Replace with actual quiz data
+ 				l+= '<a href="#" class="list-group-item">QUiz</a>'
+				l+= '<a href="#" class="list-group-item">QUiz</a>'
+
+ 				l+='</div>';
+
+		
 				$('#courses').append(l);
 
-  				var t = '<h4 class="list-group-item heading"> '+ courses['courses'][key].courseTitle +  '</h4>'
-
-  				$('#list_courses').append(t);
-
-  				var t_info = '<p class="list-group-item-text">'+courses['courses'][key].courseDescription+'</p>'
-
-				$('#list_courses').append(t_info);
-
-
-
-  				//replace this with real quizes, append them to list_courses
-  				var tmp1 = '<a href="#" class="list-group-item">QUiz</a>'
-  			   	var tmp2 = '<a href="#" class="list-group-item">QUiz</a>'
-  			    var tmp3 = '<a href="#" class="list-group-item">QUiz</a>'
-                var tmp4 = '<a href="#" class="list-group-item">QUiz</a>'
-
-                $('#list_courses').append(tmp1);
-				$('#list_courses').append(tmp2);
-				$('#list_courses').append(tmp3);
-				$('#list_courses').append(tmp3);
 			}
 		}
 	});
