@@ -4,10 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Courses</title>
+    <title>Question</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	  <!-- Main CSS -->
+	  <link href="../css/main.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,46 +20,101 @@
     <![endif]-->
   </head>
   <body>
-  
+
+  	<br>
 	<div class="container">
   		
   		<div class="row">
   			<!-- padd content to center -->
   			<div class="col-xs-3"></div>
   			
-  			<div class="col-xs-6">
-				<form role="form">
-					
-					<div class="checkbox form-inline">
-							<input type="checkbox">
-							<input type="text" class="form-control" value="Alternative 1">
-							<button class="btn btn-default">Delete</button>
-					</div>
-					<div class="checkbox form-inline">
-							<input type="checkbox">
-							<input type="text" class="form-control" value="Alternative 2">
-							<button class="btn btn-default">Delete</button>
-					</div>
-					
-					<div class="checkbox form-inline">
-							<input type="checkbox">
-							<input type="text" class="form-control" value="Alternative 3">
-							<button class="btn btn-default">Delete</button>
-					</div>					
+  			<div class="col-xs-6" id="question">
+				<label class="list-group-item active" id="questionHeader"></label>
 
-					<button class="btn btn-default">Add Alternative</button>
-		
-					<a href="quiz.html" class="btn btn-default">Add Question</a>
+				<input type="hidden" id="questionType" value="multiple">
+
+				<form class="list-group-item" role="form">
+
+					<div class="form-group">
+						<label for="questionTitle">Title</label>
+						<input type="text" class="form-control"
+							   id="questionTitle" name="questionTitle" placeholder="What is the title for the question?">
+					</div>
+
+					<div class="form-group">
+						<label for="questionQuestion">Question</label>
+						<textarea class="form-control" id="questionQuestion" rows="6" cols="60" placeholder="What is the question?"></textarea>
+					</div>
+
+					<!-- Alternatives will be added here -->
+					<div id="alternatives"></div>
+
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="input-group pull-left">
+								<button type="button" class="btn btn-default" onclick="addAlternative();">Add Alternative</button>
+							</div><!-- /input-group -->
+
+						</div><!-- /.col-lg-9 -->
+						<div class="col-lg-6">
+							<div class="input-group pull-right">
+								<button type="button" id="questionSave" class="btn btn-default" onclick="saveQuestion(quiz_id, question_id);"></button>
+							</div><!-- /input-group -->
+						</div>
+					</div><!-- /.row -->
 				</form>
+
   			</div>
 		</div>
 		
 	</div>
+	<br>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/course.js"></script>
+	<script src="../js/quiz.js"></script>
+	<script src="../js/question.js"></script>
+	<script>
+
+		// Fetch URL
+		var url = window.location;
+
+		// Check if a specific course and quiz is chosen
+		var quiz_id = getURLParameter(url, 'quiz_id');
+		var question_id = getURLParameter(url, 'question_id');
+
+		if(quiz_id != null && question_id != null) {
+
+			// Retrieve question
+			getQuestion(question_id, function(question) {
+				console.log("Question: " + JSON.stringify(question));
+
+				if(question != null) {
+					// Display question information
+					$('#questionHeader').html(question['questionTitle']);
+					$('#questionTitle').val(question['questionTitle']);
+					$('#questionQuestion').val(question['questionQuestion']);
+
+					// Display alternatives
+					for(key in question['questionAlternatives']) {
+						addAlternative(question['questionAlternatives'][key].alternativeChecked, question['questionAlternatives'][key].alternativeValue);
+					}
+
+					// Display save button
+					$('#questionSave').html('Save Question');
+				}
+			});
+		} else {
+			// Display a new course label and an add course button
+			$('#questionHeader').html('New Multiple Choice Question');
+			$('#questionSave').html('Add Question');
+		}
+
+	</script>
   </body>
 </html>

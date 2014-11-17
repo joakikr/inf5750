@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Courses</title>
+    <title>Question</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,8 @@
     <![endif]-->
   </head>
   <body>
-  
+
+  	<br>
 	<div class="container">
   		
   		<div class="row">
@@ -47,12 +48,13 @@
 						<textarea class="form-control" id="questionAnswer" rows="6" cols="60" placeholder="What is the answer?"></textarea>
 					</div>
 
-					<button type="button" class="btn btn-default list-group-item" id="questionSave" onclick="saveQuestion(quiz_id);"></button>
+					<button type="button" class="btn btn-default list-group-item" id="questionSave" onclick="saveQuestion(quiz_id, question_id);"></button>
 				</form>
   			</div>
 		</div>
 		
 	</div>
+	<br>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -78,10 +80,10 @@
 			getQuestion(question_id, function(question) {
 				console.log("Question: " + JSON.stringify(question));
 
-				if(quiz != null) {
+				if(question != null) {
 					// Display quiz and a save button
 					$('#questionHeader').html(question['questionTitle']);
-					$('#questionTitle').val(question['quizTitle']);
+					$('#questionTitle').val(question['questionTitle']);
 					$('#questionQuestion').val(question['questionQuestion']);
 					$('#questionAnswer').val(question['questionAnswer']);
 					$('#questionSave').html('Save Question');
