@@ -9,6 +9,9 @@
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
+	 <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,7 +42,7 @@
 								  id="courseDescription" name="courseDescription" placeholder="What is the description for the course?"></textarea>
 					</div>
 		
-					<button type="button" class="btn btn-default list-group-item" id="courseSave" onclick="saveCourse(this.form, course_id);"></button>
+					<button type="button" class="btn btn-default list-group-item" id="courseSave" onclick="saveCourse(course_id);"></button>
 				</form>
 
   			</div>
@@ -62,18 +65,21 @@
 		// Check if a specific course is chosen
 		var course_id = getURLParameter(url, 'course_id');
 		if(course_id != null) {
+
+			// Retrieve course
 			getCourse(course_id, function(course) {
 				console.log("Course: " + JSON.stringify(course));
 
 				if(course != null) {
 					// Display course and a save button
+					// Remember that courseDescription is a textarea, so must un escape \n before displaying content
 					$('#courseHeader').html(course['courseTitle']);
 					$('#courseTitle').val(course['courseTitle']);
-					$('#courseDescription').val(course['courseDescription']);
+					$('#courseDescription').val(course['courseDescription'].replace(/\\\\n/g, '\n'));
 					$('#courseSave').html('Save Course');
 
 					// Display quiz's for course
-					displayQuiz(course);
+					displayQuizes(course);
 				}
 			});
 		} else {

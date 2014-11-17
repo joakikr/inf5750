@@ -17,7 +17,7 @@ function displayCourses() {
                 course += '<a href="content/course.html?course_id=' + courses['courses'][key].courseID + '">' + courses['courses'][key].courseTitle + '</a>';
                 course += '<button type="button" class="btn btn-default pull-right" id="deleteCourse" onclick="deleteCourse(' + courses['courses'][key].courseID + ');">Delete</button>';
                 course += '</li>';
-                $('#list_courses').append(course);
+                $('#courses').append(course);
             }
         }
     });
@@ -80,17 +80,20 @@ function getCourse(course_id, handler) {
     });
 }
 
-function saveCourse(form, course_id) {
+function saveCourse(course_id) {
     // Create URL to POST new course to
     var url = getHostRoot() + '/api/systemSettings/courses';
 
     // Retrieve course title and course description from form
-    var courseTitle = form.courseTitle.value;
-    var courseDescription = form.courseDescription.value;
+    // courseDescription is textarea, and the \n must be escaped before stored in json
+    var courseTitle =  $('#courseTitle').val(); //form.courseTitle.value;
+    var courseDescription = $('#courseDescription').val().replace(/\n/g, '\\\\n'); //form.courseDescription.value.replace(/\n/g, '\\\\n');
 
-    // Course title cannot be empty
+    // Course title cannot be empty: tell user and return
     if(courseTitle.isEmpty()) {
-        // TODO: Let user know that title must be filled
+        $('#courseTitle').addClass("invalid");
+        $('#courseTitle').val("");
+        $('#courseTitle').attr('placeholder', 'This field must be filled out.');
         return false;
     }
 
@@ -98,30 +101,26 @@ function saveCourse(form, course_id) {
 
         // Check if this is the first course
         if(courses == null) {
-            var course = '{ "courseID" : "' + getUniqueID() + '", "courseTitle" : "' + courseTitle + '", "courseDescription" : "' + courseDescription + '"}';
-            course = '{ "courses" : [' + course + '] }';
-
-            // Update courses on server and go to menu over courses
-            setCourses(course, function() {
-                window.location.href = getAppRoot();
-            });
+            courses = '{ "courseID" : ' + getUniqueID() + ', "courseTitle" : "' + courseTitle + '", "courseDescription" : "' + courseDescription + '", "courseQuiz" : []}';
+            courses = '{ "courses" : [' + courses + '] }';
+            courses = JSON.parse(courses);
         } else {
 
             if(course_id != null) {
-                // Here we must update given course id
+                // Here we must update given course_id
                 var course = $.grep(courses['courses'], function(e){ return e.courseID == course_id; });
                 course[0].courseTitle = courseTitle;
                 course[0].courseDescription = courseDescription;
             } else {
                 // Here we have a new course
-                courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription} );
+                courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription, "courseQuiz" : [] } );
             }
-
-            // Update courses on server and go to menu over courses
-            setCourses(JSON.stringify(courses), function() {
-                window.location.href = getAppRoot();
-            });
         }
+
+        // Update courses on server and go to menu over courses
+        setCourses(JSON.stringify(courses), function() {
+            window.location.href = getAppRoot();
+        });
     });
 }
 
