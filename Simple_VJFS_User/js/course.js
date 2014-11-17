@@ -22,19 +22,22 @@ function displayCourses() {
  				l+= '</a>'
 
 
- 				//Replace with actual quiz data
- 				l+= '<a href="#" class="list-group-item">QUiz</a>'
+
+ 				//Insert quiz_list into list_courses her
+
 				l+= '<a href="#" class="list-group-item">QUiz</a>'
+
 
  				l+='</div>';
 
-		
 				$('#courses').append(l);
 
 			}
 		}
 	});
+
 }
+
 
 
 
@@ -57,20 +60,19 @@ function getCourses(handler) {
 	});
 }
 
-function getCourse(course_id, handler) {
 
-	getCourses(function(courses) {
-		
-		// Retrieve course based on course_id
-		var course = $.grep(courses['courses'], function(e){ return e.courseID == course_id; });
+function getQuizes(handler) {
 
-		// Result is an array, but should only be one element so using [0]
-		if(course[0] == null) {
-			handler(null);;
-			return;
-		}
-		
-		// Get course from courses and call handler function on it
-		handler(course[0]);
+	// Get URL from where to fetch quiz's json
+	var url = getHostRoot() + '/api/systemSettings/quizes';
+	
+	// Get quiz's as json object and on success use handler function
+	$.ajax({
+		url: url,
+		dataType: 'json'
+	}).success(function(quizes) {
+		handler(quizes);
+	}).error(function(error) {
+		handler(null);
 	});
 }
