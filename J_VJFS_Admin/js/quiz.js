@@ -14,18 +14,19 @@ function displayQuizes(course) {
 
 
     getQuizes(function(quizes) {
-        var course_quizes = $.grep(quizes['quizes'], function(e){ return e.courseID == course['courseID']; });
-        console.log(course_quizes);
 
-        // Display quiz's if course has any
-        for(key in course_quizes) {
-            var quiz = '<li class="list-group-item clearfix">';
-            quiz += '<a href="quiz.html?quiz_id=' + course_quizes[key].quizID + '&course_id=' + course['courseID'] + '">' + course_quizes[key].quizTitle + '</a>';
-            quiz += '<button type="button" class="btn btn-default pull-right" id="deleteQuiz" onclick="deleteQuiz(' + course['courseID'] + ', ' + course_quizes[key].quizID + ');">Delete</button>';
-            quiz += '</li>';
-            $('#courseQuiz').append(quiz);
+        if(quizes != null) {
+            var course_quizes = $.grep(quizes['quizes'], function(e){ return e.courseID == course['courseID']; });
+
+            // Display quiz's if course has any
+            for(key in course_quizes) {
+                var quiz = '<li class="list-group-item clearfix">';
+                quiz += '<a href="quiz.html?quiz_id=' + course_quizes[key].quizID + '&course_id=' + course['courseID'] + '">' + course_quizes[key].quizTitle + '</a>';
+                quiz += '<button type="button" class="btn btn-default pull-right" id="deleteQuiz" onclick="deleteQuiz(' + course['courseID'] + ', ' + course_quizes[key].quizID + ');">Delete</button>';
+                quiz += '</li>';
+                $('#courseQuiz').append(quiz);
+            }
         }
-
     });
 }
 
