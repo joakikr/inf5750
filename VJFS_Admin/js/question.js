@@ -254,7 +254,7 @@ function addAlternative(alternative_checked, alternative_value) {
                                 '<div class="col-lg-9">' +
                                     '<div class="input-group pull-left">' +
                                         '<span class="input-group-addon">' +
-                                            'Correct? <input type="checkbox" id="alternativeYN">' +
+                                            'Correct? <input type="checkbox" class="input-group-addon" id="alternativeYN">' +
                                         '</span>' +
                                         '<input type="text" class="form-control" id="alternativeValue" placeholder="Alternative?">' +
                                     '</div>' +

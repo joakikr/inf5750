@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42471042" vertical-offset="0" max-vertical-offset="777">
-              <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+              <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
               <folding>
                 <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
               </folding>
@@ -71,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="question.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="question.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/question.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1608" max-vertical-offset="2385">
-              <caret line="156" column="60" selection-start-line="156" selection-start-column="56" selection-end-line="156" selection-end-column="60" />
+            <state vertical-scroll-proportion="-0.08108108" vertical-offset="1563" max-vertical-offset="2850">
+              <caret line="165" column="32" selection-start-line="165" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
@@ -83,9 +83,8 @@
                 <element signature="n#!!block;n#setQuestions#0" expanded="false" />
                 <element signature="n#!!block;n#getQuestion#0" expanded="false" />
                 <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
-                <element signature="n#!!block;n#addAlternative#0" expanded="false" />
                 <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
-                <marker date="1416268527000" expanded="true" signature="6014:6025" placeholder="..." />
+                <marker date="1416313569000" expanded="true" signature="6014:6025" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -94,7 +93,7 @@
       <file leaf-file-name="question_text.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/question_text.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="31.125" vertical-offset="837" max-vertical-offset="1590">
+            <state vertical-scroll-proportion="-1.375" vertical-offset="57" max-vertical-offset="1590">
               <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
               <folding />
             </state>
@@ -114,8 +113,8 @@
       <file leaf-file-name="question_multiplechoice.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/question_multiplechoice.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="43.0" vertical-offset="1122" max-vertical-offset="1875">
-              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+            <state vertical-scroll-proportion="29.25" vertical-offset="1122" max-vertical-offset="1875">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -162,6 +161,7 @@
         <option value="$PROJECT_DIR$/content/quiz.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/quiz.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/js/main.js" />
+        <option value="$PROJECT_DIR$/../VJFS_Admin/js/question.js" />
       </list>
     </option>
   </component>
@@ -354,52 +354,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/course.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.875" vertical-offset="0" max-vertical-offset="1485">
           <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/question_multiplechoice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="43.0" vertical-offset="1122" max-vertical-offset="1875">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1608" max-vertical-offset="2385">
-          <caret line="156" column="60" selection-start-line="156" selection-start-column="56" selection-end-line="156" selection-end-column="60" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
-            <element signature="n#!!block;n#getQuestions#0" expanded="false" />
-            <element signature="n#!!block;n#setQuestions#0" expanded="false" />
-            <element signature="n#!!block;n#getQuestion#0" expanded="false" />
-            <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
-            <element signature="n#!!block;n#addAlternative#0" expanded="false" />
-            <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
-            <marker date="1416268527000" expanded="true" signature="6014:6025" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/question_text.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="31.125" vertical-offset="837" max-vertical-offset="1590">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -445,12 +403,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/question_multiplechoice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="29.25" vertical-offset="1122" max-vertical-offset="1875">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/question_text.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.375" vertical-offset="57" max-vertical-offset="1590">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42471042" vertical-offset="0" max-vertical-offset="777">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
           <folding>
             <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.08108108" vertical-offset="1563" max-vertical-offset="2850">
+          <caret line="165" column="32" selection-start-line="165" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
+            <element signature="n#!!block;n#getQuestions#0" expanded="false" />
+            <element signature="n#!!block;n#setQuestions#0" expanded="false" />
+            <element signature="n#!!block;n#getQuestion#0" expanded="false" />
+            <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
+            <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
+            <marker date="1416313569000" expanded="true" signature="6014:6025" placeholder="..." />
           </folding>
         </state>
       </provider>
