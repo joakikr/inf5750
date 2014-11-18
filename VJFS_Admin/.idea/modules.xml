@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/J_VJFS_Admin.iml" filepath="$PROJECT_DIR$/.idea/J_VJFS_Admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../VJFS_Admin/.idea/VJFS_Admin.iml" filepath="$PROJECT_DIR$/../VJFS_Admin/.idea/VJFS_Admin.iml" />
     </modules>
   </component>
 </project>

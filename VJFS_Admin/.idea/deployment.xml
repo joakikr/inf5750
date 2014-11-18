@@ -5,7 +5,7 @@
       <paths name="inf5750-25">
         <serverdata>
           <mappings>
-            <mapping deploy="/usr/share/tomcat/webapps/ROOT/apps/J_VJFS_Admin" local="$PROJECT_DIR$" web="/apps/J_VJFS_Admin" />
+            <mapping deploy="/usr/share/tomcat/webapps/ROOT/apps/VJFS_Admin" local="$PROJECT_DIR$/../VJFS_Admin" web="/apps/VJFS_Admin" />
           </mappings>
         </serverdata>
       </paths>

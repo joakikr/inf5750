@@ -51,7 +51,7 @@ function setQuizes(quizes, handler) {
 
     // Update courses on server
     $.ajax({
-        type: "POST",
+        type: 'POST',
         url: url,
         data: quizes,
         contentType: 'text/plain'
