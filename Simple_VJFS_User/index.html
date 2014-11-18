@@ -58,6 +58,24 @@
 			displayCourses();
 	</script>
 
+ 	<script>
+
+ 		var url = getHostRoot() + '/api/systemSettings/courses';
+
+		getCourses(function(courses) {
+
+			if(courses != null) {
+
+				for(key in courses['courses']) {
+
+					displayQuizes(courses['courses'][key]);
+
+				}
+			}
+		});
+
+	</script>
+
 
 
 </body>
