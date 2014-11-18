@@ -23,6 +23,22 @@ function displayCourses() {
     });
 }
 
+function returnCourses(handler){
+     var url = getHostRoot() + '/api/systemSettings/courses';
+     var courseNames = [];
+    // Get courses as json object
+    getCourses(function(courses) {
+
+        if(courses != null) {
+            // Display courses
+            for(key in courses['courses']) {
+                courseNames.push(courses['courses'][key].courseTitle);
+            }
+        }
+
+        handler(courseNames);
+    });
+}
 /**
  * Function will retrieve all courses as a json object
  * and call the handler function with the courses.

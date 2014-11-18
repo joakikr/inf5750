@@ -11,6 +11,7 @@
 
 	 <!-- Main CSS -->
     <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/dropdown.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,6 +50,29 @@
   			</div>
 		</div>
 	</div>
+	<div class="container">
+  		
+  		<div class="row">
+
+  			<!-- padd content to center -->
+  			<div class="col-xs-3"></div>
+  			
+  			<div class="col-xs-6 list-group" id="course">
+
+				<label class="list-group-item active">Students</label>	
+						<form role="form" class="list-group-item">	
+  							<label> Students to enroll</label>
+  							<div id="bloodhound" style="margin-bottom: 10px !important">
+								<input class="typeahead form-control" type="text" placeholder="Student name">
+							
+							</div>
+						</form>
+  				
+				
+  			</div>
+
+		</div>
+	</div>
 	<br>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -58,6 +82,7 @@
   	<script src="../js/main.js"></script>
 	<script src="../js/course.js"></script>
 	<script src="../js/quiz.js"></script>
+	<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
   	<script>
 
 		// Fetch URL
@@ -89,6 +114,32 @@
 			$('#courseSave').html('Add Course');
 		}
 
+	 	returnCourses(function(states){
+		console.log(states);
+		var states = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			// `states` is an array of state names defined in "The Basics"
+			local: $.map(states, function(state) { return { value: state }; })
+		});
+		 
+		// kicks off the loading/processing of `local` and `prefetch`
+		states.initialize();
+		 
+		$('#bloodhound .typeahead').typeahead({
+			hint: true,
+			highlight: true,
+			minLength: 1
+			},
+			{
+				name: 'states',
+				displayKey: 'value',
+				// `ttAdapter` wraps the suggestion engine in an adapter that
+				// is compatible with the typeahead jQuery plugin
+				source: states.ttAdapter()
+			});
+		});
+		
   	</script>
   </body>
 </html>
