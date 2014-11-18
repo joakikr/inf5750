@@ -6,3 +6,23 @@
 function getHostRoot() {
 	return location.protocol + '//' + location.hostname;
 }
+
+
+/**
+* Function will take an URL and a key parameter to search for,
+* then for the given key return its value.
+*/
+function getURLParameter(url, parameter_key)
+{
+	var url_query_string = url.search.substring(1);
+	var url_variables = url_query_string.split('&');
+
+	for (var i = 0; i < url_variables.length; i++)
+	{
+		var pair = url_variables[i].split('=');
+		if (pair[0] == parameter_key)
+		{
+			return pair[1];
+		}
+	}
+}

@@ -41,11 +41,17 @@ function displayQuizes(course){
 		if(quizes != null) {
 			var course_quizes = $.grep(quizes['quizes'], function(e){ return e.courseID == course['courseID']; });
 
+			course_quizes.sort(function(a, b) {
+				if(a.quizLevel < b.quizLevel) return -1;
+				if(a.quizLevel > b.quizLevel) return 1;
+				return 0;
+			});
+
 			for(quiz_key in course_quizes) {
 
 			 	//var l= '<a href=pages/questions.html?course_id='+courses.courseID +'">'+  +'" class="list-group-item">'+ course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle+'</a>';
 
-			 	var l='<a href="pages/questions.html?quiz_id='+ course_quizes[key].quizID + '&course_id=' + course['courseID']+'" class="list-group-item">'+ course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle+'             </a>';
+			 	var l='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=' + course['courseID']+'" class="list-group-item">'+ course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle+'             </a>';
 				$('#'+course['courseID']).append(l);
    			}
 		}
@@ -86,5 +92,23 @@ function getQuizes(handler) {
 		handler(quizes);
 	}).error(function(error) {
 		handler(null);
+	});
+}
+
+
+function getQuiz(quiz_id, handler) {
+	
+	getQuizes(function(quizes) {
+
+		// Retrieve quiz based on quiz_id
+		var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
+		
+		// Result is an array, but should only be one element so using [0]
+		if(quiz[0] == null) {
+			handler(null);;
+			return;
+		}
+		// Get quiz from quizes and call handler function on it
+		handler(quiz[0]);
 	});
 }
