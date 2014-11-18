@@ -17,7 +17,6 @@ function displayQuizInformation(){
 		
 		}
 	});
-
 }
 
 function displayQuestions(quiz){
@@ -31,7 +30,6 @@ function displayQuestions(quiz){
 
  			for(key in quiz_questions) {
  				
- 				console.log(key);
 
  				var tmp = '<div class="panel panel-default" id='+quiz_questions[key].questionID+'>';
  				tmp += '<div class="panel-heading">';
@@ -42,29 +40,28 @@ function displayQuestions(quiz){
  				tmp += '<div class="row">'
  				tmp += '<div class="col-xs-3"></div>';
 				tmp += '<div class="col-xs-6">';
-				tmp += '<form role="form" id="alternatives">';
+				tmp += '<form role="form" id="alternatives_"'+quiz_questions[key].questionID+'>';
 
 
 				if( quiz_questions[key].questionType == "text"){
 
-					tmp += '<textarea></textarea>';
+					tmp += '<textarea id="questionAnswer"></textarea>';
 
 				} else{
 
 					var num_alternatives = quiz_questions[key]['questionAlternatives'].length;
 
 					for(var i = 0; i < num_alternatives; i++) {
-						console.log("alt: " + i);
-
-					
+						
+						tmp += '<div class="alternative">'
 						tmp += '<div class="checkbox form-inline" >';
-						tmp += '<input type="checkbox"> <input type="text"';
-						tmp += 'class="form-control" value="' + quiz_questions[key]['questionAlternatives'][i]['alternativeValue'] + '">';
+						tmp += '<input type="checkbox" id="alternativeYN">';
+						tmp += '<p> ' + quiz_questions[key]['questionAlternatives'][i]['alternativeValue'] + '  </p> '
+						tmp += '</div>';
 						tmp += '</div>';
 						
 					}				
 				}
-
 
 				tmp += '</form>'
 				tmp += '</div>'
@@ -114,3 +111,5 @@ function getQuestion(question_id, handler) {
 		handler(question[0]);
 	});
 }
+
+

@@ -26,3 +26,13 @@ function getURLParameter(url, parameter_key)
 		}
 	}
 }
+
+/**
+* Function will retrieve the root URL for where the APP resides.
+*
+* @returns {string} : the currently root url for the app
+*/
+function getAppRoot() {
+	return getHostRoot() + '/apps/Simple_VJFS_User';
+}
+

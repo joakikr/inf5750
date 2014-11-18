@@ -36,10 +36,27 @@ function displayCourses() {
 function displayQuizes(course){
 
 
+	getUserQuizes(function(userQuizes) {
+		if(userQuizes != null) {
+
+
+			for(quiz_key in userQuizes) {
+				console.log(userQuizes[quiz_key])
+
+
+			}
+
+		}
+
+	});
+
 	getQuizes(function(quizes) {
 
 		if(quizes != null) {
+
 			var course_quizes = $.grep(quizes['quizes'], function(e){ return e.courseID == course['courseID']; });
+
+
 
 			course_quizes.sort(function(a, b) {
 				if(a.quizLevel < b.quizLevel) return -1;
@@ -48,13 +65,14 @@ function displayQuizes(course){
 			});
 
 			for(quiz_key in course_quizes) {
-
-			 	//var l= '<a href=pages/questions.html?course_id='+courses.courseID +'">'+  +'" class="list-group-item">'+ course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle+'</a>';
-
-			 	var l='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=' + course['courseID']+'" class="list-group-item">'+ course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle+'             </a>';
+				
+				var l='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=' + course['courseID']+'" class="list-group-item">'+ course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle+'  </a>';
 				$('#'+course['courseID']).append(l);
-   			}
-		}
+
+					
+			}
+   		}
+		
  	});
 }
 
