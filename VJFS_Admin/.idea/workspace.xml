@@ -23,170 +23,150 @@
     <favorites_list name="J_VJFS_Admin" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-13.25" vertical-offset="177" max-vertical-offset="930">
-                  <caret line="33" column="55" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="55" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/js/main.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-                  <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#88#136#0" expanded="false" />
-                    <element signature="n#!!block;n#getHostRoot#0" expanded="false" />
-                    <element signature="n#!!block;n#getAppRoot#0" expanded="false" />
-                    <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
-                    <element signature="n#!!block;n#getUniqueID#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="course.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/js/course.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-                  <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#!!block;n#displayCourses#0" expanded="false" />
-                    <element signature="n#!!block;n#getCourses#0" expanded="false" />
-                    <element signature="n#!!block;n#setCourses#0" expanded="false" />
-                    <element signature="n#!!block;n#getCourse#0" expanded="false" />
-                    <element signature="n#!!block;n#saveCourse#0" expanded="false" />
-                    <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/css/main.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-                  <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="question.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/js/question.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.024453025" vertical-offset="94" max-vertical-offset="1545">
-                  <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-                  <folding>
-                    <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
-                    <element signature="n#!!block;n#getQuestions#0" expanded="false" />
-                    <element signature="n#!!block;n#setQuestions#0" expanded="false" />
-                    <element signature="n#!!block;n#getQuestion#0" expanded="false" />
-                    <element signature="e#2454#2888#0" expanded="false" />
-                    <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="course.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/content/course.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-10.125" vertical-offset="717" max-vertical-offset="1470">
-                  <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="course.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/js/course.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1335">
-                  <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="96" selection-end-column="21" />
-                  <folding>
-                    <element signature="n#!!block;n#getCourses#0" expanded="false" />
-                    <element signature="n#!!block;n#setCourses#0" expanded="false" />
-                    <element signature="n#!!block;n#getCourse#0" expanded="false" />
-                    <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="quiz.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/js/quiz.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.096525095" vertical-offset="0" max-vertical-offset="777">
-                  <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-                  <folding>
-                    <element signature="n#!!block;n#displayQuizes#0" expanded="false" />
-                    <element signature="n#!!block;n#getQuizes#0" expanded="false" />
-                    <element signature="n#!!block;n#setQuizes#0" expanded="false" />
-                    <element signature="n#!!block;n#getQuiz#0" expanded="false" />
-                    <element signature="n#!!block;n#saveQuiz#0" expanded="false" />
-                    <element signature="n#!!block;n#deleteQuiz#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="question_text.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/content/question_text.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-9.5" vertical-offset="267" max-vertical-offset="1560">
-                  <caret line="33" column="59" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="question_multiplechoice.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/content/question_multiplechoice.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="6.25" vertical-offset="150" max-vertical-offset="1005">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="quiz.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/content/quiz.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-20.75" vertical-offset="792" max-vertical-offset="1545">
-                  <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.25" vertical-offset="177" max-vertical-offset="930">
+              <caret line="33" column="62" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+              <folding>
+                <element signature="e#88#136#0" expanded="false" />
+                <element signature="n#!!block;n#getHostRoot#0" expanded="false" />
+                <element signature="n#!!block;n#getAppRoot#0" expanded="false" />
+                <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
+                <element signature="n#!!block;n#getUniqueID#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/course.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="1050">
+              <caret line="94" column="32" selection-start-line="94" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#displayCourses#0" expanded="false" />
+                <element signature="n#!!block;n#getCourses#0" expanded="false" />
+                <element signature="n#!!block;n#setCourses#0" expanded="false" />
+                <element signature="n#!!block;n#getCourse#0" expanded="false" />
+                <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="question.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/question.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.32818532" vertical-offset="0" max-vertical-offset="777">
+              <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
+                <element signature="n#!!block;n#getQuestions#0" expanded="false" />
+                <element signature="n#!!block;n#setQuestions#0" expanded="false" />
+                <element signature="n#!!block;n#getQuestion#0" expanded="false" />
+                <element signature="n#!!block;n#saveQuestion#0" expanded="false" />
+                <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
+                <element signature="n#!!block;n#addAlternative#0" expanded="false" />
+                <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
+                <marker date="1416268527000" expanded="true" signature="6014:6025" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="question_text.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/question_text.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.5" vertical-offset="837" max-vertical-offset="1590">
+              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="question_multiplechoice.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/question_multiplechoice.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.25" vertical-offset="1122" max-vertical-offset="1875">
+              <caret line="104" column="153" selection-start-line="104" selection-start-column="153" selection-end-line="104" selection-end-column="153" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/course.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.125" vertical-offset="225" max-vertical-offset="1470">
+              <caret line="44" column="73" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quiz.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/quiz.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-53.75" vertical-offset="0" max-vertical-offset="1545">
+              <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quiz.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/quiz.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+              <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+              <folding>
+                <element signature="n#!!block;n#getQuizes#0" expanded="false" />
+                <element signature="n#!!block;n#setQuizes#0" expanded="false" />
+                <element signature="n#!!block;n#getQuiz#0" expanded="false" />
+                <element signature="n#!!block;n#saveQuiz#0" expanded="false" />
+                <element signature="n#!!block;n#deleteQuiz#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/content/course.html" />
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/course.js" />
-        <option value="$PROJECT_DIR$/content/question_text.html" />
         <option value="$PROJECT_DIR$/content/quiz.html" />
         <option value="$PROJECT_DIR$/js/quiz.js" />
+        <option value="$PROJECT_DIR$/content/course.html" />
+        <option value="$PROJECT_DIR$/content/question_text.html" />
+        <option value="$PROJECT_DIR$/content/question_multiplechoice.html" />
         <option value="$PROJECT_DIR$/js/question.js" />
       </list>
     </option>
@@ -389,11 +369,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
@@ -408,75 +396,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content/question_multiplechoice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.25" vertical-offset="150" max-vertical-offset="1005">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.125" vertical-offset="717" max-vertical-offset="1470">
-          <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/question_text.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.5" vertical-offset="267" max-vertical-offset="1560">
-          <caret line="33" column="59" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/course.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#displayCourses#0" expanded="false" />
-            <element signature="n#!!block;n#getCourses#0" expanded="false" />
-            <element signature="n#!!block;n#setCourses#0" expanded="false" />
-            <element signature="n#!!block;n#getCourse#0" expanded="false" />
-            <element signature="n#!!block;n#saveCourse#0" expanded="false" />
-            <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.25" vertical-offset="177" max-vertical-offset="930">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <caret line="33" column="62" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/content/quiz.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.75" vertical-offset="792" max-vertical-offset="1545">
+        <state vertical-scroll-proportion="-53.75" vertical-offset="0" max-vertical-offset="1545">
           <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125" vertical-offset="225" max-vertical-offset="1470">
+          <caret line="44" column="73" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/quiz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.096525095" vertical-offset="0" max-vertical-offset="777">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
           <folding>
-            <element signature="n#!!block;n#displayQuizes#0" expanded="false" />
             <element signature="n#!!block;n#getQuizes#0" expanded="false" />
             <element signature="n#!!block;n#setQuizes#0" expanded="false" />
             <element signature="n#!!block;n#getQuiz#0" expanded="false" />
@@ -486,17 +434,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/course.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="1050">
+          <caret line="94" column="32" selection-start-line="94" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#displayCourses#0" expanded="false" />
+            <element signature="n#!!block;n#getCourses#0" expanded="false" />
+            <element signature="n#!!block;n#setCourses#0" expanded="false" />
+            <element signature="n#!!block;n#getCourse#0" expanded="false" />
+            <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/question_text.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5" vertical-offset="837" max-vertical-offset="1590">
+          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/question_multiplechoice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.25" vertical-offset="1122" max-vertical-offset="1875">
+          <caret line="104" column="153" selection-start-line="104" selection-start-column="153" selection-end-line="104" selection-end-column="153" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/question.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.024453025" vertical-offset="94" max-vertical-offset="1545">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.32818532" vertical-offset="0" max-vertical-offset="777">
+          <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc" expanded="true" />
             <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
             <element signature="n#!!block;n#getQuestions#0" expanded="false" />
             <element signature="n#!!block;n#setQuestions#0" expanded="false" />
             <element signature="n#!!block;n#getQuestion#0" expanded="false" />
-            <element signature="e#2454#2888#0" expanded="false" />
+            <element signature="n#!!block;n#saveQuestion#0" expanded="false" />
             <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
+            <element signature="n#!!block;n#addAlternative#0" expanded="false" />
+            <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
+            <marker date="1416268527000" expanded="true" signature="6014:6025" placeholder="..." />
           </folding>
         </state>
       </provider>

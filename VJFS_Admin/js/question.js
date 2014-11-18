@@ -19,8 +19,9 @@ function displayQuestions(quiz) {
 
             // Display question's if quiz has any
             for(key in quiz_questions) {
+                var file = quiz_questions[key].questionType == 'text' ? 'question_text.html' : 'question_multiplechoice.html';
                 var question = '<li class="list-group-item clearfix">';
-                question += '<a href="quiz.html?question_id=' + quiz_questions[key].questionID + '&quiz_id=' + quiz['quizID'] + '">' + quiz_questions[key].questionTitle + '</a>';
+                question += '<a href="' + file + '?question_id=' + quiz_questions[key].questionID + '&quiz_id=' + quiz['quizID'] + '">' + quiz_questions[key].questionTitle + '</a>';
                 question += '<button type="button" class="btn btn-default pull-right" id="deleteQuestion" onclick="deleteQuestion(' + quiz['quizID'] + ', ' + quiz_questions[key].questionID + ');">Delete</button>';
                 question += '</li>';
                 $('#quizQuestion').append(question);
@@ -64,11 +65,11 @@ function setQuestions(questions, handler) {
 function getQuestion(question_id, handler) {
     getQuestions(function(questions) {
         // Retrieve question based on question_id
-        var question = $.grep(questions['questions'], function(e){ return e.questionId == question_id; });
+        var question = $.grep(questions['questions'], function(e){ return e.questionID == question_id; });
 
         // Result is an array, but should only be one element so using [0]
         if(question[0] == null) {
-            handler(null);;
+            handler(null);
             return;
         }
 
@@ -78,6 +79,8 @@ function getQuestion(question_id, handler) {
 }
 
 function saveQuestion(quiz_id, question_id) {
+    console.log("function: saveQuestion");
+
     // Create URL to POST new quiz to
     var url = getHostRoot() + '/api/systemSettings/questions';
 
@@ -102,14 +105,6 @@ function saveQuestion(quiz_id, question_id) {
         $('#questionQuestion').addClass("invalid");
         $('#questionQuestion').val("");
         $('#questionQuestion').attr('placeholder', 'This field must be filled out.');
-        legal = false;
-    }
-
-    // Answer can't be empty
-    if(questionAnswer.isEmpty()) {
-        $('#questionAnswer').addClass("invalid");
-        $('#questionAnswer').val("");
-        $('#questionAnswer').attr('placeholder', 'This field must be filled out.');
         legal = false;
     }
 
@@ -146,13 +141,68 @@ function saveQuestion(quiz_id, question_id) {
 
         } else if(questionType === 'multiple') {
             // Here we have a new multiple choice question
+            var num_alternatives = $('#alternatives').children('.alternative').length;
+            console.log("number of alt: " + num_alternatives);
+
+            // Must at least have one alternative
+            if(num_alternatives == 0) {
+                $('#alternatives').html('<span id="alternatives_invalid" style="color: red;">Must have at least 1 alternative.</span>');
+                return false;
+            }
+
+            var alternativeIsEmpty = false;
+            var questionAlternatives = [];
+
+            // Retrieve all checkbox values and alternative values for all alternatives
+            $('#alternatives').children('.alternative').each(function (index){
+                var alternative_checked = $(this).find('#alternativeYN').is(':checked');
+                var alternative_value = $(this).find('#alternativeValue').val();
+
+                // Alternative must have a value
+                // Mark all empty alternatives that they must have a value
+                if(alternative_value.isEmpty()) {
+                    $(this).find('#alternativeValue').attr('placeholder', 'This field must be filled out');
+                    $(this).find('#alternativeValue').addClass('invalid');
+                    $(this).find('#alternativeValue').val('');
+                    alternativeIsEmpty = true;
+                }
+
+                questionAlternatives.push({"alternativeChecked" : alternative_checked, "alternativeValue" : alternative_value});
+            });
+
+            console.log(JSON.stringify(questionAlternatives));
+
+            // Return if one or more of alternatives has no value
+            if(alternativeIsEmpty) return false;
+
+            // Check if this is the first question
+            if(questions == null) {
+                questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
+                + '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '" }';
+                questions = '{ "questions" : [' + questions + '] }';
+                questions = JSON.parse(questions);
+                questions['questions'][0]['questionAlternatives'] = questionAlternatives;
+            } else {
+
+                if(question_id != null) {
+                    // Here we must update given question_id
+                    var question = $.grep(questions['questions'], function(e){ return e.questionID == question_id; });
+                    question[0].questionTitle = questionTitle;
+                    question[0].questionQuestion = questionQuestion;
+                    question[0].questionAlternatives = questionAlternatives;
+                } else {
+                    // Here we have a new question
+                    questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
+                        "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAlternatives" : questionAlternatives } );
+                }
+            }
         } else {
             // Here we have undefine behaviour
             console.log("saveQuestion: type not defined");
             return false;
         }
 
-        // Update quizes on server and go to menu over quizes
+        // Update questions on server and go to specific quiz for question
         setQuestions(JSON.stringify(questions), function() {
             getQuiz(quiz_id, function(quiz) {
                 window.location.href = getAppRoot() + '/content/quiz.html?course_id=' + quiz['courseID'] + '&quiz_id=' + quiz_id;
@@ -190,4 +240,43 @@ function deleteQuestion(quiz_id, question_id) {
             });
         }
     });
+}
+
+function addAlternative(alternative_checked, alternative_value) {
+    console.log("function: addAlternative");
+
+    // Remove error message if one exists
+    $('#alternatives_invalid').remove();
+
+    // Add on a new alternative
+    var alternative_id = getUniqueID();
+    $('#alternatives').append('<div class="row form-group alternative" id="' + alternative_id + '">' +
+                                '<div class="col-lg-9">' +
+                                    '<div class="input-group pull-left">' +
+                                        '<span class="input-group-addon">' +
+                                            'Correct? <input type="checkbox" id="alternativeYN">' +
+                                        '</span>' +
+                                        '<input type="text" class="form-control" id="alternativeValue" placeholder="Alternative?">' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="col-lg-3">' +
+                                    '<div class="input-group pull-right">' +
+                                        '<button type="button" class="btn btn-default" onclick="deleteAlternative(' + alternative_id + ');">Delete</button>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>');
+
+    // Add on checked and value if they are set
+    if(alternative_checked != null) {
+        $('#' + alternative_id).find('#alternativeYN').attr('checked', alternative_checked);
+    }
+    if(alternative_value != null) {
+        $('#' + alternative_id).find('#alternativeValue').val(alternative_value);
+    }
+}
+
+function deleteAlternative(alternative_id) {
+    console.log("function: deleteAlternative");
+
+    $('#' + alternative_id).remove();
 }
