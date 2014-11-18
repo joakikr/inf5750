@@ -23,125 +23,23 @@
 			<!-- padd content to center -->
 			<div class="col-xs-3"></div>
 
-			<div class="col-xs-6 list-group">
+			<div class="col-xs-6 list-group" id="quizContainer">
 
-				<div class="page-header">
-					<h1>Quiz information</h1>
+				<div class="page-header" id="quiz_info">
+					<!--Quiz information-->
 				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Question 3</h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<!-- padd content to center -->
-							<div class="col-xs-3"></div>
-							<div class="col-xs-6">
-								<form role="form">
 
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 1">
-									</div>
+				<div id="question_list">
 
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 2">
-									</div>
 
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 3">
-									</div>
+					<!--Questions will appear here-->
 
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 4">
-									</div>
 
-								</form>
-							</div>
-						</div>
-					</div>
 				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Question 3</h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<!-- padd content to center -->
-							<div class="col-xs-3"></div>
-							<div class="col-xs-6">
-								<form role="form">
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 1">
-									</div>
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 2">
-									</div>
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 3">
-									</div>
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 4">
-									</div>
-
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Question 3</h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<!-- padd content to center -->
-							<div class="col-xs-3"></div>
-							<div class="col-xs-6">
-								<form role="form">
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 1">
-									</div>
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 2">
-									</div>
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 3">
-									</div>
-
-									<div class="checkbox form-inline">
-										<input type="checkbox"> <input type="text"
-											class="form-control" value="Alternative 4">
-									</div>
-
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<a href="../index.html" class="btn btn-default">Send</a>
-
+				<button type="button" class="btn btn-default" onclick="sendToServer(); return false;">Send</a>
+				
 			</div>
 		</div>
 	</div>
@@ -151,5 +49,114 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="../js/bootstrap.min.js"></script>
+
+	<script src="../js/questions.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/course.js"></script>
+	<script src="../js/quiz.js"></script>
+	<script>
+
+		//Send hva brukeren har svart til server..
+		function sendToServer() {
+
+
+			var url = window.location;
+
+			var quiz_id = getURLParameter(url, 'quiz_id');
+			var course_id = getURLParameter(url, 'course_id');
+
+			getQuiz(quiz_id, function(quiz) {
+
+				if(quiz != null) {
+			
+					getQuestions(function(questions) {
+					
+						if(questions != null) {
+ 							var quiz_questions = $.grep(questions['questions'], function(e){ return e.quizID == quiz['quizID']; });
+
+ 							// true = multiple, false = text
+ 							var how_to_correct = true;
+ 							$.each(quiz_questions, function(index) {
+ 								if(quiz_questions[index]['questionType'] == 'text') {
+ 									how_to_correct = false;
+ 									return;
+ 								}
+ 							});
+
+
+ 							// Here we correct as a multiple choice quiz, ie answer will be provided right away.
+ 							if(how_to_correct) {
+	 							for(key in quiz_questions) {
+
+	 								var question = quiz_questions[key];
+		 							var question_alternatives = [];
+
+		 							$('#' + question['questionID']).find('.alternative').each(function(index) {
+		 								var alternative_checked = $(this).find('#alternativeYN').is(':checked');
+		 								question_alternatives.push({"alternativeChecked" : alternative_checked});
+		 							}); 
+
+		 							var correct = true;
+
+		 							// Compare chosen alternatives with the right ones
+		 							for(var i = 0; i < question_alternatives.length; i++) {
+		 								if(question_alternatives[i]['alternativeChecked'] != question['questionAlternatives'][i]['alternativeChecked']) {
+		 									// Here we have different answers, let user know and store as failed
+		 									$('#quizWrong').remove();
+		 									$('#quizContainer').append('<p id="quizWrong" style="color: red;">Not all answers where correct</p>')
+		 									return false;
+		 								}
+		 							}
+	 							}
+
+	 							// Here ALL questions where correct
+	 							$('#quizWrong').remove();
+	 							
+	 							// Save quiz as passed an move on in life :D
+								saveUserQuiz(quiz_id);
+
+ 							} else {
+ 								// Here we send all answer in such way that a mentor must correct it.
+
+ 								var answers = [];
+
+								for(key in quiz_questions) {
+
+									var question = { "questionID" : quiz_questions[key]['questionID'] };
+
+									if(quiz_questions[key].questionType == "text"){
+										// Here we have a text question
+										question['questionAnswer'] = $('#' + quiz_questions[key]['questionID']).find('#questionAnswer').val();
+
+									} else {
+										// Here we have a mulitple choice question
+										var question_alternatives = [];
+
+			 							$('#' + question['questionID']).find('.alternative').each(function(index) {
+			 								var alternative_checked = $(this).find('#alternativeYN').is(':checked');
+			 								question_alternatives.push({"alternativeChecked" : alternative_checked});
+			 							});
+
+			 							question['questionAlternatives'] = question_alternatives;
+									}
+
+ 									//saveUserAnswers(question);
+ 									answers.push(question);
+
+ 									// Go to main page
+ 									
+ 								}
+ 								saveUserAnswers(answers); 	
+			  				}	
+						}
+					});
+				}
+			});
+		}
+
+		displayQuizInformation();
+
+	</script>
+
 </body>
 </html>
