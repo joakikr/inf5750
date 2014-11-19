@@ -24,30 +24,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="summernote_test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="1230">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="16" selection-end-column="104" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="course.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/course.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.0" vertical-offset="1392" max-vertical-offset="2250">
-              <caret line="120" column="97" selection-start-line="120" selection-start-column="97" selection-end-line="120" selection-end-column="97" />
+            <state vertical-scroll-proportion="-21.375" vertical-offset="1047" max-vertical-offset="2250">
+              <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="course.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="summernote_test.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.1952192" vertical-offset="0" max-vertical-offset="1230">
+              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/course.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6924067" vertical-offset="242" max-vertical-offset="1485">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
               <caret line="114" column="63" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
               <folding>
                 <element signature="n#!!block;n#displayCourses#0" expanded="false" />
@@ -83,9 +83,9 @@
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/question_multiplechoice.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/question_text.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/quiz.html" />
+        <option value="$PROJECT_DIR$/../VJFS_Admin/js/course.js" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/course.html" />
-        <option value="$PROJECT_DIR$/../VJFS_Admin/js/course.js" />
       </list>
     </option>
   </component>
@@ -149,7 +149,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
+              <option name="myItemId" value="content" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -397,25 +397,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0" vertical-offset="1392" max-vertical-offset="2250">
-          <caret line="120" column="97" selection-start-line="120" selection-start-column="97" selection-end-line="120" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="1230">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="16" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/course.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6924067" vertical-offset="242" max-vertical-offset="1485">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
           <caret line="114" column="63" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
           <folding>
             <element signature="n#!!block;n#displayCourses#0" expanded="false" />
@@ -423,6 +407,22 @@
             <element signature="n#!!block;n#setCourses#0" expanded="false" />
             <element signature="n#!!block;n#getCourse#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.375" vertical-offset="1047" max-vertical-offset="2250">
+          <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1952192" vertical-offset="0" max-vertical-offset="1230">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
