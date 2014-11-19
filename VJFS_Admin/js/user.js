@@ -13,40 +13,6 @@ function displayAttendants(course) {
             return user['name'] + ' (' + user['userCredentials']['code'] + ')';
         });
 
-        /*
-         var states = new Bloodhound({
-         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-         queryTokenizer: Bloodhound.tokenizers.whitespace,
-         local: users['users']//$.map(users['users'], function(user) { return { value: user['id'] }; })
-         });
-
-         // kicks off the loading/processing of `local` and `prefetch`
-         states.initialize();
-
-         $('#bloodhound .typeahead').typeahead(
-         {
-         hint: true,
-         highlight: true,
-         minLength: 1
-         },
-         {
-         name: 'states',
-         displayKey: function(user) {
-         return user['userCredentials']['code'];
-         },
-         // `ttAdapter` wraps the suggestion engine in an adapter that
-         // is compatible with the typeahead jQuery plugin
-         source: states.ttAdapter(),
-         templates :
-
-         {
-         suggestion: function(user) {
-         return user['name'] + ' (' + user['userCredentials']['code'] + ')';
-         }
-         }
-         });
-         */
-
         // Add on attendants for course
         if(course['courseAttendants']) {
             for(var i = 0; i < course['courseAttendants'].length; i++) {
@@ -89,6 +55,7 @@ function displayAttendants(course) {
 }
 
 function displayMentors(course) {
+
     // For auto completion of finding mentors username
     getUsers(function(users){
 
@@ -99,7 +66,7 @@ function displayMentors(course) {
             return user['name'] + ' (' + user['userCredentials']['code'] + ')';
         });
 
-        // Add on attendants for course
+        // Add on mentors for course
         if(course['courseMentors']) {
             for(var i = 0; i < course['courseMentors'].length; i++) {
                 for(var j = 0; j < users['users'].length; j++) {
@@ -124,7 +91,7 @@ function displayMentors(course) {
         }
     });
 
-    // Add on dropdown box for attendants
+    // Add on dropdown box for mentors
     $('#courseContainer').append(
         '<div id="mentors">'+
             '<label class="list-group-item active">Mentors</label>' +

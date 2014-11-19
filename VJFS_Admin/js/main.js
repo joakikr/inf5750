@@ -51,6 +51,15 @@ function getUniqueID() {
 	return new Date().getTime();
 }
 
+/**
+ * Function will setup an instance of the "bloodhound" suggstioner and return it.
+ *
+ * @param div_id is the id of the div to add on bloodhound
+ * @param name is the name used for this instance
+ * @param data is the array of objects to use for suggestion
+ * @param display_key_function is a function that will return what to display from an object from the data array
+ * @param suggestion_function is a function that will return what to display in suggestion box from an object from the data array
+ */
 function setupBloodHound(div_id, name, data, display_key_function, suggestion_function) {
 	var bh = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -81,4 +90,47 @@ function setupBloodHound(div_id, name, data, display_key_function, suggestion_fu
 		});
 
 	return bh;
+}
+
+/**
+ * Function will check if the user currently trying to access app
+ * has the right privilege level (admin or if groups can be created: customizer)
+ *
+ * If user is admin, then handler function is called
+ */
+function isCustomizer(handler) {
+	// Create URL to fetch user data from (was not possible to use "fields" and "filters" here?)
+	// If so then last part of URL would be: /api/me.json?fields=userCredentials[userAuthorityGroups]
+	var url = getHostRoot() + '/api/me';
+
+	// Get information as json object
+	$.ajax({
+		url: url,
+		dataType: 'json'
+	}).success(function(user) {
+
+		var isSuperUser = false;
+
+		if(user.hasOwnProperty('userCredentials')) {
+			// Someone logged in,
+			// Need to check if user is "Superuser"
+			var authority_groups = user['userCredentials']['userAuthorityGroups'];
+
+			for(key in authority_groups) {
+				if(authority_groups[key]['name'] === 'Superuser') {
+					// This is a super user!
+					isSuperUser = true;
+					break;
+				}
+			}
+		}
+
+
+		if(isSuperUser) {
+			// Here we have a super user, call handler function
+			handler(true);
+		} else {
+			handler(false);
+		}
+	});
 }

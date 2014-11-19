@@ -21,6 +21,7 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
   </head>
   <body>
@@ -74,38 +75,49 @@
 		// Check if a specific course is chosen
 		var course_id = getURLParameter(url, 'course_id');
 
-		// Ready whenever you are - document!
-		$(document).ready(function(){
+		// Need to check if admin is logged in
+		isCustomizer(function(isCustomizer){
 
-			if(course_id != null) {
-
-				// Retrieve course
-				getCourse(course_id, function(course) {
-
-					if(course != null) {
-						// Display course and a save button
-						// Remember that courseDescription is a textarea, so must un escape \n before displaying content
-						$('#courseHeader').html(course['courseTitle']);
-						$('#courseTitle').val(course['courseTitle']);
-						$('#courseDescription').val(course['courseDescription'].replace(/\\\\n/g, '\n'));
-						$('#courseSave').html('Save Course');
-
-						// Display quiz's for course
-						displayQuizes(course);
-
-						// Display attendant's for course
-						displayAttendants(course);
-
-						// Display mentor's for course
-						displayMentors(course);
-					}
-				});
-			} else {
-				// Display a new course label and an add course button
-				$('#courseHeader').html('New Course');
-				$('#courseSave').html('Add Course');
+			if(!isCustomizer) {
+				$('body').empty();
+				$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
+				return;
 			}
+
+			// Ready whenever you are - document!
+			$(document).ready(function(){
+
+				if(course_id != null) {
+
+					// Retrieve course
+					getCourse(course_id, function(course) {
+
+						if(course != null) {
+							// Display course and a save button
+							// Remember that courseDescription is a textarea, so must un escape \n before displaying content
+							$('#courseHeader').html(course['courseTitle']);
+							$('#courseTitle').val(course['courseTitle']);
+							$('#courseDescription').val(course['courseDescription'].replace(/\\\\n/g, '\n'));
+							$('#courseSave').html('Save Course');
+
+							// Display quiz's for course
+							displayQuizes(course);
+
+							// Display attendant's for course
+							displayAttendants(course);
+
+							// Display mentor's for course
+							displayMentors(course);
+						}
+					});
+				} else {
+					// Display a new course label and an add course button
+					$('#courseHeader').html('New Course');
+					$('#courseSave').html('Add Course');
+				}
+			});
 		});
+
 
   	</script>
   </body>

@@ -88,34 +88,44 @@
 		var quiz_id = getURLParameter(url, 'quiz_id');
 		var question_id = getURLParameter(url, 'question_id');
 
-		// Ready whenever you are - document!
-		$(document).ready(function(){
+		// Need to check if admin is logged in
+		isCustomizer(function(isCustomizer){
 
-			if(question_id != null) {
-
-				// Retrieve question
-				getQuestion(question_id, function(question) {
-
-					if(question != null) {
-						// Display question information
-						$('#questionHeader').html(question['questionTitle']);
-						$('#questionTitle').val(question['questionTitle']);
-						$('#questionQuestion').val(question['questionQuestion']);
-
-						// Display alternatives
-						for(key in question['questionAlternatives']) {
-							addAlternative(question['questionAlternatives'][key].alternativeChecked, question['questionAlternatives'][key].alternativeValue);
-						}
-
-						// Display save button
-						$('#questionSave').html('Save Question');
-					}
-				});
-			} else {
-				// Display a new course label and an add course button
-				$('#questionHeader').html('New Multiple Choice Question');
-				$('#questionSave').html('Add Question');
+			if(!isCustomizer) {
+				$('body').empty();
+				$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
+				return;
 			}
+
+			// Ready whenever you are - document!
+			$(document).ready(function(){
+
+				if(question_id != null) {
+
+					// Retrieve question
+					getQuestion(question_id, function(question) {
+
+						if(question != null) {
+							// Display question information
+							$('#questionHeader').html(question['questionTitle']);
+							$('#questionTitle').val(question['questionTitle']);
+							$('#questionQuestion').val(question['questionQuestion']);
+
+							// Display alternatives
+							for(key in question['questionAlternatives']) {
+								addAlternative(question['questionAlternatives'][key].alternativeChecked, question['questionAlternatives'][key].alternativeValue);
+							}
+
+							// Display save button
+							$('#questionSave').html('Save Question');
+						}
+					});
+				} else {
+					// Display a new course label and an add course button
+					$('#questionHeader').html('New Multiple Choice Question');
+					$('#questionSave').html('Add Question');
+				}
+			});
 		});
 
 	</script>

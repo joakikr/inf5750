@@ -68,58 +68,68 @@
 		var course_id = getURLParameter(url, 'course_id');
 		var quiz_id = getURLParameter(url, 'quiz_id');
 
-		// Ready whenever you are - document!
-		$(document).ready(function(){
+		// Need to check if admin is logged in
+		isCustomizer(function(isCustomizer){
 
-			// Add on level options (This is one more than the number of quizes for course)
-			if(course_id != null) {
-
-				// Fetch course
-				getCourse(course_id, function(course){
-
-					if(course != null) {
-
-						// Fetch all quizes
-						getQuizes(function(quizes) {
-
-							var num_course_quizes = 0;
-
-							// Fetch number of quizes for given course
-							if(quizes != null) {
-								num_course_quizes += $.grep(quizes['quizes'], function(e){ return e.courseID == course['courseID']; }).length;
-							}
-
-							if(quiz_id == null) {
-								num_course_quizes++;
-							}
-
-							// Display level options
-							for(var i = 0; i < num_course_quizes; i++) {
-								$('#quizLevel').append('<option value="' + (i+1) + '">' + (i + 1) + '</option>');
-							}
-
-							// Fetch quiz if quiz_id is provided
-							if(quiz_id != null) {
-								getQuiz(quiz_id, function(quiz) {
-
-									// Display quiz and a save button
-									$('#quizHeader').html(quiz['quizTitle']);
-									$('#quizTitle').val(quiz['quizTitle']);
-									$('#quizLevel').val(quiz['quizLevel']);
-									$('#quizSave').html('Save Quiz');
-
-									// Display question's for quiz
-									displayQuestions(quiz);
-								});
-							}  else {
-								// Display a new course label and an add course button
-								$('#quizHeader').html('New Quiz');
-								$('#quizSave').html('Add Quiz');
-							}
-						});
-					}
-				});
+			if(!isCustomizer) {
+				$('body').empty();
+				$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
+				return;
 			}
+
+			// Ready whenever you are - document!
+			$(document).ready(function(){
+
+				// Add on level options (This is one more than the number of quizes for course)
+				if(course_id != null) {
+
+					// Fetch course
+					getCourse(course_id, function(course){
+
+						if(course != null) {
+
+							// Fetch all quizes
+							getQuizes(function(quizes) {
+
+								var num_course_quizes = 0;
+
+								// Fetch number of quizes for given course
+								if(quizes != null) {
+									num_course_quizes += $.grep(quizes['quizes'], function(e){ return e.courseID == course['courseID']; }).length;
+								}
+
+								if(quiz_id == null) {
+									num_course_quizes++;
+								}
+
+								// Display level options
+								for(var i = 0; i < num_course_quizes; i++) {
+									$('#quizLevel').append('<option value="' + (i+1) + '">' + (i + 1) + '</option>');
+								}
+
+								// Fetch quiz if quiz_id is provided
+								if(quiz_id != null) {
+									getQuiz(quiz_id, function(quiz) {
+
+										// Display quiz and a save button
+										$('#quizHeader').html(quiz['quizTitle']);
+										$('#quizTitle').val(quiz['quizTitle']);
+										$('#quizLevel').val(quiz['quizLevel']);
+										$('#quizSave').html('Save Quiz');
+
+										// Display question's for quiz
+										displayQuestions(quiz);
+									});
+								}  else {
+									// Display a new course label and an add course button
+									$('#quizHeader').html('New Quiz');
+									$('#quizSave').html('Add Quiz');
+								}
+							});
+						}
+					});
+				}
+			});
 		});
 
 	</script>
