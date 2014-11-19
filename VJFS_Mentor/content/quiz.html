@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+ 	 <!-- Main CSS -->
+  	<link href="../css/main.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+  	<div class="container">
+  		<div class="row">
+  			<!-- padd content to center -->
+  			<div class="col-xs-3"></div>
+
+			<div class="col-xs-6 list-group" id="quiz">
+				<label class="list-group-item active" id="quizHeader"></label>
+
+				<form role="form" class="list-group-item">
+					<div class="form-group">
+						<label for="quizTitle">Quiz Title</label>
+						<input type="text" class="form-control" id="quizTitle" placeholder="What is the title for the Quiz?">
+					</div>
+
+					<div class="form-group">
+						<label for="quizLevel">Level</label>
+						<select class="selectpicker form-control" id="quizLevel">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+
+					<button type="button" class="btn btn-default list-group-item"
+							id="quizSave" onclick="saveQuiz(course_id, quiz_id);"></button>
+
+				</form>
+			</div>
+  		</div>
+  	</div>
+  
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/course.js"></script>
+	<script src="../js/quiz.js"></script>
+	<script src="../js/question.js"></script>
+	<script>
+
+		// Fetch URL
+		var url = window.location;
+
+		// Check if a specific course and quiz is chosen
+		var course_id = getURLParameter(url, 'course_id');
+		var quiz_id = getURLParameter(url, 'quiz_id');
+
+		if(course_id != null && quiz_id != null) {
+
+			// Retrieve quiz
+			getQuiz(quiz_id, function(quiz) {
+				console.log("Quiz: " + JSON.stringify(quiz));
+
+				if(quiz != null) {
+					// Display quiz and a save button
+					$('#quizHeader').html(quiz['quizTitle']);
+					$('#quizTitle').val(quiz['quizTitle']);
+					$('#quizLevel').val(quiz['quizLevel']);
+					$('#quizSave').html('Save Quiz');
+
+					// Display question's for quiz
+					displayQuestions(quiz);
+				}
+			});
+		} else {
+			// Display a new course label and an add course button
+			$('#quizHeader').html('New Quiz');
+			$('#quizSave').html('Add Quiz');
+		}
+
+	</script>
+  </body>
+</html>

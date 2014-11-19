@@ -1,0 +1,23 @@
+{
+	"version" : "1.0",
+	"name" : "VJFS Mentor",
+	"description" : "Correct Quiz here.",
+	"launch_path" : "index.html",
+
+	"icons": {
+		 "16":null,
+		 "48":"img/icon_quiz_48.png",
+		 "128":"img/icon_quiz_128.png"
+	},
+
+	"developer" : {
+		"name" : "VJFS"
+	},
+
+	"default_locale" : "en",
+	"activities" : {
+		"dhis" : {
+			"href" : "*"
+		}
+	}
+}

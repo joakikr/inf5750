@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="inf5750-25">
+    <serverData>
+      <paths name="inf5750-25">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/usr/share/tomcat/webapps/ROOT/apps/J_VJFS_Admin" local="$PROJECT_DIR$" web="/apps/J_VJFS_Admin" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
