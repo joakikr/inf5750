@@ -87,7 +87,9 @@ function saveCourse(course_id) {
     // Retrieve course title and course description from form
     // courseDescription is textarea, and the \n must be escaped before stored in json
     var courseTitle =  $('#courseTitle').val(); //form.courseTitle.value;
-    var courseDescription = $('#courseDescription').val().replace(/\n/g, '\\\\n'); //form.courseDescription.value.replace(/\n/g, '\\\\n');
+    //var courseDescription = $('#courseDescription').val().replace(/\n/g, '\\\\n'); //form.courseDescription.value.replace(/\n/g, '\\\\n');
+    var courseDescription = JSON.stringify($('#courseDescription').code());
+    //$('#courseDescription').code("YEY " + JSON.parse(JSON.stringify(courseDesc)));
 
     // Course title cannot be empty: tell user and return
     if(courseTitle.isEmpty()) {
