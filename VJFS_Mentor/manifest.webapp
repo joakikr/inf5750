@@ -1,7 +1,7 @@
 {
 	"version" : "1.0",
-	"name" : "VJFS Admin",
-	"description" : "Make Quiz here.",
+	"name" : "VJFS Mentor",
+	"description" : "Correct Quiz here.",
 	"launch_path" : "index.html",
 
 	"icons": {

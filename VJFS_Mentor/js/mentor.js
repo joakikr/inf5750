@@ -1,47 +1,123 @@
 /**
- * Created by GladeJoa on 16.11.14.
+ * Created by Trøtteman on 18.11.14.
  */
 
-function displayStudents() {
+var json = {
+    "courses":[
+        {
+            "courseID":1416234255887,
+            "courseTitle":"INF5750",
+            "courseDescription":"Open Source Software Development.",
+            "courseQuiz":[
+            ],
+            "courseStudents":[
+                {
+                    "studentID":"joakikr",
+		    "studentName" : "Joakim"
+                },
+                {
+                    "studentID":"sigurhjs",
+		    "studentName" : "Sigurd"
+                }
+            ]
+        },
+        {
+            "courseID":1416234265000,
+            "courseTitle":"UNIK4220",
+            "courseDescription":"Introduction to crypto.",
+            "courseQuiz":[
+            ]
+        },
+        {
+            "courseID":1416309399481,
+            "courseTitle":"INF1000",
+            "courseDescription":"Basic Java.",
+            "courseQuiz":[
+            ]
+        }
+    ]
+}
+
+
+
+function displayCourses() {
 
     // Get URL to retrieve json object from
-    var url = getHostRoot() + '/api/systemSettings/students';
+    var url = getHostRoot() + '/api/systemSettings/courses';
 
     // Get courses as json object
-    getStudents(function(students) {
-
-            if(students != null) {
-                // Display students
-                for(key in students['students']) {
+    getCourses(function(courses) {
+            if(courses != null) {
+                // Display courses
+                for(key in courses['courses']) {
                     var course = '<li class="list-group-item clearfix">';
-                    students += '<a href="content/mentor.html?course_id=' + students['students'][key].courseID + '">' + students['students'][key].studentName + '</a>';
-                    students += '</li>';
-                    $('#students').append(students);
+                    course += '<a href="content/course.html?course_id=' +
+                    courses['courses'][key].courseID + '">' +
+                    courses['courses'][key].courseTitle + '</a>';
+                    course += '</li>';
+                    $('#courses').append(course);
                 }
             }
         });
 }
 
-/**
- * Function will retrieve all courses as a json object
- * and call the handler function with the courses.
- */
-function getStudents(handler) {
+function getCourses(handler) {
+/*
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/students';
+    var url = getHostRoot() + '/api/systemSettings/courses';
 
     // Get courses as json object and on success use handler function
     $.ajax({
-            url: url,
-                dataType: 'json'
-                }).success(function(students) {
-                        handler(students);
-                    }).error(function(error) {
-                            handler(null);
-                        });
+        url: url,
+        dataType: 'json'
+    }).success(function(courses) {
+        handler(courses);
+    }).error(function(error) {
+        handler(null);
+    });
+*/
+	handler(json);
+}
+
+function displayStudents(course_id) {
+
+    // Get courses as json object
+    getCourse(course_id, function(course) {
+            var students = course['courseStudents'];
+		
+            for(key in students) {
+
+                // Display students
+                    var student = '<li class="list-group-item clearfix">';
+                    student += '<a href="content/students.html?student_id=' + students[key].studentID + '">'+ students[key].studentName + '</a>';
+                    student += '</li>';
+                    $('#students').append(student);
+           }
+    });
 }
 
 
+function getCourse(course_id, handler) {
+
+    getCourses(function(courses) {
+        // Retrieve course based on course_id
+        var course = $.grep(courses['courses'], function(e){ return e.courseID == course_id; });
+
+        // Result is an array, but should only be one element so using [0]
+        if(course[0] == null) {
+            handler(null);
+            return;
+        }
+
+        // Get course from courses and call handler function on it
+        handler(course[0]);
+    });
+
+}
+
+
+
+// ------   For now, not used below here -------
 
 /**
  * Function will set courses with the string provided
@@ -105,11 +181,12 @@ function saveCourse(student_username) {
             } else {
                 //Display some error
             }
-        }
+  
 
         // Update courses on server and go to menu over courses
         setStudents(JSON.stringify(students), function() {
                 window.location.href = getAppRoot();
             });
         });
+
 }
