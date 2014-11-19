@@ -13,7 +13,9 @@ var json = {
             "courseStudents":[
                 {
                     "studentID":"joakikr",
-		    "studentName" : "Joakim"
+		    "studentName" : "Joakim",
+                    "questions":[
+                    ]
                 },
                 {
                     "studentID":"sigurhjs",
@@ -84,16 +86,77 @@ function displayStudents(course_id) {
     // Get courses as json object
     getCourse(course_id, function(course) {
             var students = course['courseStudents'];
-		
             for(key in students) {
 
                 // Display students
                     var student = '<li class="list-group-item clearfix">';
-                    student += '<a href="content/students.html?student_id=' + students[key].studentID + '">'+ students[key].studentName + '</a>';
+                    student += '<a href="students.html?student_id=' + students[key].studentID + '&course_id=' + course_id + '">'+ students[key].studentName + '</a>';
                     student += '</li>';
                     $('#students').append(student);
            }
-    });
+        });
+}
+
+function displayQuestions(course_id, student_id) {
+    // Get courses as json object
+    getCourse(course_id, function(course) {
+            var students = course['courseStudents'];
+            for(key in students) {
+                if(students[key].studentID == student_id) {
+                    break;
+                }
+            }
+            var questions = students[key].questions;
+            for(q in questions) {
+                var tmp = '<div class="panel panel-default" id='+questions[q].questionID+'>';
+                tmp += '<div class="panel-heading">';
+                tmp += '<h3 class="panel-title">'+ questions[q].questionTitle+'</h3>';
+                tmp += '<h3 class="panel-title">'+ questions[q].questionQuestion+'</h3>';
+                tmp += '</div>';
+                tmp += '<div class="panel-body">';
+                tmp += '<div class="row">';
+                tmp += '<div class="col-xs-3"></div>';
+                tmp += '<div class="col-xs-6">';
+                tmp += '<form role="form" id="alternatives_"'+questions[q].questionID+'>';
+                if( questions[q].questionType == "text"){
+                    tmp += '<textarea id="questionAnswer"></textarea>';
+                } else {
+                    var num_alternatives = questions[q]['questionAlternatives'].length;
+                    for(var i = 0; i < num_alternatives; i++) {
+
+                        tmp += '<div class="alternative">';
+                        tmp += '<div class="checkbox form-inline" >';
+                        tmp += '<input type="checkbox" id="alternativeYN">';
+                        tmp += '<p> ' + questions[q]['questionAlternatives'][i]['alternativeValue'] + '  </p> ';
+                        tmp += '</div>';
+                        tmp += '</div>';
+
+                    }
+                }
+                tmp += '</form>';
+                tmp += '</div>';
+                tmp += '</div>';
+                tmp += '</div>';
+                tmp += '</div>';
+                $('#question_list').append(tmp);
+            }
+        });
+}
+
+function getQuestion(course, student_username, handler) {
+    getStudent(function(student) {
+            // Retrieve course based on course_id
+            var course = $.grep(course['studentUsername'], function(e){ return e.username == student_username; });
+
+            // Result is an array, but should only be one element so using [0]
+            if(student[0] == null) {
+                handler(null);;
+                return;
+            }
+
+            // Get course from courses and call handler function on it
+            handler(course[0]);
+        });
 }
 
 
@@ -108,12 +171,25 @@ function getCourse(course_id, handler) {
             handler(null);
             return;
         }
-
         // Get course from courses and call handler function on it
         handler(course[0]);
     });
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -138,23 +214,6 @@ function setStudents(student, handler) {
                     }).error(function() {
                             handler(null);
                         });
-}
-
-function getStudent(student_username, handler) {
-
-    getStudent(function(student) {
-            // Retrieve course based on course_id
-            var course = $.grep(student['student'], function(e){ return e.username == student_username; });
-
-            // Result is an array, but should only be one element so using [0]
-            if(student[0] == null) {
-                handler(null);;
-                return;
-            }
-
-            // Get course from courses and call handler function on it
-            handler(course[0]);
-        });
 }
 
 function saveCourse(student_username) {
