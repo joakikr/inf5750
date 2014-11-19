@@ -74,27 +74,31 @@
 		var quiz_id = getURLParameter(url, 'quiz_id');
 		var question_id = getURLParameter(url, 'question_id');
 
-		if(quiz_id != null && question_id != null) {
+		// Ready whenever you are - document!
+		$(document).ready(function(){
 
-			// Retrieve question
-			getQuestion(question_id, function(question) {
-				console.log("Question: " + JSON.stringify(question));
+			if(question_id != null) {
 
-				if(question != null) {
-					// Display quiz and a save button
-					$('#questionHeader').html(question['questionTitle']);
-					$('#questionTitle').val(question['questionTitle']);
-					$('#questionQuestion').val(question['questionQuestion']);
-					$('#questionAnswer').val(question['questionAnswer']);
-					$('#questionSave').html('Save Question');
+				// Retrieve question
+				getQuestion(question_id, function(question) {
+					console.log("Question: " + JSON.stringify(question));
 
-				}
-			});
-		} else {
-			// Display a new course label and an add course button
-			$('#questionHeader').html('New Question');
-			$('#questionSave').html('Add Question');
-		}
+					if(question != null) {
+						// Display quiz and a save button
+						$('#questionHeader').html(question['questionTitle']);
+						$('#questionTitle').val(question['questionTitle']);
+						$('#questionQuestion').val(question['questionQuestion']);
+						$('#questionAnswer').val(question['questionAnswer']);
+						$('#questionSave').html('Save Question');
+
+					}
+				});
+			} else {
+				// Display a new course label and an add course button
+				$('#questionHeader').html('New Question');
+				$('#questionSave').html('Add Question');
+			}
+		});
 
   	</script>
   </body>

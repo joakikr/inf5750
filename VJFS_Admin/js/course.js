@@ -23,22 +23,6 @@ function displayCourses() {
     });
 }
 
-function returnCourses(handler){
-     var url = getHostRoot() + '/api/systemSettings/courses';
-     var courseNames = [];
-    // Get courses as json object
-    getCourses(function(courses) {
-
-        if(courses != null) {
-            // Display courses
-            for(key in courses['courses']) {
-                courseNames.push(courses['courses'][key].courseTitle);
-            }
-        }
-
-        handler(courseNames);
-    });
-}
 /**
  * Function will retrieve all courses as a json object
  * and call the handler function with the courses.
@@ -109,7 +93,7 @@ function saveCourse(course_id) {
     if(courseTitle.isEmpty()) {
         $('#courseTitle').addClass("invalid");
         $('#courseTitle').val("");
-        $('#courseTitle').attr('placeholder', 'This field must be filled out.');
+        $('#courseTitle').prop('placeholder', 'This field must be filled out.');
         return false;
     }
 
@@ -117,7 +101,7 @@ function saveCourse(course_id) {
 
         // Check if this is the first course
         if(courses == null) {
-            courses = '{ "courseID" : ' + getUniqueID() + ', "courseTitle" : "' + courseTitle + '", "courseDescription" : "' + courseDescription + '", "courseQuiz" : []}';
+            courses = '{ "courseID" : ' + getUniqueID() + ', "courseTitle" : "' + courseTitle + '", "courseDescription" : "' + courseDescription + '", "courseAttendants" : [], "courseMentors" : []}';
             courses = '{ "courses" : [' + courses + '] }';
             courses = JSON.parse(courses);
         } else {
@@ -129,7 +113,7 @@ function saveCourse(course_id) {
                 course[0].courseDescription = courseDescription;
             } else {
                 // Here we have a new course
-                courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription, "courseQuiz" : [] } );
+                courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription, "courseAttendants" : [], "courseMentors" : [] } );
             }
         }
 

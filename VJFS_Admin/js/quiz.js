@@ -90,7 +90,7 @@ function saveQuiz(course_id, quiz_id) {
     if(quizTitle.isEmpty()) {
         $('#quizTitle').addClass('invalid');
         $('#quizTitle').val("");
-        $('#quizTitle').attr('placeholder', 'This field must be filled out.');
+        $('#quizTitle').prop('placeholder', 'This field must be filled out.');
         return false;
     }
 
@@ -98,7 +98,7 @@ function saveQuiz(course_id, quiz_id) {
 
         // Check if this is the first quiz
         if(quizes == null) {
-            quizes = '{ "quizID" : ' + getUniqueID() + ', "courseID" : ' + course_id + ', "quizTitle" : "' + quizTitle + '", "quizLevel" : "' + quizLevel + '", "quizQuestion" : []}';
+            quizes = '{ "quizID" : ' + getUniqueID() + ', "courseID" : ' + course_id + ', "quizTitle" : "' + quizTitle + '", "quizLevel" : "' + quizLevel + '" }';
             quizes = '{ "quizes" : [' + quizes + '] }';
             quizes = JSON.parse(quizes);
         } else {
@@ -110,7 +110,7 @@ function saveQuiz(course_id, quiz_id) {
                 quiz[0].quizLevel = quizLevel;
             } else {
                 // Here we have a new quiz
-                quizes['quizes'].push( {"quizID" : getUniqueID(), "courseID" : course_id, "quizTitle" : quizTitle, "quizLevel" : quizLevel, "quizQuestion" : [] } );
+                quizes['quizes'].push( {"quizID" : getUniqueID(), "courseID" : course_id, "quizTitle" : quizTitle, "quizLevel" : quizLevel } );
             }
         }
 

@@ -88,32 +88,35 @@
 		var quiz_id = getURLParameter(url, 'quiz_id');
 		var question_id = getURLParameter(url, 'question_id');
 
-		if(quiz_id != null && question_id != null) {
+		// Ready whenever you are - document!
+		$(document).ready(function(){
 
-			// Retrieve question
-			getQuestion(question_id, function(question) {
-				console.log("Question: " + JSON.stringify(question));
+			if(question_id != null) {
 
-				if(question != null) {
-					// Display question information
-					$('#questionHeader').html(question['questionTitle']);
-					$('#questionTitle').val(question['questionTitle']);
-					$('#questionQuestion').val(question['questionQuestion']);
+				// Retrieve question
+				getQuestion(question_id, function(question) {
 
-					// Display alternatives
-					for(key in question['questionAlternatives']) {
-						addAlternative(question['questionAlternatives'][key].alternativeChecked, question['questionAlternatives'][key].alternativeValue);
+					if(question != null) {
+						// Display question information
+						$('#questionHeader').html(question['questionTitle']);
+						$('#questionTitle').val(question['questionTitle']);
+						$('#questionQuestion').val(question['questionQuestion']);
+
+						// Display alternatives
+						for(key in question['questionAlternatives']) {
+							addAlternative(question['questionAlternatives'][key].alternativeChecked, question['questionAlternatives'][key].alternativeValue);
+						}
+
+						// Display save button
+						$('#questionSave').html('Save Question');
 					}
-
-					// Display save button
-					$('#questionSave').html('Save Question');
-				}
-			});
-		} else {
-			// Display a new course label and an add course button
-			$('#questionHeader').html('New Multiple Choice Question');
-			$('#questionSave').html('Add Question');
-		}
+				});
+			} else {
+				// Display a new course label and an add course button
+				$('#questionHeader').html('New Multiple Choice Question');
+				$('#questionSave').html('Add Question');
+			}
+		});
 
 	</script>
   </body>

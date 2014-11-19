@@ -50,3 +50,35 @@ function getUniqueID() {
 	while (time == new Date().getTime());
 	return new Date().getTime();
 }
+
+function setupBloodHound(div_id, name, data, display_key_function, suggestion_function) {
+	var bh = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		local: data
+	});
+
+	// kicks off the loading/processing of `local` and `prefetch`
+	bh.initialize();
+
+	$('#' + div_id + ' .typeahead').typeahead(
+		{
+			hint: true,
+			highlight: true,
+			minLength: 1
+		},
+		{
+			name: name,
+			displayKey: display_key_function,
+			// `ttAdapter` wraps the suggestion engine in an adapter that
+			// is compatible with the typeahead jQuery plugin
+			source: bh.ttAdapter(),
+			templates :
+
+			{
+				suggestion: suggestion_function
+			}
+		});
+
+	return bh;
+}

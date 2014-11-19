@@ -3,7 +3,7 @@
  */
 
 /**
- * Function will display quesitons's for a given quiz.
+ * Function will display question's for a given quiz.
  */
 function displayQuestions(quiz) {
 
@@ -96,7 +96,7 @@ function saveQuestion(quiz_id, question_id) {
     if(questionTitle.isEmpty()) {
         $('#questionTitle').addClass("invalid");
         $('#questionTitle').val("");
-        $('#questionTitle').attr('placeholder', 'This field must be filled out.');
+        $('#questionTitle').prop('placeholder', 'This field must be filled out.');
         legal = false;
     }
 
@@ -104,7 +104,7 @@ function saveQuestion(quiz_id, question_id) {
     if(questionQuestion.isEmpty()) {
         $('#questionQuestion').addClass("invalid");
         $('#questionQuestion').val("");
-        $('#questionQuestion').attr('placeholder', 'This field must be filled out.');
+        $('#questionQuestion').prop('placeholder', 'This field must be filled out.');
         legal = false;
     }
 
@@ -142,7 +142,6 @@ function saveQuestion(quiz_id, question_id) {
         } else if(questionType === 'multiple') {
             // Here we have a new multiple choice question
             var num_alternatives = $('#alternatives').children('.alternative').length;
-            console.log("number of alt: " + num_alternatives);
 
             // Must at least have one alternative
             if(num_alternatives == 0) {
@@ -169,8 +168,6 @@ function saveQuestion(quiz_id, question_id) {
 
                 questionAlternatives.push({"alternativeChecked" : alternative_checked, "alternativeValue" : alternative_value});
             });
-
-            console.log(JSON.stringify(questionAlternatives));
 
             // Return if one or more of alternatives has no value
             if(alternativeIsEmpty) return false;
@@ -254,7 +251,7 @@ function addAlternative(alternative_checked, alternative_value) {
                                 '<div class="col-lg-9">' +
                                     '<div class="input-group pull-left">' +
                                         '<span class="input-group-addon">' +
-                                            'Correct? <input type="checkbox" class="input-group-addon" id="alternativeYN">' +
+                                            'Correct? <input type="checkbox"  id="alternativeYN">' +
                                         '</span>' +
                                         '<input type="text" class="form-control" id="alternativeValue" placeholder="Alternative?">' +
                                     '</div>' +
@@ -268,7 +265,7 @@ function addAlternative(alternative_checked, alternative_value) {
 
     // Add on checked and value if they are set
     if(alternative_checked != null) {
-        $('#' + alternative_id).find('#alternativeYN').attr('checked', alternative_checked);
+        $('#' + alternative_id).find('#alternativeYN').prop('checked', alternative_checked);
     }
     if(alternative_value != null) {
         $('#' + alternative_id).find('#alternativeValue').val(alternative_value);
