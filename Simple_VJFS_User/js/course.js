@@ -91,6 +91,24 @@ function displayQuizesHelper(course){
 				
 			}
    		}
+   		
+   		getUserQuizes(function(user_quizes) {
+   			  
+			for(key in user_quizes['quizes']){
+
+				$('#'+user_quizes['quizes'][key].quizID).append('<span class="label label-success">Finished</span>');
+			
+			}
+   		
+   		});
+
+   		getUserQuestions(function(user_questions){
+
+   			
+   			
+   		})
+
+
 		
  	});
 
