@@ -64,7 +64,7 @@ function displayCourses() {
 }
 
 function getCourses(handler) {
-/*
+
     // Get URL from where to fetch courses json
     var url = getHostRoot() + '/api/systemSettings/courses';
 
@@ -77,20 +77,20 @@ function getCourses(handler) {
     }).error(function(error) {
         handler(null);
     });
-*/
-	handler(json);
+
+    //handler(json);
 }
 
 function displayStudents(course_id) {
 
     // Get courses as json object
     getCourse(course_id, function(course) {
-            var students = course['courseStudents'];
+            var students = course['courseAttendants'];
             for(key in students) {
-
+                
                 // Display students
                     var student = '<li class="list-group-item clearfix">';
-                    student += '<a href="students.html?student_id=' + students[key].studentID + '&course_id=' + course_id + '">'+ students[key].studentName + '</a>';
+                    student += '<a href="students.html?student_id=' + students[key].attendantUsername + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
                     student += '</li>';
                     $('#students').append(student);
            }
@@ -99,63 +99,108 @@ function displayStudents(course_id) {
 
 function displayQuestions(course_id, student_id) {
     // Get courses as json object
-    getCourse(course_id, function(course) {
-            var students = course['courseStudents'];
-            for(key in students) {
-                if(students[key].studentID == student_id) {
-                    break;
-                }
-            }
-            var questions = students[key].questions;
-            for(q in questions) {
-                var tmp = '<div class="panel panel-default" id='+questions[q].questionID+'>';
-                tmp += '<div class="panel-heading">';
-                tmp += '<h3 class="panel-title">'+ questions[q].questionTitle+'</h3>';
-                tmp += '<h3 class="panel-title">'+ questions[q].questionQuestion+'</h3>';
-                tmp += '</div>';
-                tmp += '<div class="panel-body">';
-                tmp += '<div class="row">';
-                tmp += '<div class="col-xs-3"></div>';
-                tmp += '<div class="col-xs-6">';
-                tmp += '<form role="form" id="alternatives_"'+questions[q].questionID+'>';
-                if( questions[q].questionType == "text"){
-                    tmp += '<textarea id="questionAnswer"></textarea>';
-                } else {
-                    var num_alternatives = questions[q]['questionAlternatives'].length;
-                    for(var i = 0; i < num_alternatives; i++) {
-
-                        tmp += '<div class="alternative">';
-                        tmp += '<div class="checkbox form-inline" >';
-                        tmp += '<input type="checkbox" id="alternativeYN">';
-                        tmp += '<p> ' + questions[q]['questionAlternatives'][i]['alternativeValue'] + '  </p> ';
-                        tmp += '</div>';
-                        tmp += '</div>';
-
+    getQuestions(course_id, student_id, function(userQuestions, courseQuestions) {
+            var quizes = [];
+            if(!courseQuestions || !courseQuestions.count) {
+                for(q in courseQuestions) {
+                    for(q2 in userQuestions) {
+                        if(userQuestions[q2].questionID == courseQuestions[q].questionID) {
+                            break;
+                        }
                     }
+                    var tmp = '<div class="panel panel-default" id='+courseQuestions[q].questionID+'>';
+                    tmp += '<div class="panel-heading">';
+                    tmp += '<h3 class="panel-title">'+ courseQuestions[q].questionTitle+'</h3>';
+                    tmp += '<h3 class="panel-title">'+ courseQuestions[q].questionQuestion+'</h3>';
+                    tmp += '</div>';
+                    tmp += '<div class="panel-body">';
+                    tmp += '<div class="row">';
+                    tmp += '<div class="col-xs-3"></div>';
+                    tmp += '<div class="col-xs-6">';
+                    tmp += '<form role="form" id="alternatives_"'+courseQuestions[q].questionID+'>';
+                    if( courseQuestions[q].questionType == "text"){
+                        tmp += '<label for = "courseQuestionAnswer" > Correct Answer </label>';
+                        tmp += '<textarea id="courseQuestionAnswer" readonly="readonly">'+courseQuestions[q].questionAnswer+'</textarea>';
+                        tmp += '<label for = "userQuestionAnswer" > Attendant Answer </label>';
+                        tmp += '<textarea id="userQuestionAnswer" readonly="readonly"></textarea>';//This should show user answer
+                    } else {
+                        var num_alternatives = courseQuestions[q]['questionAlternatives'].length;
+                        for(var i = 0; i < num_alternatives; i++) {
+                            //var checked = userQuestions[q2]['questionAlternatives'][i]['alternativeChecked'] ? "checked" : "";
+                            var isCorrect = courseQuestions[q]['questionAlternatives'][i]['alternativeChecked'] ? "(Correct)" : "(Wrong)";
+                            tmp += '<div class="alternative">';
+                            tmp += '<div class="checkbox form-inline" >';
+                            //tmp += '<input type="checkbox" id="alternativeYN" disabled '+checked+'>';
+                            tmp += '<input type="checkbox" id="alternativeYN" disabled>';
+                            tmp += '<p>'+ isCorrect + ' ' + courseQuestions[q]['questionAlternatives'][i]['alternativeValue'] + '  </p> ';
+                            tmp += '</div>';
+                            tmp += '</div>';
+
+                        }
+                    }
+                    tmp += '<div class="alternative">';
+                    tmp += '<div class="checkbox form-inline" >';
+                    tmp += '<div class="pull-left">'
+                    tmp += '<input type="radio" name="correct" value="correct"> Approved ';
+                    tmp += '</div>'
+                    tmp += '<div class="pull-right">'
+                    tmp += '<input type="radio" name="correct" value="wrong" > Not approved ';
+                    tmp += '</div>'
+                    tmp += '</div>';
+                    tmp += '</div>';
+                    tmp += '</form>';
+                    tmp += '</div>';
+                    tmp += '</div>';
+                    tmp += '</div>';
+                    tmp += '</div>';
+                    $('#question_list').append(tmp);
+                    quizes.push(courseQuestions[q].quizID);
                 }
-                tmp += '</form>';
-                tmp += '</div>';
-                tmp += '</div>';
-                tmp += '</div>';
-                tmp += '</div>';
-                $('#question_list').append(tmp);
             }
+            $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(course_id, student_id, 1);">SAVE</button>');
+            console.log(quizes);
         });
 }
 
-function getQuestion(course, student_username, handler) {
-    getStudent(function(student) {
-            // Retrieve course based on course_id
-            var course = $.grep(course['studentUsername'], function(e){ return e.username == student_username; });
-
-            // Result is an array, but should only be one element so using [0]
-            if(student[0] == null) {
-                handler(null);;
-                return;
+function getQuestions(course_id, student_username, handler) {
+        // Get URL from where to fetch courses json
+    var urlStudent = getHostRoot() + '/api/systemSettings/' + student_username + '.questions';
+    var urlCourse = getHostRoot() + '/api/systemSettings/questions';
+    var uq = [];
+    var cq = [];
+    // Get courses as json object and on success use handler function
+    var a = $.ajax({
+        url: urlCourse,
+        dataType: 'json'
+    }).success(function(questions) {
+        for(key in questions) {
+            if(questions[key].courseID == course_id) {
+                uq.push(questions[key]);
             }
-
-            // Get course from courses and call handler function on it
-            handler(course[0]);
+        }
+    }).error(function(error) {
+            console.log("Failed in 1");
+        handler(null, null);
+        return;
+    });
+    var b = $.ajax({
+        url: urlCourse,
+        dataType: 'json'
+    }).success(function(questions) {
+        for(key in questions['questions']) {
+            //if(questions[key].courseID == course_id) {
+                cq.push(questions['questions'][key]);
+                //}
+        }
+    }).error(function(error) {
+            console.log("Failed in 2");
+        handler(null, null);
+        return;
+    });
+    $.when(a,b).done(function() {
+            console.log(uq);
+            console.log(cq);
+            handler(uq, cq);
         });
 }
 
@@ -179,42 +224,24 @@ function getCourse(course_id, handler) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------   For now, not used below here -------
-
-/**
- * Function will set courses with the string provided
- * and call the handler function upon return from the AJAX call.
- */
-function setStudents(student, handler) {
-    // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/courses';
-
-    // Update courses on server
-    $.ajax({
-            type: "POST",
-                url: url,
-                data: students,
-                contentType: 'text/plain'
-                }).success(function(data) {
-                        handler(data);
-                    }).error(function() {
-                            handler(null);
-                        });
+function saveCorrection(course_id, student_username, quizes) {
+    console.log("I dont work yet but you sent me course " + course_id + " for student " + student_id);
+    console.log("Quizes are " + quizes);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------  Not used below here, saving as reference to make code from -------
 
 function saveCourse(student_username) {
     // Create URL to POST new course to

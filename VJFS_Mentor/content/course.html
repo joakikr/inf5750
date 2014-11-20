@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Students</title>
+    <title>VJFS_Mentor - Students</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -43,8 +43,9 @@
     <script>
 	var url = window.location;
 	var course_id = getURLParameter(url, 'course_id');
-	
-        displayStudents(course_id);
+        $(document).ready(function() {
+            displayStudents(course_id);
+        });
     </script>
   </body>
 </html>
