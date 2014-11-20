@@ -6,55 +6,74 @@ function displayCourses() {
 	var url = getHostRoot() + '/api/systemSettings/courses';
 
 
-	// Get courses as json object
-	getCourses(function(courses) {
+	getMyUserName(function(user){
 
-		if(courses != null) {
-		
-			// Display courses
-			for(key in courses['courses']) {
+		var userr = user.userCredentials.username
 
-				var desc = JSON.parse(courses['courses'][key].courseDescription);
+		// Get courses as json object
+		getCourses(function(courses) {
 
-				var l = '<div class="panel panel-default">'
-				l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
-				l +=  '<div class="panel-body" >'+desc+'</div>'
-				l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
-				l += '</div>'
+			if(courses != null) {
+			
+				// Display courses
+				for(key in courses['courses']) {
+
+					var attendants =  courses['courses'][key].courseAttendants;
+					var desc = JSON.parse(courses['courses'][key].courseDescription);
+
+					var l = '<div class="panel panel-default">'
+					l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
+					l +=  '<div class="panel-body" >'+desc+'</div>'
+					l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
+					l += '</div>'
 
 
-				/*
-				var desc = JSON.parse(courses['courses'][key].courseDescription);
-
-	            var l = '<div class="list-group" id='+courses['courses'][key].courseID+'>';
-
-				l+= '<a href="#" class="list-group-item disabled">';
-    			l+=	'<h4 class="list-group-item-heading">'+ courses['courses'][key].courseTitle +'</h4>';
-    			l+=	'<h4>'+desc+'</h4>';
- 				l+= '</a>'
-
- 				l+='</div>';
-				*/
-				$('#courses').append(l);
-
+					for(keyY in attendants){
+						if(attendants[keyY].attendantUsername === userr){
+							$('#courses').append(l);
+						}
+					}
+				}
 			}
-		}
+		});
+
 	});
 
 }
+
+
+function getMyUserName(handler) {
+    // Get URL from where to fetch quiz's json
+    var url = getHostRoot() + '/api/me';
+
+    // Get the users information
+    $.ajax({
+        url: url,
+        dataType: 'json'
+    }).success(function(questions) {
+        handler(questions);
+    }).error(function(error) {
+        handler(null);
+    });
+}
+
+
 
 function displayQuizes(course){
 
 
 	getUserQuizes(function(userQuizes) {
+
+	//	console.log("asdfasaaaaaaaaadfa");
 		if(userQuizes != null) {
 
+			//	console.log("asdfasaaaaaaaaadfa");
 			var course_quizes = $.grep(userQuizes['quizes'], function(e){ return e.courseID == course['courseID']; });
 
 
 			for(quiz_key in course_quizes) {
-				 console.log(course_quizes[quiz_key].quizID)
-				console.log("asdfasdfa");
+				console.log(course_quizes[quiz_key].quizID)
+				//console.log("asdfasdfa");
 			}
 		
 		}
