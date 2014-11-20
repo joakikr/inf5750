@@ -100,8 +100,7 @@ function displayStudents(course_id) {
 function displayQuestions(course_id, student_id) {
     // Get courses as json object
     getQuestions(course_id, student_id, function(userQuestions, courseQuestions) {
-            //var questions = students[key].questions;
-            console.log(courseQuestions[0]);
+            var quizes = [];
             if(!courseQuestions || !courseQuestions.count) {
                 for(q in courseQuestions) {
                     for(q2 in userQuestions) {
@@ -123,7 +122,7 @@ function displayQuestions(course_id, student_id) {
                         tmp += '<label for = "courseQuestionAnswer" > Correct Answer </label>';
                         tmp += '<textarea id="courseQuestionAnswer" readonly="readonly">'+courseQuestions[q].questionAnswer+'</textarea>';
                         tmp += '<label for = "userQuestionAnswer" > Attendant Answer </label>';
-                        tmp += '<textarea id="userQuestionAnswer" readonly="readonly"></textarea>';
+                        tmp += '<textarea id="userQuestionAnswer" readonly="readonly"></textarea>';//This should show user answer
                     } else {
                         var num_alternatives = courseQuestions[q]['questionAlternatives'].length;
                         for(var i = 0; i < num_alternatives; i++) {
@@ -155,9 +154,11 @@ function displayQuestions(course_id, student_id) {
                     tmp += '</div>';
                     tmp += '</div>';
                     $('#question_list').append(tmp);
+                    quizes.push(courseQuestions[q].quizID);
                 }
             }
             $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(course_id, student_id, 1);">SAVE</button>');
+            console.log(quizes);
         });
 }
 
@@ -223,8 +224,9 @@ function getCourse(course_id, handler) {
 
 
 
-function saveCorrection(course_id, student_username, quiz_id) {
+function saveCorrection(course_id, student_username, quizes) {
     console.log("I dont work yet but you sent me course " + course_id + " for student " + student_id);
+    console.log("Quizes are " + quizes);
 }
 
 
