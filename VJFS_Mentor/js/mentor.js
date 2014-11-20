@@ -157,6 +157,7 @@ function displayQuestions(course_id, student_id) {
                     $('#question_list').append(tmp);
                 }
             }
+            $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(course_id, student_id, 1);">SAVE</button>');
         });
 }
 
@@ -222,42 +223,23 @@ function getCourse(course_id, handler) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------   For now, not used below here -------
-
-/**
- * Function will set courses with the string provided
- * and call the handler function upon return from the AJAX call.
- */
-function setStudents(student, handler) {
-    // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/courses';
-
-    // Update courses on server
-    $.ajax({
-            type: "POST",
-                url: url,
-                data: students,
-                contentType: 'text/plain'
-                }).success(function(data) {
-                        handler(data);
-                    }).error(function() {
-                            handler(null);
-                        });
+function saveCorrection(course_id, student_username, quiz_id) {
+    console.log("I dont work yet but you sent me course " + course_id + " for student " + student_id);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------  Not used below here, saving as reference to make code from -------
 
 function saveCourse(student_username) {
     // Create URL to POST new course to
