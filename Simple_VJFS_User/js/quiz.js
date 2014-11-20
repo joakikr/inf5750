@@ -1,42 +1,53 @@
 
 function getUserQuizes(handler) {
-    // Get URL from where to fetch quiz's json
-    var url = getHostRoot() + '/api/userSettings/quizes';
 
-    // Get quiz's as json object and on success use handler function
-    $.ajax({
-        url: url,
-        dataType: 'json'
-    }).success(function(quizes) {
-        handler(quizes);
-    }).error(function(error) {
-        handler(null);
+
+    getMyUserName(function(user){
+
+        var username = user.userCredentials.username
+        // Get URL from where to fetch quiz's json
+        var url = getHostRoot() + '/api/systemSettings/VJFS_'+username+'_quizes';
+
+        // Get quiz's as json object and on success use handler function
+        $.ajax({
+            url: url,
+            dataType: 'json'
+        }).success(function(quizes) {
+            handler(quizes);
+        }).error(function(error) {
+            handler(null);
+        });
+
     });
 }
 
 
 function setUserQuizes(quizes, handler) {
-	
-	// Get URL from where to fetch courses json
-	var url = getHostRoot() + '/api/userSettings/quizes';
-		
-	// Update courses on server
-	$.ajax({
-		type: 'POST',
-		url: url,
-		data: quizes,
-		contentType: 'text/plain'
-	}).success(function(data) {
-		handler(data);
-	}).error(function() {
-		handler(null);
-	});
+
+    getMyUserName(function(user){
+
+        var username = user.userCredentials.username
+
+        var url = getHostRoot() + '/api/systemSettings/VJFS_'+username+'_quizes';
+    		
+    	// Update courses on server
+    	$.ajax({
+    		type: 'POST',
+    		url: url,
+    		data: quizes,
+    		contentType: 'text/plain'
+    	}).success(function(data) {
+    		handler(data);
+    	}).error(function() {
+    		handler(null);
+    	});
+
+    });
 }
 
 
 function saveUserQuiz(quiz_id) {
     // Create URL to POST new quiz to
-    var url = getHostRoot() + '/api/userSettings/quizes';
 
     getUserQuizes(function(quizes) {
 
@@ -46,7 +57,22 @@ function saveUserQuiz(quiz_id) {
             quizes = '{ "quizes" : [' + quizes + '] }';
             quizes = JSON.parse(quizes);
         } else {
-            quizes['quizes'].push( {"quizID" : quiz_id} );
+
+          //  console.log(quizes['quizes'].length)
+             var isUpdated = false;
+            for(var i = 0; i < quizes['quizes'].length; i++) {
+        
+
+                if(quizes['quizes'][i].quizID === quiz_id){
+                    isUpdated = true;
+                    break;
+                }
+
+            }
+
+            if(!isUpdated){
+                quizes['quizes'].push( {"quizID" : quiz_id} );
+            }
 
         }
 
@@ -54,7 +80,8 @@ function saveUserQuiz(quiz_id) {
         setUserQuizes(JSON.stringify(quizes), function() {
             window.location.href = getAppRoot();
         });
-    });
+     });
+
 }
 
 function getUserQuestions(handler) {
@@ -90,7 +117,6 @@ function setUserQuestions(questions, handler) {
 }
 
 function saveUserAnswers(answers){
-	console.log("Answer: " + JSON.stringify(answers));
 
     // Create URL to POST new quiz to
     var url = getHostRoot() + '/api/userSettings/questions';
@@ -133,3 +159,18 @@ function saveUserAnswers(answers){
     });
 }
 
+
+function getMyUserName(handler) {
+    // Get URL from where to fetch quiz's json
+    var url = getHostRoot() + '/api/me';
+
+    // Get the users information
+    $.ajax({
+        url: url,
+        dataType: 'json'
+    }).success(function(questions) {
+        handler(questions);
+    }).error(function(error) {
+        handler(null);
+    });
+}
