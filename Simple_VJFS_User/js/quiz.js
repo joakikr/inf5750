@@ -1,7 +1,6 @@
 
 function getUserQuizes(handler) {
 
-
     getMyUserName(function(user){
 
         var username = user.userCredentials.username
@@ -85,44 +84,55 @@ function saveUserQuiz(quiz_id) {
 }
 
 function getUserQuestions(handler) {
-    // Get URL from where to fetch quiz's json
-    var url = getHostRoot() + '/api/userSettings/questions';
 
-    // Get question's as json object and on success use handler function
-    $.ajax({
-        url: url,
-        dataType: 'json'
-    }).success(function(questions) {
-        handler(questions);
-    }).error(function(error) {
-        handler(null);
+
+    getMyUserName(function(user){
+
+        var username = user.userCredentials.username
+    // Get URL from where to fetch quiz's json
+        var url = getHostRoot() + '/api/systemSettings/VJFS_'+username+'_questions';
+
+        // Get question's as json object and on success use handler function
+        $.ajax({
+            url: url,
+            dataType: 'json'
+        }).success(function(questions) {
+            handler(questions);
+        }).error(function(error) {
+            handler(null);
+        });
+
     });
 }
 
 function setUserQuestions(questions, handler) {
+
+     getMyUserName(function(user){
+
+        var username = user.userCredentials.username
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/userSettings/questions';
+        var url = getHostRoot() + '/api/systemSettings/VJFS_'+username+'_questions';
 
     // Update courses on server
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: questions,
-        contentType: 'text/plain'
-    }).success(function(data) {
-        handler(data);
-    }).error(function() {
-        handler(null);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: questions,
+            contentType: 'text/plain'
+        }).success(function(data) {
+            handler(data);
+        }).error(function() {
+            handler(null);
+        });
+
     });
 }
 
 function saveUserAnswers(answers){
 
-    // Create URL to POST new quiz to
-    var url = getHostRoot() + '/api/userSettings/questions';
-
     getUserQuestions(function(questions) {
 
+        console.log(questions)
         // Check if this is the first quiz
         if(questions == null) {
             questions = { "questions" : answers };
