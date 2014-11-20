@@ -43,8 +43,9 @@
     <script>
 	var url = window.location;
 	var course_id = getURLParameter(url, 'course_id');
-	
-        displayStudents(course_id);
+        $(document).ready(function() {
+            displayStudents(course_id);
+        });
     </script>
   </body>
 </html>
