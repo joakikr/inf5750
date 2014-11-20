@@ -14,13 +14,16 @@ function displayCourses() {
 			// Display courses
 			for(key in courses['courses']) {
 
-				//var l = '<div class="list-group" id="list_courses"> ';
+
+				var desc = courses['courses'][key].courseDescription;
+				desc = desc.substr(0, desc.length-1);                   //fjerner siste char i stringen
+				desc = desc.substr(1);       //fjerner første char i stringen
 
 	            var l = '<div class="list-group" id='+courses['courses'][key].courseID+'>';
 
 				l+= '<a href="#" class="list-group-item disabled">';
     			l+=	'<h4 class="list-group-item-heading">'+ courses['courses'][key].courseTitle +'</h4>';
-    			l+=	'<p class="list-group-item-text">'+courses['courses'][key].courseDescription+'</p>';
+    			l+=	'<p class="list-group-item-text">'+desc+'</p>';
  				l+= '</a>'
 
  				l+='</div>';
@@ -41,7 +44,7 @@ function displayQuizes(course){
 
 
 			for(quiz_key in userQuizes) {
-				console.log(userQuizes[quiz_key])
+				console.log(userQuizes[quiz_key].quizID)
 
 
 			}
