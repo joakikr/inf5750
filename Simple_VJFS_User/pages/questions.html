@@ -123,7 +123,7 @@
 								for(key in quiz_questions) {
 
 									var question = { "questionID" : quiz_questions[key]['questionID'] };
-									question['quizID'] = ''+quiz_id+'';
+									question['quizID'] = quiz_id;
 								
 								
 									if(quiz_questions[key].questionType == "text"){

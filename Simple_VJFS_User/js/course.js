@@ -30,11 +30,12 @@ function displayCourses() {
 							l += '</div>'
 				
 							$('#courses').append(l);
-
-							displayQuizesHelper(courses['courses'][key])
 							break;
+							
 						}
 					}
+					displayQuizesHelper(courses['courses'][key])
+							
 				}
 			}
 		});
@@ -75,7 +76,7 @@ function displayQuizesHelper(course){
 			});
 
 			for(quiz_key in course_quizes) {
-
+				
 				if($('#'+course['courseID']).length){
 
 					var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';
@@ -91,22 +92,33 @@ function displayQuizesHelper(course){
 				
 			}
    		}
+		
+		
+		
+		//Add yellow label for quizes pending correction
+   		getUserQuestions(function(user_questions){
+			
+			for(key in user_questions['questions']){
+				$('#'+user_questions['questions'][key].quizID).html("");
+				$('#'+user_questions['questions'][key].quizID).append('<span class="label label-warning">Pending correction</span>');
+			}
+   			
+   			
+   		});
    		
+		//Add green label for finished quiz
    		getUserQuizes(function(user_quizes) {
    			  
 			for(key in user_quizes['quizes']){
-
+				$('#'+user_quizes['quizes'][key].quizID).html("");
 				$('#'+user_quizes['quizes'][key].quizID).append('<span class="label label-success">Finished</span>');
+				
 			
 			}
    		
    		});
+		
 
-   		getUserQuestions(function(user_questions){
-
-   			
-   			
-   		})
 
 
 		
