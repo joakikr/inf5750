@@ -132,10 +132,11 @@ function saveUserAnswers(answers){
 
     getUserQuestions(function(questions) {
 
-        console.log(questions)
+ 
         // Check if this is the first quiz
         if(questions == null) {
-            questions = { "questions" : answers };
+           questions = { "questions" : answers };
+		
         } else {
             //questions['questions'] = questions['questions'].concat( answers );
 
@@ -157,9 +158,6 @@ function saveUserAnswers(answers){
           	}
 
         }
-
-        console.log("Questions: " + JSON.stringify(questions));
-
         // Update quizes on server and go to menu over quizes
         
         setUserQuestions(JSON.stringify(questions), function() {

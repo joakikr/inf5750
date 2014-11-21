@@ -119,17 +119,21 @@
  								// Here we send all answer in such way that a mentor must correct it.
 
  								var answers = [];
-
+		
 								for(key in quiz_questions) {
 
 									var question = { "questionID" : quiz_questions[key]['questionID'] };
-
+									question['quizID'] = ''+quiz_id+'';
+								
+								
 									if(quiz_questions[key].questionType == "text"){
 										// Here we have a text question
+									
 										question['questionAnswer'] = $('#' + quiz_questions[key]['questionID']).find('#questionAnswer').val();
 
 									} else {
 										// Here we have a mulitple choice question
+										
 										var question_alternatives = [];
 
 			 							$('#' + question['questionID']).find('.alternative').each(function(index) {
@@ -142,10 +146,12 @@
 
  									//saveUserAnswers(question);
  									answers.push(question);
-
+									
  									// Go to main page
  									
  								}
+								
+								
  								saveUserAnswers(answers); 	
 			  				}	
 						}
