@@ -2,10 +2,12 @@
  * Created by GladeJoa on 16.11.14.
  */
 
-function displayCourses() {
+function getCourseResourceURL() {
+    var url = getHostRoot() + '/api/systemSettings/VJFS_courses';
+    return url;
+}
 
-    // Get URL to retrieve json object from
-    var url = getHostRoot() + '/api/systemSettings/courses';
+function displayCourses() {
 
     // Get courses as json object
     getCourses(function(courses) {
@@ -29,7 +31,7 @@ function displayCourses() {
  */
 function getCourses(handler) {
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/courses';
+    var url = getCourseResourceURL();
 
     // Get courses as json object and on success use handler function
     $.ajax({
@@ -48,7 +50,7 @@ function getCourses(handler) {
  */
 function setCourses(courses, handler) {
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/courses';
+    var url = getCourseResourceURL();
 
     // Update courses on server
     $.ajax({
@@ -71,7 +73,7 @@ function getCourse(course_id, handler) {
 
         // Result is an array, but should only be one element so using [0]
         if(course[0] == null) {
-            handler(null);;
+            handler(null);
             return;
         }
 
@@ -82,14 +84,11 @@ function getCourse(course_id, handler) {
 
 function saveCourse(course_id) {
     // Create URL to POST new course to
-    var url = getHostRoot() + '/api/systemSettings/courses';
+    var url = getCourseResourceURL();
 
     // Retrieve course title and course description from form
-    // courseDescription is textarea, and the \n must be escaped before stored in json
     var courseTitle =  $('#courseTitle').val(); //form.courseTitle.value;
-    //var courseDescription = $('#courseDescription').val().replace(/\n/g, '\\\\n'); //form.courseDescription.value.replace(/\n/g, '\\\\n');
     var courseDescription = JSON.stringify($('#courseDescription').code());
-    //$('#courseDescription').code("YEY " + JSON.parse(JSON.stringify(courseDesc)));
 
     // Course title cannot be empty: tell user and return
     if(courseTitle.isEmpty()) {
@@ -100,23 +99,19 @@ function saveCourse(course_id) {
     }
 
     getCourses(function(courses) {
-
         // Check if this is the first course
         if(courses == null) {
-            courses = '{ "courseID" : ' + getUniqueID() + ', "courseTitle" : "' + courseTitle + '", "courseDescription" : "' + courseDescription + '", "courseAttendants" : [], "courseMentors" : []}';
-            courses = '{ "courses" : [' + courses + '] }';
-            courses = JSON.parse(courses);
-        } else {
+            courses = { "courses" : [] };
+        }
 
-            if(course_id != null) {
-                // Here we must update given course_id
-                var course = $.grep(courses['courses'], function(e){ return e.courseID == course_id; });
-                course[0].courseTitle = courseTitle;
-                course[0].courseDescription = courseDescription;
-            } else {
-                // Here we have a new course
-                courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription, "courseAttendants" : [], "courseMentors" : [] } );
-            }
+        if(course_id != null) {
+            // Here we must update given course_id
+            var course = $.grep(courses['courses'], function(e){ return e.courseID == course_id; });
+            course[0].courseTitle = courseTitle;
+            course[0].courseDescription = courseDescription;
+        } else {
+            // Here we have a new course
+            courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription, "courseAttendants" : [], "courseMentors" : [] } );
         }
 
         // Update courses on server and go to menu over courses
@@ -130,7 +125,7 @@ function deleteCourse(course_id) {
     if(course_id == null) return;
 
     // Create URL to POST new courses to
-    var url = getHostRoot() + '/api/systemSettings/courses';
+    var url = getCourseResourceURL();
 
     getCourses(function(courses) {
 

@@ -27,19 +27,77 @@
       <file leaf-file-name="course.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/course.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.375" vertical-offset="1047" max-vertical-offset="2250">
-              <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
+            <state vertical-scroll-proportion="-16.375" vertical-offset="1407" max-vertical-offset="2250">
+              <caret line="120" column="62" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="summernote_test.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="summernote_test.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1952192" vertical-offset="0" max-vertical-offset="1230">
+            <state vertical-scroll-proportion="-17.625" vertical-offset="477" max-vertical-offset="1230">
               <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="810">
+              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+              <folding>
+                <element signature="e#88#136#0" expanded="false" />
+                <element signature="n#!!block;n#getHostRoot#0" expanded="false" />
+                <element signature="n#!!block;n#getAppRoot#0" expanded="false" />
+                <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
+                <element signature="n#!!block;n#getUniqueID#0" expanded="false" />
+                <element signature="n#!!block;n#setupBloodHound#0" expanded="false" />
+                <element signature="n#!!block;n#isCustomizer#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="question.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/question.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+              <folding>
+                <element signature="n#!!block;n#getQuestionResourceURL#0" expanded="false" />
+                <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
+                <element signature="n#!!block;n#getQuestions#0" expanded="false" />
+                <element signature="n#!!block;n#setQuestions#0" expanded="false" />
+                <element signature="n#!!block;n#getQuestion#0" expanded="false" />
+                <element signature="n#!!block;n#saveQuestion#0" expanded="false" />
+                <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
+                <element signature="n#!!block;n#addAlternative#0" expanded="false" />
+                <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
+                <marker date="1416663177000" expanded="true" signature="5883:5894" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quiz.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/quiz.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+              <caret line="128" column="40" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+              <folding>
+                <element signature="n#!!doc;n#getQuizResourceURL#0" expanded="false" />
+                <element signature="n#!!block;n#getQuizResourceURL#0" expanded="false" />
+                <element signature="n#!!block;n#displayQuizes#0" expanded="false" />
+                <element signature="n#!!block;n#getQuizes#0" expanded="false" />
+                <element signature="n#!!block;n#setQuizes#0" expanded="false" />
+                <element signature="n#!!block;n#getQuiz#0" expanded="false" />
+                <element signature="n#!!block;n#saveQuiz#0" expanded="false" />
+                <element signature="n#!!block;n#deleteQuiz#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -47,13 +105,35 @@
       <file leaf-file-name="course.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/course.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
-              <caret line="114" column="63" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="29" />
               <folding>
                 <element signature="n#!!block;n#displayCourses#0" expanded="false" />
                 <element signature="n#!!block;n#getCourses#0" expanded="false" />
                 <element signature="n#!!block;n#setCourses#0" expanded="false" />
                 <element signature="n#!!block;n#getCourse#0" expanded="false" />
+                <element signature="n#!!block;n#saveCourse#0" expanded="false" />
+                <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.077220075" vertical-offset="0" max-vertical-offset="777">
+              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+              <folding>
+                <element signature="n#!!block;n#displayAttendants#0" expanded="false" />
+                <element signature="n#!!block;n#displayMentors#0" expanded="false" />
+                <element signature="n#!!block;n#getUsers#0" expanded="false" />
+                <element signature="n#!!block;n#getUserByUsername#0" expanded="false" />
+                <element signature="n#!!block;n#getUserByID#0" expanded="false" />
+                <element signature="n#!!block;n#addAttendant#0" expanded="false" />
+                <element signature="n#!!block;n#deleteAttendant#0" expanded="false" />
+                <element signature="n#!!block;n#addMentor#0" expanded="false" />
+                <element signature="n#!!block;n#deleteMentor#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,17 +155,17 @@
         <option value="$PROJECT_DIR$/js/quiz.js" />
         <option value="$PROJECT_DIR$/content/quiz.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/css/dropdown.css" />
-        <option value="$PROJECT_DIR$/../VJFS_Admin/js/quiz.js" />
-        <option value="$PROJECT_DIR$/../VJFS_Admin/js/question.js" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/js/user.js" />
-        <option value="$PROJECT_DIR$/../VJFS_Admin/js/main.js" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/index.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/question_multiplechoice.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/question_text.html" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/quiz.html" />
-        <option value="$PROJECT_DIR$/../VJFS_Admin/js/course.js" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html" />
+        <option value="$PROJECT_DIR$/../VJFS_Admin/js/main.js" />
         <option value="$PROJECT_DIR$/../VJFS_Admin/content/course.html" />
+        <option value="$PROJECT_DIR$/../VJFS_Admin/js/course.js" />
+        <option value="$PROJECT_DIR$/../VJFS_Admin/js/quiz.js" />
+        <option value="$PROJECT_DIR$/../VJFS_Admin/js/question.js" />
       </list>
     </option>
   </component>
@@ -136,6 +216,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="VJFS_Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VJFS_Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VJFS_Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -260,7 +354,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -281,21 +375,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/quiz.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <caret line="123" column="40" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!block;n#displayQuizes#0" expanded="false" />
-            <element signature="n#!!block;n#getQuizes#0" expanded="false" />
-            <element signature="n#!!block;n#setQuizes#0" expanded="false" />
-            <element signature="n#!!block;n#getQuiz#0" expanded="false" />
-            <element signature="n#!!block;n#saveQuiz#0" expanded="false" />
-            <element signature="n#!!block;n#deleteQuiz#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../VJFS_Admin/css/dropdown.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38610038" vertical-offset="0" max-vertical-offset="777">
@@ -312,64 +391,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="241" column="0" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
-            <element signature="n#!!block;n#getQuestions#0" expanded="false" />
-            <element signature="n#!!block;n#setQuestions#0" expanded="false" />
-            <element signature="n#!!block;n#getQuestion#0" expanded="false" />
-            <element signature="n#!!block;n#saveQuestion#0" expanded="false" />
-            <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
-            <element signature="n#!!block;n#addAlternative#0" expanded="false" />
-            <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
-            <marker date="1416401246000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="810">
-          <caret line="100" column="31" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
-          <folding>
-            <element signature="e#88#136#0" expanded="false" />
-            <element signature="n#!!block;n#getHostRoot#0" expanded="false" />
-            <element signature="n#!!block;n#getAppRoot#0" expanded="false" />
-            <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
-            <element signature="n#!!block;n#getUniqueID#0" expanded="false" />
-            <element signature="n#!!block;n#setupBloodHound#0" expanded="false" />
-            <element signature="n#!!block;n#isCustomizer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/npm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="777">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.115830116" vertical-offset="0" max-vertical-offset="777">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#displayAttendants#0" expanded="false" />
-            <element signature="n#!!block;n#displayMentors#0" expanded="false" />
-            <element signature="n#!!block;n#getUsers#0" expanded="false" />
-            <element signature="n#!!block;n#getUserByUsername#0" expanded="false" />
-            <element signature="n#!!block;n#getUserByID#0" expanded="false" />
-            <element signature="n#!!block;n#addAttendant#0" expanded="false" />
-            <element signature="n#!!block;n#deleteAttendant#0" expanded="false" />
-            <element signature="n#!!block;n#addMentor#0" expanded="false" />
-            <element signature="n#!!block;n#deleteMentor#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -397,32 +423,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/course.js">
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
-          <caret line="114" column="63" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
-          <folding>
-            <element signature="n#!!block;n#displayCourses#0" expanded="false" />
-            <element signature="n#!!block;n#getCourses#0" expanded="false" />
-            <element signature="n#!!block;n#setCourses#0" expanded="false" />
-            <element signature="n#!!block;n#getCourse#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-17.625" vertical-offset="477" max-vertical-offset="1230">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/course.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.375" vertical-offset="1047" max-vertical-offset="2250">
-          <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
+        <state vertical-scroll-proportion="-16.375" vertical-offset="1407" max-vertical-offset="2250">
+          <caret line="120" column="62" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/content/summernote_test.html">
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1952192" vertical-offset="0" max-vertical-offset="1230">
-          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding>
+            <element signature="e#88#136#0" expanded="false" />
+            <element signature="n#!!block;n#getHostRoot#0" expanded="false" />
+            <element signature="n#!!block;n#getAppRoot#0" expanded="false" />
+            <element signature="n#!!block;n#getURLParameter#0" expanded="false" />
+            <element signature="n#!!block;n#getUniqueID#0" expanded="false" />
+            <element signature="n#!!block;n#setupBloodHound#0" expanded="false" />
+            <element signature="n#!!block;n#isCustomizer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!block;n#getQuestionResourceURL#0" expanded="false" />
+            <element signature="n#!!block;n#displayQuestions#0" expanded="false" />
+            <element signature="n#!!block;n#getQuestions#0" expanded="false" />
+            <element signature="n#!!block;n#setQuestions#0" expanded="false" />
+            <element signature="n#!!block;n#getQuestion#0" expanded="false" />
+            <element signature="n#!!block;n#saveQuestion#0" expanded="false" />
+            <element signature="n#!!block;n#deleteQuestion#0" expanded="false" />
+            <element signature="n#!!block;n#addAlternative#0" expanded="false" />
+            <element signature="n#!!block;n#deleteAlternative#0" expanded="false" />
+            <marker date="1416663177000" expanded="true" signature="5883:5894" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/course.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!block;n#displayCourses#0" expanded="false" />
+            <element signature="n#!!block;n#getCourses#0" expanded="false" />
+            <element signature="n#!!block;n#setCourses#0" expanded="false" />
+            <element signature="n#!!block;n#getCourse#0" expanded="false" />
+            <element signature="n#!!block;n#saveCourse#0" expanded="false" />
+            <element signature="n#!!block;n#deleteCourse#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/quiz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="453" max-vertical-offset="1230">
+          <caret line="128" column="40" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!doc;n#getQuizResourceURL#0" expanded="false" />
+            <element signature="n#!!block;n#getQuizResourceURL#0" expanded="false" />
+            <element signature="n#!!block;n#displayQuizes#0" expanded="false" />
+            <element signature="n#!!block;n#getQuizes#0" expanded="false" />
+            <element signature="n#!!block;n#setQuizes#0" expanded="false" />
+            <element signature="n#!!block;n#getQuiz#0" expanded="false" />
+            <element signature="n#!!block;n#saveQuiz#0" expanded="false" />
+            <element signature="n#!!block;n#deleteQuiz#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../VJFS_Admin/js/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.077220075" vertical-offset="0" max-vertical-offset="777">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!block;n#displayAttendants#0" expanded="false" />
+            <element signature="n#!!block;n#displayMentors#0" expanded="false" />
+            <element signature="n#!!block;n#getUsers#0" expanded="false" />
+            <element signature="n#!!block;n#getUserByUsername#0" expanded="false" />
+            <element signature="n#!!block;n#getUserByID#0" expanded="false" />
+            <element signature="n#!!block;n#addAttendant#0" expanded="false" />
+            <element signature="n#!!block;n#deleteAttendant#0" expanded="false" />
+            <element signature="n#!!block;n#addMentor#0" expanded="false" />
+            <element signature="n#!!block;n#deleteMentor#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

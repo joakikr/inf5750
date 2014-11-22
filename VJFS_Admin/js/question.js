@@ -2,6 +2,11 @@
  * Created by GladeJoa on 17.11.14.
  */
 
+function getQuestionResourceURL() {
+    var url = getHostRoot() + '/api/systemSettings/VJFS_questions';
+    return url;
+}
+
 /**
  * Function will display question's for a given quiz.
  */
@@ -32,7 +37,7 @@ function displayQuestions(quiz) {
 
 function getQuestions(handler) {
     // Get URL from where to fetch quiz's json
-    var url = getHostRoot() + '/api/systemSettings/questions';
+    var url = getQuestionResourceURL();
 
     // Get question's as json object and on success use handler function
     $.ajax({
@@ -47,7 +52,7 @@ function getQuestions(handler) {
 
 function setQuestions(questions, handler) {
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/questions';
+    var url = getQuestionResourceURL();
 
     // Update courses on server
     $.ajax({
@@ -79,10 +84,9 @@ function getQuestion(question_id, handler) {
 }
 
 function saveQuestion(quiz_id, question_id) {
-    console.log("function: saveQuestion");
 
     // Create URL to POST new quiz to
-    var url = getHostRoot() + '/api/systemSettings/questions';
+    var url = getQuestionResourceURL();
 
     // Retrieve quiz title and quiz level from form
     var questionTitle =  $('#questionTitle').val();
@@ -110,7 +114,6 @@ function saveQuestion(quiz_id, question_id) {
 
     if(!legal) return false;
 
-
     getQuestions(function(questions) {
 
         // Check what type of question we have
@@ -119,24 +122,24 @@ function saveQuestion(quiz_id, question_id) {
 
             // Check if this is the first quiz
             if(questions == null) {
-                questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
-                        + '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '", "questionAnswer" : "' + questionAnswer + '" }';
-                questions = '{ "questions" : [' + questions + '] }';
-                questions = JSON.parse(questions);
-            } else {
-
-                if(question_id != null) {
-                    // Here we must update given quiz_id
-                    var question = $.grep(questions['questions'], function(e){ return e.questionID == question_id; });
-                    question[0].questionTitle = questionTitle;
-                    question[0].questionQuestion = questionQuestion;
-                    question[0].questionAnswer = questionAnswer;
-                } else {
-                    // Here we have a new quiz
-                    questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
-                                                   "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAnswer" : questionAnswer } );
-                }
+                //questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
+                //        + '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '", "questionAnswer" : "' + questionAnswer + '" }';
+                questions = { "questions" : [] };
+                //questions = JSON.parse(questions);
             }
+
+            if(question_id != null) {
+                // Here we must update given quiz_id
+                var question = $.grep(questions['questions'], function(e){ return e.questionID == question_id; });
+                question[0].questionTitle = questionTitle;
+                question[0].questionQuestion = questionQuestion;
+                question[0].questionAnswer = questionAnswer;
+            } else {
+                // Here we have a new quiz
+                questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
+                                               "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAnswer" : questionAnswer } );
+            }
+
 
 
         } else if(questionType === 'multiple') {
@@ -174,27 +177,26 @@ function saveQuestion(quiz_id, question_id) {
 
             // Check if this is the first question
             if(questions == null) {
-                questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
-                + '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '" }';
-                questions = '{ "questions" : [' + questions + '] }';
-                questions = JSON.parse(questions);
-                questions['questions'][0]['questionAlternatives'] = questionAlternatives;
-            } else {
+                //questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
+                //+ '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '" }';
+                questions = { "questions" : [] };
+                //questions = JSON.parse(questions);
+                //questions['questions'][0]['questionAlternatives'] = questionAlternatives;
+            }
 
-                if(question_id != null) {
-                    // Here we must update given question_id
-                    var question = $.grep(questions['questions'], function(e){ return e.questionID == question_id; });
-                    question[0].questionTitle = questionTitle;
-                    question[0].questionQuestion = questionQuestion;
-                    question[0].questionAlternatives = questionAlternatives;
-                } else {
-                    // Here we have a new question
-                    questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
-                        "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAlternatives" : questionAlternatives } );
-                }
+            if(question_id != null) {
+                // Here we must update given question_id
+                var question = $.grep(questions['questions'], function(e){ return e.questionID == question_id; });
+                question[0].questionTitle = questionTitle;
+                question[0].questionQuestion = questionQuestion;
+                question[0].questionAlternatives = questionAlternatives;
+            } else {
+                // Here we have a new question
+                questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
+                    "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAlternatives" : questionAlternatives } );
             }
         } else {
-            // Here we have undefine behaviour
+            // Here we have undefined behaviour
             console.log("saveQuestion: type not defined");
             return false;
         }
@@ -212,7 +214,7 @@ function deleteQuestion(quiz_id, question_id) {
     if(question_id == null) return;
 
     // Create URL to POST new courses to
-    var url = getHostRoot() + '/api/systemSettings/questions';
+    var url = getQuestionResourceURL();
 
     getQuestions(function(questions) {
 
@@ -240,8 +242,6 @@ function deleteQuestion(quiz_id, question_id) {
 }
 
 function addAlternative(alternative_checked, alternative_value) {
-    console.log("function: addAlternative");
-
     // Remove error message if one exists
     $('#alternatives_invalid').remove();
 
@@ -273,7 +273,5 @@ function addAlternative(alternative_checked, alternative_value) {
 }
 
 function deleteAlternative(alternative_id) {
-    console.log("function: deleteAlternative");
-
     $('#' + alternative_id).remove();
 }

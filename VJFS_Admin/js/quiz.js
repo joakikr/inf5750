@@ -2,6 +2,12 @@
  * Created by GladeJoa on 16.11.14.
  */
 
+
+function getQuizResourceURL() {
+    var url = getHostRoot() + '/api/systemSettings/VJFS_quizes';
+    return url;
+}
+
 /**
  * Function will display quiz's for a given course.
  */
@@ -32,7 +38,7 @@ function displayQuizes(course) {
 
 function getQuizes(handler) {
     // Get URL from where to fetch quiz's json
-    var url = getHostRoot() + '/api/systemSettings/quizes';
+    var url = getQuizResourceURL();
 
     // Get quiz's as json object and on success use handler function
     $.ajax({
@@ -47,7 +53,7 @@ function getQuizes(handler) {
 
 function setQuizes(quizes, handler) {
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/quizes';
+    var url = getQuizResourceURL();
 
     // Update courses on server
     $.ajax({
@@ -80,7 +86,7 @@ function getQuiz(quiz_id, handler) {
 
 function saveQuiz(course_id, quiz_id) {
     // Create URL to POST new quiz to
-    var url = getHostRoot() + '/api/systemSettings/quizes';
+    var url = getQuizResourceURL();
 
     // Retrieve quiz title and quiz level from form
     var quizTitle =  $('#quizTitle').val();
@@ -98,20 +104,19 @@ function saveQuiz(course_id, quiz_id) {
 
         // Check if this is the first quiz
         if(quizes == null) {
-            quizes = '{ "quizID" : ' + getUniqueID() + ', "courseID" : ' + course_id + ', "quizTitle" : "' + quizTitle + '", "quizLevel" : "' + quizLevel + '" }';
-            quizes = '{ "quizes" : [' + quizes + '] }';
-            quizes = JSON.parse(quizes);
-        } else {
+            //quizes = '{ "quizID" : ' + getUniqueID() + ', "courseID" : ' + course_id + ', "quizTitle" : "' + quizTitle + '", "quizLevel" : "' + quizLevel + '" }';
+            quizes = { "quizes" : [] };
+            //quizes = JSON.parse(quizes);
+        }
 
-            if(quiz_id != null) {
-                // Here we must update given quiz_id
-                var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
-                quiz[0].quizTitle = quizTitle;
-                quiz[0].quizLevel = quizLevel;
-            } else {
-                // Here we have a new quiz
-                quizes['quizes'].push( {"quizID" : getUniqueID(), "courseID" : course_id, "quizTitle" : quizTitle, "quizLevel" : quizLevel } );
-            }
+        if(quiz_id != null) {
+            // Here we must update given quiz_id
+            var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
+            quiz[0].quizTitle = quizTitle;
+            quiz[0].quizLevel = quizLevel;
+        } else {
+            // Here we have a new quiz
+            quizes['quizes'].push( {"quizID" : getUniqueID(), "courseID" : course_id, "quizTitle" : quizTitle, "quizLevel" : quizLevel } );
         }
 
         // Update quizes on server and go to menu over quizes
@@ -125,7 +130,7 @@ function deleteQuiz(course_id, quiz_id) {
     if(quiz_id == null) return;
 
     // Create URL to POST new courses to
-    var url = getHostRoot() + '/api/systemSettings/quizes';
+    var url = getQuizResourceURL();
 
     getQuizes(function(quizes) {
 
