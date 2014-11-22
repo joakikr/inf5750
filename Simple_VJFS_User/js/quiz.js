@@ -12,10 +12,11 @@ function getUserQuizes(handler) {
             url: url,
             dataType: 'json'
         }).success(function(quizes) {
-            handler(quizes);
+			handler(quizes);
         }).error(function(error) {
             handler(null);
         });
+		
 
     });
 }

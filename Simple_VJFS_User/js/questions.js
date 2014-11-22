@@ -82,7 +82,7 @@ function displayQuestions(quiz){
 function getQuestions(handler) {
 
 	// Get URL from where to fetch quiz's json
-	var url = getHostRoot() + '/api/systemSettings/questions';
+	var url = getHostRoot() + '/api/systemSettings/VJFS_questions';
 
 	// Get question's as json object and on success use handler function
 	$.ajax({
