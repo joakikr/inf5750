@@ -46,10 +46,9 @@
     <script src="../js/mentor.js"></script>
     <script>
 	var url = window.location;
-	var course_id = getURLParameter(url, 'course_id');
+	var quiz_id = getURLParameter(url, 'quiz_id');
 	var student_id = getURLParameter(url, 'student_id');
-        var quizes = [];
-        displayQuestions(course_id, student_id, quizes);
+        displayQuestions(quiz_id, student_id);
     </script>
   </body>
 </html>

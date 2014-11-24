@@ -2,50 +2,10 @@
  * Created by Trøtteman on 18.11.14.
  */
 
-var json = {
-    "courses":[
-        {
-            "courseID":1416234255887,
-            "courseTitle":"INF5750",
-            "courseDescription":"Open Source Software Development.",
-            "courseQuiz":[
-            ],
-            "courseStudents":[
-                {
-                    "studentID":"joakikr",
-		    "studentName" : "Joakim",
-                    "questions":[
-                    ]
-                },
-                {
-                    "studentID":"sigurhjs",
-		    "studentName" : "Sigurd"
-                }
-            ]
-        },
-        {
-            "courseID":1416234265000,
-            "courseTitle":"UNIK4220",
-            "courseDescription":"Introduction to crypto.",
-            "courseQuiz":[
-            ]
-        },
-        {
-            "courseID":1416309399481,
-            "courseTitle":"INF1000",
-            "courseDescription":"Basic Java.",
-            "courseQuiz":[
-            ]
-        }
-    ]
-}
-
-
-
 function displayCourses() {
 
     // Get URL to retrieve json object from
-    var url = getHostRoot() + '/api/systemSettings/courses';
+    var url = getHostRoot() + '/api/systemSettings/VJFS_courses';
 
     // Get courses as json object
     getCourses(function(courses) {
@@ -66,7 +26,7 @@ function displayCourses() {
 function getCourses(handler) {
 
     // Get URL from where to fetch courses json
-    var url = getHostRoot() + '/api/systemSettings/courses';
+    var url = getHostRoot() + '/api/systemSettings/VJFS_courses';
 
     // Get courses as json object and on success use handler function
     $.ajax({
@@ -87,51 +47,101 @@ function displayStudents(course_id) {
     getCourse(course_id, function(course) {
             var students = course['courseAttendants'];
             for(key in students) {
-                
                 // Display students
                     var student = '<li class="list-group-item clearfix">';
-                    student += '<a href="students.html?student_id=' + students[key].attendantUsername + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
+                    student += '<a href="quiz.html?student_id=' + students[key].attendantUsername + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
                     student += '</li>';
                     $('#students').append(student);
            }
         });
 }
 
-function displayQuestions(course_id, student_id, quizses) {
+function displayQuizes(course_id, student_id) {
+    console.log("Hello 1");
     // Get courses as json object
-    getQuestions(course_id, student_id, function(userQuestions, courseQuestions) {
-            if(!courseQuestions || !courseQuestions.count) {
-                for(q in courseQuestions) {
-                    for(q2 in userQuestions) {
-                        if(userQuestions[q2].questionID == courseQuestions[q].questionID) {
+    getQuizes(course_id, student_id, function(q) {
+            for(key in q) {
+                // Display students
+                var quiz_id = q[key].quizID;
+                var quiz = '<li class="list-group-item clearfix">';
+                quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '">'+ q[key].quizTitle + '</a>';
+                quiz += '</li>';
+                $('#quizes').append(quiz);
+           }
+        });
+}
+
+function getQuizes(course_id, student_id, handler) {
+    // Get URL from where to fetch courses json
+    var urlStudent = getHostRoot() + '/api/systemSettings/VJFS_' + student_id + '_questions';
+    var urlQuizes = getHostRoot() + '/api/systemSettings/VJFS_quizes';
+    var q = [];
+    // Get courses as json object and on success use handler function
+    $.ajax({
+        url: urlQuizes,
+        dataType: 'json'
+    }).success(function(quizes) {
+            $.ajax({
+                    url: urlStudent,
+                    dataType: 'json'
+            }).success(function(userQuizes) {
+                   for(key in quizes['quizes']) {
+                       if(containsQuiz(quizes['quizes'][key].quizID, userQuizes['questions'])) {
+                           q.push(quizes['quizes'][key]);
+                       }
+                   }
+                   handler(q);
+            }).error(function(error) {
+                    console.log("Error inside");
+                    handler(null, null);
+                    return;
+            });
+    }).error(function(error) {
+            console.log("Error outside");
+        handler(null, null);
+        return;
+    });
+}
+
+
+function displayQuestions(quiz_id, student_id, quizses) {
+    var allCorrect = 1;
+    // Get courses as json object
+    getQuestions(quiz_id, student_id, function(userQuestions, quizQuestions) {
+            if(!quizQuestions || !quizQuestions.count) {
+                for(q in quizQuestions) {
+                    var q2 = -1;
+                    for(userNum in userQuestions) {
+                        if(userQuestions[userNum].questionID == quizQuestions[q].questionID) {
+                            q2 = userNum;
                             break;
                         }
                     }
-                    var tmp = '<div class="panel panel-default" id='+courseQuestions[q].questionID+'>';
+                    var tmp = '<div class="panel panel-default" id='+quizQuestions[q].questionID+'>';
                     tmp += '<div class="panel-heading">';
-                    tmp += '<h3 class="panel-title">'+ courseQuestions[q].questionTitle+'</h3>';
-                    tmp += '<h3 class="panel-title">'+ courseQuestions[q].questionQuestion+'</h3>';
+                    tmp += '<h3 class="panel-title">'+ quizQuestions[q].questionTitle+'</h3>';
+                    tmp += '<h3 class="panel-title">'+ quizQuestions[q].questionQuestion+'</h3>';
                     tmp += '</div>';
                     tmp += '<div class="panel-body">';
                     tmp += '<div class="row">';
                     tmp += '<div class="col-xs-3"></div>';
                     tmp += '<div class="col-xs-6">';
-                    tmp += '<form role="form" id="alternatives_"'+courseQuestions[q].questionID+'>';
-                    if( courseQuestions[q].questionType == "text"){
-                        tmp += '<label for = "courseQuestionAnswer" > Correct Answer </label>';
-                        tmp += '<textarea id="courseQuestionAnswer" readonly="readonly">'+courseQuestions[q].questionAnswer+'</textarea>';
+                    tmp += '<form role="form" id="alternatives_"'+quizQuestions[q].questionID+'>';
+                    if( quizQuestions[q].questionType == "text"){
+                        tmp += '<label for = "quizQuestionAnswer" > Correct Answer </label>';
+                        tmp += '<textarea id="quizQuestionAnswer" readonly="readonly">'+quizQuestions[q].questionAnswer+'</textarea>';
                         tmp += '<label for = "userQuestionAnswer" > Attendant Answer </label>';
-                        tmp += '<textarea id="userQuestionAnswer" readonly="readonly"></textarea>';//This should show user answer
+                        tmp += '<textarea id="userQuestionAnswer" readonly="readonly">'+userQuestions[q2].questionAnswer+'</textarea>';
                     } else {
-                        var num_alternatives = courseQuestions[q]['questionAlternatives'].length;
+                        var num_alternatives = quizQuestions[q]['questionAlternatives'].length;
                         for(var i = 0; i < num_alternatives; i++) {
-                            //var checked = userQuestions[q2]['questionAlternatives'][i]['alternativeChecked'] ? "checked" : "";
-                            var isCorrect = courseQuestions[q]['questionAlternatives'][i]['alternativeChecked'] ? "(Correct)" : "(Wrong)";
+                            console.log(userQuestions[q2]['questionAlternatives'][i]['alternativeChecked']);
+                            var checked = userQuestions[q2]['questionAlternatives'][i]['alternativeChecked'] ? "checked=" : "";
+                            var isCorrect = quizQuestions[q]['questionAlternatives'][i]['alternativeChecked'] ? "(Correct)" : "(Wrong)";
                             tmp += '<div class="alternative">';
                             tmp += '<div class="checkbox form-inline" >';
-                            //tmp += '<input type="checkbox" id="alternativeYN" disabled '+checked+'>';
-                            tmp += '<input type="checkbox" id="alternativeYN" disabled>';
-                            tmp += '<p>'+ isCorrect + ' ' + courseQuestions[q]['questionAlternatives'][i]['alternativeValue'] + '  </p> ';
+                            tmp += '<input type="checkbox" id="alternativeYN" disabled '+checked+'>';
+                            tmp += '<p>'+ isCorrect + ' ' + quizQuestions[q]['questionAlternatives'][i]['alternativeValue'] + '  </p> ';
                             tmp += '</div>';
                             tmp += '</div>';
 
@@ -153,52 +163,49 @@ function displayQuestions(course_id, student_id, quizses) {
                     tmp += '</div>';
                     tmp += '</div>';
                     $('#question_list').append(tmp);
-                    quizes.push(courseQuestions[q].quizID);
                 }
             }
-            $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(course_id, student_id, quizes);">SAVE</button>');
+            $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(quiz_id, student_id);">SAVE</button>');
         });
 }
 
-function getQuestions(course_id, student_username, handler) {
-        // Get URL from where to fetch courses json
-    var urlStudent = getHostRoot() + '/api/systemSettings/' + student_username + '.questions';
-    var urlCourse = getHostRoot() + '/api/systemSettings/questions';
+function getQuestions(quiz_id, student_username, handler) {
+    // Get URL from where to fetch quizs json
+    var urlStudent = getHostRoot() + '/api/systemSettings/VJFS_' + student_username + '_questions';
+    var urlQuiz = getHostRoot() + '/api/systemSettings/VJFS_questions';
     var uq = [];
-    var cq = [];
-    // Get courses as json object and on success use handler function
+    var qq = [];
+    // Get quizs as json object and on success use handler function
     var a = $.ajax({
-        url: urlCourse,
+        url: urlStudent,
         dataType: 'json'
     }).success(function(questions) {
-        for(key in questions) {
-            if(questions[key].courseID == course_id) {
-                uq.push(questions[key]);
+            console.log(questions);
+        for(key in questions['questions']) {
+            console.log(questions['questions'][key].quizID);
+            if(questions['questions'][key].quizID == quiz_id) {
+                uq.push(questions['questions'][key]);
             }
         }
     }).error(function(error) {
-            console.log("Failed in 1");
         handler(null, null);
         return;
     });
     var b = $.ajax({
-        url: urlCourse,
+        url: urlQuiz,
         dataType: 'json'
     }).success(function(questions) {
         for(key in questions['questions']) {
-            //if(questions[key].courseID == course_id) {
-                cq.push(questions['questions'][key]);
-                //}
+            if(questions['questions'][key].quizID == quiz_id) {
+                qq.push(questions['questions'][key]);
+            }
         }
     }).error(function(error) {
-            console.log("Failed in 2");
         handler(null, null);
         return;
     });
     $.when(a,b).done(function() {
-            console.log(uq);
-            console.log(cq);
-            handler(uq, cq);
+            handler(uq, qq);
         });
 }
 
@@ -222,55 +229,79 @@ function getCourse(course_id, handler) {
 
 
 
+
+//Code below is broken
+
 function saveCorrection(course_id, student_username, quizes) {
-    console.log("I dont work yet but you sent me course " + course_id + " for student " + student_id);
-    console.log("Quizes are " + quizes);
+    console.log(quizes);
+    var radios = document.getElementsByName('correct');
+    var allCorrect = 1;
+    var amountChecked = 0;
+    for (var i = 0; i < radios.length; i++) {
+
+        if(radios[i].checked) {
+            amountChecked++;
+            if(radios[i].value == 'wrong') {
+                allCorrect = 0;
+            }
+        }
+    }
+    if(amountChecked < radios.length/2) {
+        console.log("Not all questions corrected");
+        $('#question_list').append('<p id="quizWrong" style="color: red;">Not all answers were corrected</p>')
+        return;
+    }
+    console.log(student_username);
+    var questionUrl = getHostRoot() + '/api/systemSettings/VJFS_'+student_username+'_questions';
+
+    if(allCorrect == 1) {
+        console.log("All correct");
+    } else {
+        $.ajax({
+                url: questionUrl,
+                dataType: 'json'
+        }).success(function(questions) {
+                for(key in questions) {
+                    if(containsQuiz(questions[key].quizID, quizes)) {
+                        questions.corrected = 'true';
+                    }
+                }
+                postData(JSON.stringify(questions), questionUrl);
+        }).error(function(error) {
+                //Handle error
+                console.log(error);
+                return;
+        });
+    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-// ------  Not used below here, saving as reference to make code from -------
-
-function saveCourse(student_username) {
-    // Create URL to POST new course to
-    var url = getHostRoot() + '/api/systemSettings/students';
-
-    // Retrieve student title and student description from form
-    // studentDescription is textarea, and the \n must be escaped before stored in json
-    var studentName =  $('#studentName').val(); //form.studentTitle.value;
-
-    // Student title cannot be empty: tell user and return
-    if(studentTitle.isEmpty()) {
-        $('#studentName').addClass("invalid");
-        $('#studentName').val("");
-        $('#studentName').attr('placeholder', 'This field must be filled out.');
-        return false;
+function contains(value, array) {
+    for(key in array) {
+        if(array[key] == value) {
+            return true;
+        }
     }
+    return false;
+}
 
-    getStudents(function(students) {
-            if(student_username != null) {
-                // Here we must update given student_id
-                var student = $.grep(students['students'], function(e){ return e.studentUsername == student_username; });
-                student[0].studentName = studentName;
-            } else {
-                //Display some error
-            }
-  
+function containsQuiz(value, array) {
+    for(key in array) {
+        if(array[key].quizID == value) {
+            return true;
+        }
+    }
+    return false;
+}
 
-        // Update courses on server and go to menu over courses
-        setStudents(JSON.stringify(students), function() {
+function postData(data, url) {
+    $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+    	    contentType: 'text/plain'
+            }).success(function(data) {
                 window.location.href = getAppRoot();
+            }).error(function(error) {
+                console.log(error);
             });
-        });
-
 }

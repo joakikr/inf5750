@@ -20,79 +20,34 @@
     <![endif]-->
   </head>
   <body>
-  
-  	<div class="container">
-  		<div class="row">
-  			<!-- padd content to center -->
-  			<div class="col-xs-3"></div>
+    <div class="container" id="main_div">
+        <div class="row">
 
-			<div class="col-xs-6 list-group" id="quiz">
-				<label class="list-group-item active" id="quizHeader"></label>
+            <!-- padd content to center -->
+            <div class="col-xs-3"></div>
 
-				<form role="form" class="list-group-item">
-					<div class="form-group">
-						<label for="quizTitle">Quiz Title</label>
-						<input type="text" class="form-control" id="quizTitle" placeholder="What is the title for the Quiz?">
-					</div>
+            <div class="col-xs-6 list-group">
+                <label class="list-group-item active">Quizes</label>
+                <!-- Here courses will be appended -->
+                <ul class="list-group-item" id="quizes"></ul>
+            </div>
+        </div>
+    </div>
 
-					<div class="form-group">
-						<label for="quizLevel">Level</label>
-						<select class="selectpicker form-control" id="quizLevel">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-					</div>
-
-					<button type="button" class="btn btn-default list-group-item"
-							id="quizSave" onclick="saveQuiz(course_id, quiz_id);"></button>
-
-				</form>
-			</div>
-  		</div>
-  	</div>
-  
-	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
-	<script src="../js/main.js"></script>
-	<script src="../js/course.js"></script>
-	<script src="../js/quiz.js"></script>
-	<script src="../js/question.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/mentor.js"></script>
 	<script>
-
-		// Fetch URL
-		var url = window.location;
-
-		// Check if a specific course and quiz is chosen
-		var course_id = getURLParameter(url, 'course_id');
-		var quiz_id = getURLParameter(url, 'quiz_id');
-
-		if(course_id != null && quiz_id != null) {
-
-			// Retrieve quiz
-			getQuiz(quiz_id, function(quiz) {
-				console.log("Quiz: " + JSON.stringify(quiz));
-
-				if(quiz != null) {
-					// Display quiz and a save button
-					$('#quizHeader').html(quiz['quizTitle']);
-					$('#quizTitle').val(quiz['quizTitle']);
-					$('#quizLevel').val(quiz['quizLevel']);
-					$('#quizSave').html('Save Quiz');
-
-					// Display question's for quiz
-					displayQuestions(quiz);
-				}
-			});
-		} else {
-			// Display a new course label and an add course button
-			$('#quizHeader').html('New Quiz');
-			$('#quizSave').html('Add Quiz');
-		}
-
+	  var url = window.location;
+	  var course_id = getURLParameter(url, 'course_id');
+          var student_id = getURLParameter(url, 'student_id');
+          console.log("Hello 0");
+          $(document).ready(function() {
+             displayQuizes(course_id, student_id);
+          });
 	</script>
   </body>
 </html>
