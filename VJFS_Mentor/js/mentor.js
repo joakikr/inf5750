@@ -222,10 +222,6 @@ function getCourse(course_id, handler) {
 }
 
 
-
-
-//Code below is broken
-
 function saveCorrection(quiz_id, student_username) {
     var radios = document.getElementsByName('correct');
     var allCorrect = 1;
@@ -267,7 +263,7 @@ function saveCorrection(quiz_id, student_username) {
                         console.log(error);
                         return;
                 });
-                postData(JSON.stringify(questions), questionUrl);
+                postData(JSON.stringify(result), questionUrl);
         }).error(function(error) {
                 //Handle error
                 console.log(error);
