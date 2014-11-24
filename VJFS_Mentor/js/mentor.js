@@ -97,10 +97,9 @@ function displayStudents(course_id) {
         });
 }
 
-function displayQuestions(course_id, student_id) {
+function displayQuestions(course_id, student_id, quizses) {
     // Get courses as json object
     getQuestions(course_id, student_id, function(userQuestions, courseQuestions) {
-            var quizes = [];
             if(!courseQuestions || !courseQuestions.count) {
                 for(q in courseQuestions) {
                     for(q2 in userQuestions) {
@@ -157,8 +156,7 @@ function displayQuestions(course_id, student_id) {
                     quizes.push(courseQuestions[q].quizID);
                 }
             }
-            $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(course_id, student_id, 1);">SAVE</button>');
-            console.log(quizes);
+            $('#question_list').append('<button type="button" class="btn btn-default list-group-item" onclick="saveCorrection(course_id, student_id, quizes);">SAVE</button>');
         });
 }
 

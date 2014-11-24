@@ -48,7 +48,8 @@
 	var url = window.location;
 	var course_id = getURLParameter(url, 'course_id');
 	var student_id = getURLParameter(url, 'student_id');
-        displayQuestions(course_id, student_id);
+        var quizes = [];
+        displayQuestions(course_id, student_id, quizes);
     </script>
   </body>
 </html>
