@@ -92,12 +92,10 @@ function getQuizes(course_id, student_id, handler) {
                    }
                    handler(q);
             }).error(function(error) {
-                    console.log("Error inside");
                     handler(null, null);
                     return;
             });
     }).error(function(error) {
-            console.log("Error outside");
         handler(null, null);
         return;
     });
@@ -232,13 +230,11 @@ function getCourse(course_id, handler) {
 
 //Code below is broken
 
-function saveCorrection(course_id, student_username, quizes) {
-    console.log(quizes);
+function saveCorrection(quiz_id, student_username) {
     var radios = document.getElementsByName('correct');
     var allCorrect = 1;
     var amountChecked = 0;
     for (var i = 0; i < radios.length; i++) {
-
         if(radios[i].checked) {
             amountChecked++;
             if(radios[i].value == 'wrong') {
@@ -251,19 +247,50 @@ function saveCorrection(course_id, student_username, quizes) {
         $('#question_list').append('<p id="quizWrong" style="color: red;">Not all answers were corrected</p>')
         return;
     }
+
+
     console.log(student_username);
     var questionUrl = getHostRoot() + '/api/systemSettings/VJFS_'+student_username+'_questions';
 
     if(allCorrect == 1) {
         console.log("All correct");
+        $.ajax({
+                url: questionUrl,
+                dataType: 'json'
+        }).success(function(questions) {
+                var result = [];
+                for(key in questions['questions']) {
+                    if(questions['questions'][key].quizID != quiz_id) {
+                        result.push(questions['questions'][key]);
+                    }
+                }
+                var completeUrl = getHostRoot() + '/api/systemSettings/VJFS_'+student_username+'_quizes';
+                $.ajax({
+                        url: completeUrl,
+                        dataType: 'json'
+                }).success(function(quizes) {
+                        console.log(quizes);
+                        quizes['quizes'].push({"quizID" : quiz_id});
+                        console.log(quizes);
+                }).error(function(error) {
+                        console.log(error);
+                        return;
+                });
+                console.log(result);
+                //postData(JSON.stringify(questions), questionUrl);
+        }).error(function(error) {
+                //Handle error
+                console.log(error);
+                return;
+        });
     } else {
         $.ajax({
                 url: questionUrl,
                 dataType: 'json'
         }).success(function(questions) {
-                for(key in questions) {
-                    if(containsQuiz(questions[key].quizID, quizes)) {
-                        questions.corrected = 'true';
+                for(key in questions['questions']) {
+                    if(questions['questions'][key].quizID == quiz_id) {
+                        questions['questions'][key].corrected = 'true';
                     }
                 }
                 postData(JSON.stringify(questions), questionUrl);
