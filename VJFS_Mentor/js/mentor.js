@@ -57,7 +57,6 @@ function displayStudents(course_id) {
 }
 
 function displayQuizes(course_id, student_id) {
-    console.log("Hello 1");
     // Get courses as json object
     getQuizes(course_id, student_id, function(q) {
             for(key in q) {
@@ -133,7 +132,6 @@ function displayQuestions(quiz_id, student_id, quizses) {
                     } else {
                         var num_alternatives = quizQuestions[q]['questionAlternatives'].length;
                         for(var i = 0; i < num_alternatives; i++) {
-                            console.log(userQuestions[q2]['questionAlternatives'][i]['alternativeChecked']);
                             var checked = userQuestions[q2]['questionAlternatives'][i]['alternativeChecked'] ? "checked=" : "";
                             var isCorrect = quizQuestions[q]['questionAlternatives'][i]['alternativeChecked'] ? "(Correct)" : "(Wrong)";
                             tmp += '<div class="alternative">';
@@ -178,9 +176,7 @@ function getQuestions(quiz_id, student_username, handler) {
         url: urlStudent,
         dataType: 'json'
     }).success(function(questions) {
-            console.log(questions);
         for(key in questions['questions']) {
-            console.log(questions['questions'][key].quizID);
             if(questions['questions'][key].quizID == quiz_id) {
                 uq.push(questions['questions'][key]);
             }
@@ -243,17 +239,13 @@ function saveCorrection(quiz_id, student_username) {
         }
     }
     if(amountChecked < radios.length/2) {
-        console.log("Not all questions corrected");
         $('#question_list').append('<p id="quizWrong" style="color: red;">Not all answers were corrected</p>')
         return;
     }
 
-
-    console.log(student_username);
     var questionUrl = getHostRoot() + '/api/systemSettings/VJFS_'+student_username+'_questions';
 
     if(allCorrect == 1) {
-        console.log("All correct");
         $.ajax({
                 url: questionUrl,
                 dataType: 'json'
@@ -269,15 +261,13 @@ function saveCorrection(quiz_id, student_username) {
                         url: completeUrl,
                         dataType: 'json'
                 }).success(function(quizes) {
-                        console.log(quizes);
                         quizes['quizes'].push({"quizID" : quiz_id});
-                        console.log(quizes);
+                        postData(JSON.stringify(quizes), completeUrl);
                 }).error(function(error) {
                         console.log(error);
                         return;
                 });
-                console.log(result);
-                //postData(JSON.stringify(questions), questionUrl);
+                postData(JSON.stringify(questions), questionUrl);
         }).error(function(error) {
                 //Handle error
                 console.log(error);
