@@ -138,7 +138,10 @@ function saveUserAnswers(answers){
         if(questions == null) {
            questions = { "questions" : answers };
 		
-        } else {
+        }else if(questions.length == 0){
+          questions = { "questions" : answers };
+        } 
+         else {
             //questions['questions'] = questions['questions'].concat( answers );
 
           	// Update questions if they've been answered before

@@ -79,7 +79,7 @@ function displayQuizesHelper(course){
 				
 				if($('#'+course['courseID']).length){
 
-					var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';
+					var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';				
 					t += course['courseID']+'" class="list-group-item">';
 					t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
 					t += '<div id='+course_quizes[quiz_key].quizID+'></div>'
@@ -99,8 +99,28 @@ function displayQuizesHelper(course){
 			if(user_questions != null){
 			
 				for(key in user_questions['questions']){
+					
 					$('#'+user_questions['questions'][key].quizID).html("");
 					$('#'+user_questions['questions'][key].quizID).append('<span class="label label-warning">Pending correction</span>');
+					
+				}
+   			}
+   			
+   		});
+
+   		//Add red label for quizes that were corrected but are wrong. 
+   		getUserQuestions(function(user_questions){
+			
+			if(user_questions != null){
+			
+				for(key in user_questions['questions']){
+
+					if(user_questions['questions'][key].corrected === "true"){
+
+						console.log(user_questions['questions'][key].corrected + user_questions['questions'][key].quizID)
+						$('#'+user_questions['questions'][key].quizID).html("");
+						$('#'+user_questions['questions'][key].quizID).append('<span class="label label-danger">Wrong</span>');
+					}
 				}
    			}
    			
@@ -120,6 +140,7 @@ function displayQuizesHelper(course){
    		
 			}
    		});
+
 		
  	});
 

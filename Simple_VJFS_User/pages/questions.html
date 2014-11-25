@@ -67,6 +67,7 @@
 			var quiz_id = getURLParameter(url, 'quiz_id');
 			var course_id = getURLParameter(url, 'course_id');
 
+
 			$(document).ready(function(){
 			
 			getQuiz(quiz_id, function(quiz) {
@@ -129,6 +130,7 @@
 									var question = { "questionID" : quiz_questions[key]['questionID'] };
 									question['quizID'] = quiz_id;
 									question['courseID'] = course_id;
+									questions['corrected'] = "false";
 								
 								
 									if(quiz_questions[key].questionType == "text"){
