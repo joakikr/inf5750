@@ -54,7 +54,6 @@ function coursePending(attendants, course_id) {
                 url: userUrl,
                 dataType: 'json',
             }).success(function(q) {
-                    console.log("Attendee " + attendee + " gave success");
                 if(q != null) {
                     if(containsCourse(course_id, q['questions'])) {
                         if($('#'+course_id).find('.pending').length == 0) {
@@ -63,7 +62,6 @@ function coursePending(attendants, course_id) {
                     }
                 }
             }).error(function(error) {
-                    console.log("Attendee " + attendee + " gave error");
             });
     }
 }
@@ -149,7 +147,6 @@ function getQuizes(course_id, student_id, handler) {
             }).success(function(userQuizes) {
                    for(key in quizes['quizes']) {
                        var ID = quizes['quizes'][key].quizID;
-                       console.log("Checking " + ID);
                        if(containsQuiz(ID, userQuizes['questions'])) {
                            q.push(quizes['quizes'][key]);
                        }
@@ -375,8 +372,6 @@ function containsQuiz(value, array) {
 }
 
 function containsCourse(value, array) {
-    console.log(value);
-    console.log(array);
     for(var key in array) {
         if(array[key].courseID == value) {
             return true;
@@ -399,7 +394,6 @@ function postData(data, url) {
 }
 
 function getMyUserName(handler) {
-    // Get URL from where to fetch quiz's json
     var url = getHostRoot() + '/api/me';
     // Get the users information
     $.ajax({
