@@ -13,15 +13,16 @@ function displayCourses() {
             getCourses(function(courses) {
                     if(courses != null) {
                         // Display courses
-                        for(key in courses['courses']) {
+                        for(var key in courses['courses']) {
                             if(containsMentor(username, courses['courses'][key]['courseMentors'])) {
-                                var course = '<li class="list-group-item clearfix">';
+                                var id = courses['courses'][key].courseID;
+                                var course = '<li id='+id+' class="list-group-item clearfix">';
                                 course += '<a href="content/course.html?course_id=' +
-                                courses['courses'][key].courseID + '">' +
+                                id + '">' +
                                 courses['courses'][key].courseTitle + '</a>';
-                                course += '<div><span class="label label-warning">Pending</span></div>';
                                 course += '</li>';
                                 $('#courses').append(course);
+                                coursePending(courses['courses'][key]['courseAttendants'], id);
                             }
                         }
                     }
@@ -43,36 +44,43 @@ function getCourses(handler) {
     }).error(function(error) {
         handler(null);
     });
-
-    //handler(json);
 }
 
 function coursePending(attendants, course_id) {
-
-    /*for(var key in attendants) {
+    for(var key in attendants) {
         var attendee = attendants[key].attendantUsername;
         var userUrl = getHostRoot() + '/api/systemSettings/VJFS_' + attendee + '_questions';
-        var pend = 0;
-        var a = $.ajax({
+        $.ajax({
                 url: userUrl,
-                dataType: 'json'
+                dataType: 'json',
             }).success(function(q) {
                     console.log("Attendee " + attendee + " gave success");
-                    console.log(q);
                 if(q != null) {
-                    pend = 1;
+                    if(containsCourse(course_id, q['questions'])) {
+                        if($('#'+course_id).find('.pending').length == 0) {
+                            $('#'+course_id).append('<div class="pending"><span class="label label-warning">Pending</span></div>');
+                        }
+                    }
                 }
             }).error(function(error) {
                     console.log("Attendee " + attendee + " gave error");
             });
-        $.when(a).done(function(){
-            if(pend == 1) {
-                console.log("Hello");
-                return true;
-            }
-        });
     }
-    return false;*/
+}
+
+function studentPending(student_username, course_id) {
+        var userUrl = getHostRoot() + '/api/systemSettings/VJFS_' + student_username + '_questions';
+        $.ajax({
+                url: userUrl,
+                dataType: 'json',
+            }).success(function(q) {
+                if(q != null) {
+                    if(containsCourse(course_id, q['questions'])) {
+                        $('#'+student_username).append('<div><span class="label label-warning">Pending</span></div>');
+                    }
+                }
+            }).error(function(error) {
+            });
 }
 
 function displayStudents(course_id) {
@@ -83,27 +91,31 @@ function displayStudents(course_id) {
             for(key in students) {
                 // Display students
                 var name = students[key].attendantUsername;
-                var userUrl = getHostRoot() + '/api/systemSettings/VJFS_' + name + '_questions';
-                console.log(name);
-                $.ajax({
-                        url: userUrl,
-                        dataType: 'json'
-                }).success(function(q) {
-                        console.log(name + " is inside suc");
-                        var student = '<li class="list-group-item clearfix">';
-                        student += '<a href="quiz.html?student_id=' + name + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
-                        student += '<div><span class="label label-warning">Pending</span></div>';
-                        student += '</li>';
-                        $('#students').append(student);
-                }).error(function(error) {
-                        console.log("Got error inside with name " + name);
-                        var student = '<li class="list-group-item clearfix">';
-                        student += '<a href="quiz.html?student_id=' + name + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
-                        student += '</li>';
-                        $('#students').append(student);
-                });
+                var student = '<li id='+name+' class="list-group-item clearfix">';
+                student += '<a href="quiz.html?student_id=' + name + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
+                student += '</li>';
+                $('#students').append(student);
+                studentPending(name, course_id);
             }
         });
+}
+
+function quizPending(quiz_id, student_username) {
+        var userUrl = getHostRoot() + '/api/systemSettings/VJFS_' + student_username + '_questions';
+        $.ajax({
+                url: userUrl,
+                dataType: 'json',
+            }).success(function(q) {
+                if(q != null) {
+                    for(var key in q['questions']){
+                        if(q['questions'][key].quizID == quiz_id && q['questions'][key].corrected == "false") {
+                            $('#'+quiz_id).append('<div><span class="label label-warning">Pending</span></div>');
+                            break;
+                        }
+                    }
+                }
+            }).error(function(error) {
+            });
 }
 
 function displayQuizes(course_id, student_id) {
@@ -112,10 +124,11 @@ function displayQuizes(course_id, student_id) {
             for(key in q) {
                 // Display students
                 var quiz_id = q[key].quizID;
-                var quiz = '<li class="list-group-item clearfix">';
+                var quiz = '<li id='+quiz_id+' class="list-group-item clearfix">';
                 quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '">'+ q[key].quizTitle + '</a>';
                 quiz += '</li>';
                 $('#quizes').append(quiz);
+                quizPending(quiz_id, student_id);
            }
         });
 }
@@ -143,11 +156,11 @@ function getQuizes(course_id, student_id, handler) {
                    }
                    handler(q);
             }).error(function(error) {
-                    handler(null, null);
+                    handler(null);
                     return;
             });
     }).error(function(error) {
-        handler(null, null);
+        handler(null);
         return;
     });
 }
@@ -355,6 +368,17 @@ function containsMentor(value, array) {
 function containsQuiz(value, array) {
     for(var key in array) {
         if(array[key].quizID == value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function containsCourse(value, array) {
+    console.log(value);
+    console.log(array);
+    for(var key in array) {
+        if(array[key].courseID == value) {
             return true;
         }
     }
