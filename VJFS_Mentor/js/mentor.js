@@ -183,15 +183,31 @@ function displayQuestions(quiz_id, student_id, quizses) {
                     tmp += '</div>';
                     tmp += '<div class="panel-body">';
                     tmp += '<div class="row">';
-                    tmp += '<div class="col-xs-3"></div>';
-                    tmp += '<div class="col-xs-6">';
-                    tmp += '<form role="form" id="alternatives_"'+quizQuestions[q].questionID+'>';
                     if( quizQuestions[q].questionType == "text"){
+                        tmp += '<div class="col-xs-0"></div>';
+                        tmp += '<div class="col-xs-0">';
+                        tmp += '<form role="form" id="alternatives_"'+quizQuestions[q].questionID+'>';
                         tmp += '<label for = "quizQuestionAnswer" > Correct Answer </label>';
-                        tmp += '<textarea id="quizQuestionAnswer" readonly="readonly">'+quizQuestions[q].questionAnswer+'</textarea>';
+                        tmp += '<textarea id="quizQuestionAnswer" style="width:100%" rows="3" readonly="readonly">'+quizQuestions[q].questionAnswer+'</textarea>';
                         tmp += '<label for = "userQuestionAnswer" > Attendant Answer </label>';
-                        tmp += '<textarea id="userQuestionAnswer" readonly="readonly">'+userQuestions[q2].questionAnswer+'</textarea>';
+                        tmp += '<textarea id="userQuestionAnswer" style="width:100%" rows="3" readonly="readonly">'+userQuestions[q2].questionAnswer+'</textarea>';
+                        tmp += '<div class="col-xs-2"></div>';
+                        tmp += '<div class="col-xs-8">';
+                        tmp += '<div class="alternative">';
+                        tmp += '<div class="checkbox form-inline" >';
+                        tmp += '<div class="pull-left">';
+                        tmp += '<input type="radio" name="correct" value="correct"> Approved ';
+                        tmp += '</div>';
+                        tmp += '<div class="pull-right">';
+                        tmp += '<input type="radio" name="correct" value="wrong" > Not approved ';
+                        tmp += '</div>';
+                        tmp += '</div>';
+                        tmp += '</div>';
+                        tmp += '</div>';
                     } else {
+                        tmp += '<div class="col-xs-2"></div>';
+                        tmp += '<div class="col-xs-8">';
+                        tmp += '<form role="form" id="alternatives_"'+quizQuestions[q].questionID+'>';
                         var num_alternatives = quizQuestions[q]['questionAlternatives'].length;
                         for(var i = 0; i < num_alternatives; i++) {
                             var checked = userQuestions[q2]['questionAlternatives'][i]['alternativeChecked'] ? "checked=" : "";
@@ -204,17 +220,17 @@ function displayQuestions(quiz_id, student_id, quizses) {
                             tmp += '</div>';
 
                         }
+                        tmp += '<div class="alternative">';
+                        tmp += '<div class="checkbox form-inline" >';
+                        tmp += '<div class="pull-left">';
+                        tmp += '<input type="radio" name="correct" value="correct"> Approved ';
+                        tmp += '</div>';
+                        tmp += '<div class="pull-right">';
+                        tmp += '<input type="radio" name="correct" value="wrong" > Not approved ';
+                        tmp += '</div>';
+                        tmp += '</div>';
+                        tmp += '</div>';
                     }
-                    tmp += '<div class="alternative">';
-                    tmp += '<div class="checkbox form-inline" >';
-                    tmp += '<div class="pull-left">'
-                    tmp += '<input type="radio" name="correct" value="correct"> Approved ';
-                    tmp += '</div>'
-                    tmp += '<div class="pull-right">'
-                    tmp += '<input type="radio" name="correct" value="wrong" > Not approved ';
-                    tmp += '</div>'
-                    tmp += '</div>';
-                    tmp += '</div>';
                     tmp += '</form>';
                     tmp += '</div>';
                     tmp += '</div>';
