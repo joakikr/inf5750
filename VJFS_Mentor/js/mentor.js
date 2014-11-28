@@ -120,7 +120,7 @@ function displayQuizes(course_id, student_id) {
     // Get courses as json object
     getQuizes(course_id, student_id, function(q) {
             for(key in q) {
-                // Display students
+                // Display quizes
                 var quiz_id = q[key].quizID;
                 var quiz = '<li id='+quiz_id+' class="list-group-item clearfix">';
                 quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '">'+ q[key].quizTitle + '</a>';
@@ -132,11 +132,11 @@ function displayQuizes(course_id, student_id) {
 }
 
 function getQuizes(course_id, student_id, handler) {
-    // Get URL from where to fetch courses json
+    // Get URL from where to fetch json
     var urlStudent = getHostRoot() + '/api/systemSettings/VJFS_' + student_id + '_questions';
     var urlQuizes = getHostRoot() + '/api/systemSettings/VJFS_quizes';
     var q = [];
-    // Get courses as json object and on success use handler function
+    // Get quizes as json object and on success use handler function
     $.ajax({
         url: urlQuizes,
         dataType: 'json'
@@ -165,7 +165,7 @@ function getQuizes(course_id, student_id, handler) {
 
 function displayQuestions(quiz_id, student_id, quizses) {
     var allCorrect = 1;
-    // Get courses as json object
+    // Get Questions as json object
     getQuestions(quiz_id, student_id, function(userQuestions, quizQuestions) {
             if(!quizQuestions || !quizQuestions.count) {
                 for(q in quizQuestions) {
@@ -223,12 +223,12 @@ function displayQuestions(quiz_id, student_id, quizses) {
                     $('#question_list').append(tmp);
                 }
             }
-            $('#question_list').append('<button type="button" class="btn btn-success" onclick="saveCorrection(quiz_id, student_id);">SAVE</button>');
+            $('#question_list').append('<button type="button" class="btn btn-success btn-block" onclick="saveCorrection(quiz_id, student_id);">SAVE</button>');
         });
 }
 
 function getQuestions(quiz_id, student_username, handler) {
-    // Get URL from where to fetch quizs json
+    // Get URL from where to fetch json
     var urlStudent = getHostRoot() + '/api/systemSettings/VJFS_' + student_username + '_questions';
     var urlQuiz = getHostRoot() + '/api/systemSettings/VJFS_questions';
     var uq = [];
