@@ -21,17 +21,7 @@
   </head>
   <body>
     <div class="container" id="main_div">
-        <div class="row">
-
-            <!-- padd content to center -->
-            <div class="col-xs-3"></div>
-
-            <div class="col-xs-6 list-group">
-                <label class="list-group-item active">Quizes</label>
-                <!-- Here courses will be appended -->
-                <ul class="list-group-item" id="quizes"></ul>
-            </div>
-        </div>
+      <!-- Javascript will fill this container -->
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -40,13 +30,31 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/mentor.js"></script>
-	<script>
-	  var url = window.location;
-	  var course_id = getURLParameter(url, 'course_id');
-          var student_id = getURLParameter(url, 'student_id');
-          $(document).ready(function() {
-             displayQuizes(course_id, student_id);
-          });
-	</script>
+    <script>
+      var main_layout = '<div class="row">';
+      if(!mobileCheck()) {
+        <!-- padd content to center -->
+        main_layout += '<div class="col-xs-3"></div>';
+
+        main_layout += '<div class="col-xs-6 list-group">';
+        main_layout += '<label class="list-group-item active">Quizes</label>';
+                <!-- Here quizes will be appended -->
+        main_layout +=  '<ul class="list-group-item" id="quizes"></ul>';
+        main_layout +=  '</div>';
+        main_layout += '</div>';
+      } else {
+        main_layout += '<label class="list-group-item active">Quizes</label>';
+                <!-- Here quizes will be appended -->
+        main_layout +=  '<ul class="list-group-item" id="quizes"></ul>';
+      }
+      main_layout += '</div>';
+      $('#main_div').append(main_layout);
+      var url = window.location;
+      var course_id = getURLParameter(url, 'course_id');
+      var student_id = getURLParameter(url, 'student_id');
+      $(document).ready(function() {
+        displayQuizes(course_id, student_id);
+      });
+    </script>
   </body>
 </html>
