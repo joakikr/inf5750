@@ -188,9 +188,9 @@ function displayQuestions(quiz_id, student_id, quizses) {
                         tmp += '<div class="col-xs-0">';
                         tmp += '<form role="form" id="alternatives_"'+quizQuestions[q].questionID+'>';
                         tmp += '<label for = "quizQuestionAnswer" > Correct Answer </label>';
-                        tmp += '<textarea id="quizQuestionAnswer" style="width:100%" rows="3" readonly="readonly">'+quizQuestions[q].questionAnswer+'</textarea>';
+                        tmp += '<textarea id="quizQuestionAnswer" style="width:100%; resize:vertical;" rows="6" readonly="readonly">'+quizQuestions[q].questionAnswer+'</textarea>';
                         tmp += '<label for = "userQuestionAnswer" > Attendant Answer </label>';
-                        tmp += '<textarea id="userQuestionAnswer" style="width:100%" rows="3" readonly="readonly">'+userQuestions[q2].questionAnswer+'</textarea>';
+                        tmp += '<textarea id="userQuestionAnswer" style="width:100%; resize:vertical;" rows="6" readonly="readonly">'+userQuestions[q2].questionAnswer+'</textarea>';
                         tmp += '<div class="col-xs-2"></div>';
                         tmp += '<div class="col-xs-8">';
                         tmp += '<div class="alternative">';
@@ -218,7 +218,6 @@ function displayQuestions(quiz_id, student_id, quizses) {
                             tmp += '<p>'+ isCorrect + ' ' + quizQuestions[q]['questionAlternatives'][i]['alternativeValue'] + '  </p> ';
                             tmp += '</div>';
                             tmp += '</div>';
-
                         }
                         tmp += '<div class="alternative">';
                         tmp += '<div class="checkbox form-inline" >';
