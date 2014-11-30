@@ -104,9 +104,7 @@ function saveQuiz(course_id, quiz_id) {
 
         // Check if this is the first quiz
         if(quizes == null) {
-            //quizes = '{ "quizID" : ' + getUniqueID() + ', "courseID" : ' + course_id + ', "quizTitle" : "' + quizTitle + '", "quizLevel" : "' + quizLevel + '" }';
             quizes = { "quizes" : [] };
-            //quizes = JSON.parse(quizes);
         }
 
         if(quiz_id != null) {

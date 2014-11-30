@@ -48,7 +48,7 @@
 						<textarea class="form-control" id="questionAnswer" rows="6" cols="60" placeholder="What is the answer?"></textarea>
 					</div>
 
-					<button type="button" class="btn btn-default list-group-item" id="questionSave" onclick="saveQuestion(quiz_id, question_id);"></button>
+					<button type="button" class="btn btn-default list-group-item" id="questionSave" onclick="saveQuestion(course_id, quiz_id, question_id);"></button>
 				</form>
   			</div>
 		</div>
@@ -73,6 +73,10 @@
 		// Check if a specific course and quiz is chosen
 		var quiz_id = getURLParameter(url, 'quiz_id');
 		var question_id = getURLParameter(url, 'question_id');
+		var course_id = getURLParameter(url, 'course_id');
+
+		// Check if device is mobile
+		mobileCheck();
 
 		// Need to check if admin is logged in
 		isCustomizer(function(isCustomizer){

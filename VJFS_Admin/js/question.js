@@ -15,8 +15,8 @@ function displayQuestions(quiz) {
     // Display Question header and add new question button
     $('#quiz').append(' <label class="list-group-item active">Question</label>');
     $('#quiz').append('<ul class="list-group-item list-group" id="quizQuestion"></ul>');
-    $('#quiz').append('<a href="question_text.html?quiz_id=' + quiz.quizID + '" class="list-group-item btn btn-default">New Text Question</a>');
-    $('#quiz').append('<a href="question_multiplechoice.html?quiz_id=' + quiz.quizID + '" class="list-group-item btn btn-default">New Mulitple Choice Question</a>');
+    $('#quiz').append('<a href="question_text.html?quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '" class="list-group-item btn btn-default">New Text Question</a>');
+    $('#quiz').append('<a href="question_multiplechoice.html?quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '" class="list-group-item btn btn-default">New Mulitple Choice Question</a>');
 
     getQuestions(function(questions) {
         if(questions != null) {
@@ -26,7 +26,7 @@ function displayQuestions(quiz) {
             for(key in quiz_questions) {
                 var file = quiz_questions[key].questionType == 'text' ? 'question_text.html' : 'question_multiplechoice.html';
                 var question = '<li class="list-group-item clearfix">';
-                question += '<a href="' + file + '?question_id=' + quiz_questions[key].questionID + '&quiz_id=' + quiz['quizID'] + '">' + quiz_questions[key].questionTitle + '</a>';
+                question += '<a href="' + file + '?question_id=' + quiz_questions[key].questionID + '&quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '">' + quiz_questions[key].questionTitle + '</a>';
                 question += '<button type="button" class="btn btn-default pull-right" id="deleteQuestion" onclick="deleteQuestion(' + quiz['quizID'] + ', ' + quiz_questions[key].questionID + ');">Delete</button>';
                 question += '</li>';
                 $('#quizQuestion').append(question);
@@ -83,7 +83,7 @@ function getQuestion(question_id, handler) {
     });
 }
 
-function saveQuestion(quiz_id, question_id) {
+function saveQuestion(course_id, quiz_id, question_id) {
 
     // Create URL to POST new quiz to
     var url = getQuestionResourceURL();
@@ -122,10 +122,7 @@ function saveQuestion(quiz_id, question_id) {
 
             // Check if this is the first quiz
             if(questions == null) {
-                //questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
-                //        + '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '", "questionAnswer" : "' + questionAnswer + '" }';
                 questions = { "questions" : [] };
-                //questions = JSON.parse(questions);
             }
 
             if(question_id != null) {
@@ -136,7 +133,7 @@ function saveQuestion(quiz_id, question_id) {
                 question[0].questionAnswer = questionAnswer;
             } else {
                 // Here we have a new quiz
-                questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
+                questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "course_id" : course_id, "questionTitle" : questionTitle,
                                                "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAnswer" : questionAnswer } );
             }
 
@@ -177,11 +174,7 @@ function saveQuestion(quiz_id, question_id) {
 
             // Check if this is the first question
             if(questions == null) {
-                //questions = '{ "questionID" : ' + getUniqueID() + ', "quizID" : ' + quiz_id + ', "questionTitle" : "' + questionTitle
-                //+ '", "questionType" : "' + questionType + '", "questionQuestion" : "' + questionQuestion + '" }';
                 questions = { "questions" : [] };
-                //questions = JSON.parse(questions);
-                //questions['questions'][0]['questionAlternatives'] = questionAlternatives;
             }
 
             if(question_id != null) {
@@ -192,7 +185,7 @@ function saveQuestion(quiz_id, question_id) {
                 question[0].questionAlternatives = questionAlternatives;
             } else {
                 // Here we have a new question
-                questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "questionTitle" : questionTitle,
+                questions['questions'].push( {"questionID" : getUniqueID(), "quizID" : quiz_id, "course_id" : course_id, "questionTitle" : questionTitle,
                     "questionType" : questionType, "questionQuestion" : questionQuestion, "questionAlternatives" : questionAlternatives } );
             }
         } else {
@@ -203,9 +196,7 @@ function saveQuestion(quiz_id, question_id) {
 
         // Update questions on server and go to specific quiz for question
         setQuestions(JSON.stringify(questions), function() {
-            getQuiz(quiz_id, function(quiz) {
-                window.location.href = getAppRoot() + '/content/quiz.html?course_id=' + quiz['courseID'] + '&quiz_id=' + quiz_id;
-            })
+            window.location.href = getAppRoot() + '/content/quiz.html?course_id=' + course_id + '&quiz_id=' + quiz_id;
         });
     });
 }

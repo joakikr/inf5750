@@ -58,7 +58,7 @@
 						</div><!-- /.col-lg-9 -->
 						<div class="col-lg-6">
 							<div class="input-group pull-right">
-								<button type="button" id="questionSave" class="btn btn-default" onclick="saveQuestion(quiz_id, question_id);"></button>
+								<button type="button" id="questionSave" class="btn btn-default" onclick="saveQuestion(course_id, quiz_id, question_id);"></button>
 							</div><!-- /input-group -->
 						</div>
 					</div><!-- /.row -->
@@ -87,6 +87,7 @@
 		// Check if a specific course and quiz is chosen
 		var quiz_id = getURLParameter(url, 'quiz_id');
 		var question_id = getURLParameter(url, 'question_id');
+		var course_id = getURLParameter(url, 'course_id');
 
 		// Need to check if admin is logged in
 		isCustomizer(function(isCustomizer){
@@ -96,6 +97,9 @@
 				$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
 				return;
 			}
+
+			// Check if device is mobile
+			mobileCheck();
 
 			// Ready whenever you are - document!
 			$(document).ready(function(){
