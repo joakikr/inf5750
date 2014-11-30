@@ -79,7 +79,7 @@ function displayQuizesHelper(course){
 				
 				if($('#'+course['courseID']).length){
 
-					var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';
+					var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';				
 					t += course['courseID']+'" class="list-group-item">';
 					t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
 					t += '<div id='+course_quizes[quiz_key].quizID+'></div>'
@@ -93,33 +93,53 @@ function displayQuizesHelper(course){
 			}
    		}
 		
-		
-		
 		//Add yellow label for quizes pending correction
    		getUserQuestions(function(user_questions){
 			
-			for(key in user_questions['questions']){
-				$('#'+user_questions['questions'][key].quizID).html("");
-				$('#'+user_questions['questions'][key].quizID).append('<span class="label label-warning">Pending correction</span>');
-			}
+			if(user_questions != null){
+			
+				for(key in user_questions['questions']){
+					
+					$('#'+user_questions['questions'][key].quizID).html("");
+					$('#'+user_questions['questions'][key].quizID).append('<span class="label label-warning">Pending correction</span>');
+					
+				}
+   			}
    			
+   		});
+
+   		//Add red label for quizes that were corrected but are wrong. 
+   		getUserQuestions(function(user_questions){
+			
+			if(user_questions != null){
+			
+				for(key in user_questions['questions']){
+
+					if(user_questions['questions'][key].corrected === "true"){
+
+						console.log(user_questions['questions'][key].corrected + user_questions['questions'][key].quizID)
+						$('#'+user_questions['questions'][key].quizID).html("");
+						$('#'+user_questions['questions'][key].quizID).append('<span class="label label-danger">Wrong</span>');
+					}
+				}
+   			}
    			
    		});
    		
 		//Add green label for finished quiz
    		getUserQuizes(function(user_quizes) {
    			  
-			for(key in user_quizes['quizes']){
-				$('#'+user_quizes['quizes'][key].quizID).html("");
-				$('#'+user_quizes['quizes'][key].quizID).append('<span class="label label-success">Finished</span>');
+			if(user_quizes != null){  
+			  
+				for(key in user_quizes['quizes']){
+					$('#'+user_quizes['quizes'][key].quizID).html("");
+					$('#'+user_quizes['quizes'][key].quizID).append('<span class="label label-success">Finished</span>');
+					
 				
-			
-			}
+				}
    		
+			}
    		});
-		
-
-
 
 		
  	});
@@ -133,7 +153,7 @@ function displayQuizesHelper(course){
 */
 function getCourses(handler) {
 	// Get URL from where to fetch courses json
-	var url = getHostRoot() + '/api/systemSettings/courses';
+	var url = getHostRoot() + '/api/systemSettings/VJFS_courses';
 	
 	// Get courses as json object and on success use handler function
 	$.ajax({
@@ -150,7 +170,7 @@ function getCourses(handler) {
 function getQuizes(handler) {
 
 	// Get URL from where to fetch quiz's json
-	var url = getHostRoot() + '/api/systemSettings/quizes';
+	var url = getHostRoot() + '/api/systemSettings/VJFS_quizes';
 	
 	// Get quiz's as json object and on success use handler function
 	$.ajax({

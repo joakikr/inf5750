@@ -20,7 +20,7 @@ function getHostRoot() {
  * @returns {string} : the currently root url for the app
  */
 function getAppRoot() {
-	return getHostRoot() + '/apps/J_VJFS_Mentor';
+	return getHostRoot() + '/apps/VJFS_Mentor';
 }
 
 /**

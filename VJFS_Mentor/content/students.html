@@ -17,38 +17,53 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+      <![endif]-->
   </head>
   <body>
-   <div class="container" id="main_div">
-        <div class="row">
-
-            <!-- padd content to center -->
-            <div class="col-xs-3"></div>
-
-            <div class="col-xs-6 list-group" id="QuizContainer">
-              <label class="list-group-item active">Answers</label>
-	      <div class="list-group-item" id="quiz_info">
-		<!--Quiz information-->
-	      </div>
-	      <div class="list-group-item" id="question_list">
-		<!--Questions will appear here-->
-	      </div>
-            </div>
-        </div>
+    <div class="container" id="main_div">
+      <!-- Javascript will fill this div depending on if it is a mobile or not -->
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Include all other javascript, including bootstrap -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/mentor.js"></script>
     <script>
+      var main_layout = '<div class="row">';
+      if(!mobileCheck()) {
+        <!-- padd content to center -->
+        main_layout += '<div class="col-xs-3"></div>';
+
+        main_layout += '<div class="col-xs-6 list-group" id="QuizContainer">';
+        main_layout += '<label class="list-group-item active">Answers</label>';
+                <!-- Here quizes will be appended -->
+                 main_layout += '<div class="list-group-item" id="quiz_info">';
+		  <!--Quiz information-->
+	         main_layout += '</div>';
+	         main_layout += '<div class="list-group-item" id="question_list">';
+		  <!--Questions will appear here-->
+	         main_layout += '</div>';
+        main_layout +=  '</div>';
+        main_layout += '</div>';
+      } else {
+        main_layout += '<div id="QuizContainer">';
+        main_layout += '<label class="list-group-item active">Answers</label>';
+                <!-- Here quizes will be appended -->
+                main_layout += '<div class="list-group-item" id="quiz_info">';
+		  <!--Quiz information-->
+	         main_layout += '</div>';
+	         main_layout += '<div class="list-group-item" id="question_list">';
+		  <!--Questions will appear here-->
+	         main_layout += '</div>';
+      }
+      $('#main_div').append(main_layout);
+      main_layout += '</div>';
 	var url = window.location;
-	var course_id = getURLParameter(url, 'course_id');
+	var quiz_id = getURLParameter(url, 'quiz_id');
 	var student_id = getURLParameter(url, 'student_id');
-        displayQuestions(course_id, student_id);
+        displayQuestions(quiz_id, student_id);
     </script>
   </body>
 </html>
