@@ -135,6 +135,9 @@ function isCustomizer(handler) {
 	});
 }
 
+/**
+ * Function will check if user is on mobile device and if so remove all classes that causes padding.
+ */
 function mobileCheck() {
 	var check = false;
 	//Script from http://detectmobilebrowsers.com/ - Unlicensed open source

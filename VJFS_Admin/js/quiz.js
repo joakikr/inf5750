@@ -139,15 +139,33 @@ function deleteQuiz(course_id, quiz_id) {
             var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
             if(quiz[0] == null) return;
 
-            // Retrieve index into courses array for course
-            var quiz_index = quizes['quizes'].indexOf(quiz[0]);
+            // Check that course doesn't contain question's
+            getQuestions(function(questions) {
+                var delete_quiz = true;
 
-            // Delete course from courses
-            quizes['quizes'].splice(quiz_index, 1);
+                if(questions != null) {
+                    for(key in questions['questions']) {
+                        if(questions['questions'][key].quizID == quiz_id) {
+                            delete_quiz = false;
+                            break;
+                        }
+                    }
+                }
 
-            // Update courses on server and go to menu over courses
-            setQuizes(JSON.stringify(quizes), function() {
-                window.location.href = getAppRoot() + '/content/course.html?course_id=' + course_id;
+                if(delete_quiz) {
+                    // Retrieve index into courses array for course
+                    var quiz_index = quizes['quizes'].indexOf(quiz[0]);
+
+                    // Delete course from courses
+                    quizes['quizes'].splice(quiz_index, 1);
+
+                    // Update courses on server and go to menu over courses
+                    setQuizes(JSON.stringify(quizes), function() {
+                        window.location.href = getAppRoot() + '/content/course.html?course_id=' + course_id;
+                    });
+                } else {
+                    alert("Can't delete: " + quiz[0].quizTitle + " cause it contains questions.");
+                }
             });
         }
     });
