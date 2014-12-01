@@ -93,39 +93,6 @@ function displayQuizesHelper(course){
 			}
    		}
 		
-		//Add yellow label for quizes pending correction
-   		getUserQuestions(function(user_questions){
-			
-			if(user_questions != null){
-			
-				for(key in user_questions['questions']){
-					
-					$('#'+user_questions['questions'][key].quizID).html("");
-					$('#'+user_questions['questions'][key].quizID).append('<span class="label label-warning">Pending correction</span>');
-					
-				}
-   			}
-   			
-   		});
-
-   		//Add red label for quizes that were corrected but are wrong. 
-   		getUserQuestions(function(user_questions){
-			
-			if(user_questions != null){
-			
-				for(key in user_questions['questions']){
-
-					if(user_questions['questions'][key].corrected === "true"){
-
-						console.log(user_questions['questions'][key].corrected + user_questions['questions'][key].quizID)
-						$('#'+user_questions['questions'][key].quizID).html("");
-						$('#'+user_questions['questions'][key].quizID).append('<span class="label label-danger">Wrong</span>');
-					}
-				}
-   			}
-   			
-   		});
-   		
 		//Add green label for finished quiz
    		getUserQuizes(function(user_quizes) {
    			  
@@ -139,6 +106,30 @@ function displayQuizesHelper(course){
 				}
    		
 			}
+   		});
+
+   		//Add yellow label for quizes pending correction
+		//Add red label for quizes that were not approved
+   		getUserQuestions(function(user_questions){
+			
+			if(user_questions != null){
+			
+				for(key in user_questions['questions']){
+
+
+					if(user_questions['questions'][key].corrected === "true"){
+
+						$('#'+user_questions['questions'][key].quizID).html("");
+						$('#'+user_questions['questions'][key].quizID).append('<span class="label label-danger">Wrong</span>');
+
+					}else{
+					
+						$('#'+user_questions['questions'][key].quizID).html("");
+						$('#'+user_questions['questions'][key].quizID).append('<span class="label label-warning">Pending correction</span>');
+					}
+				}
+   			}
+   			
    		});
 
 		
