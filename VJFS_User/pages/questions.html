@@ -17,31 +17,9 @@
     <![endif]-->
 </head>
 <body>
-	<div class="container">
-		<div class="row">
+	
+	<div class="container" id="main_div">
 
-			<!-- padd content to center -->
-			<div class="col-xs-3"></div>
-
-			<div class="col-xs-6 list-group" id="quizContainer">
-
-				<div class="page-header" id="quiz_info">
-					<!--Quiz information-->
-				</div>
-
-
-				<div id="question_list">
-
-
-					<!--Questions will appear here-->
-
-
-				</div>
-
-				<button type="button" class="btn btn-default" onclick="sendToServer(); return false;">Send</a>
-				
-			</div>
-		</div>
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -56,119 +34,41 @@
 	<script src="../js/quiz.js"></script>
 	<script>
 
-		//Send hva brukeren har svart til server..
-		function sendToServer() {
+		var main_layout = '<div class="row">';
 
+		if(!mobileCheck()) {
 
 		
+			main_layout += '<div class="col-xs-3"></div>';
+			main_layout += '<div class="col-xs-6 list-group" id="quizContainer">';
+			
+			main_layout += '<div class="page-header" id="quiz_info">';
+			main_layout += '</div>';
+
+			main_layout += '<div id="question_list">';
+			main_layout += '</div>';
+
+			main_layout += '<button type="button" class="btn btn-default" onclick="sendToServer(); return false;">Send</a>';
+
+			main_layout += '</div>';
+			main_layout += '</div>';
+
+		} else {
+
+			main_layout += '<div id="quizContainer">';
+
+			main_layout += '<div class="page-header" id="quiz_info">';
+			main_layout += '</div>';
+
+			main_layout += '<div id="question_list">';
+			main_layout += '</div>';
+
+			main_layout += '<button type="button" class="btn btn-default" onclick="sendToServer(); return false;">Send</a>';
 		
-			var url = window.location;
+			main_layout += '</div>';
 
-			var quiz_id = getURLParameter(url, 'quiz_id');
-			var course_id = getURLParameter(url, 'course_id');
-
-
-			$(document).ready(function(){
-			
-			getQuiz(quiz_id, function(quiz) {
-
-				if(quiz != null) {
-			
-					getQuestions(function(questions) {
-					
-						if(questions != null) {
- 							var quiz_questions = $.grep(questions['questions'], function(e){ return e.quizID == quiz['quizID']; });
-
- 							// true = multiple, false = text
- 							var how_to_correct = true;
- 							$.each(quiz_questions, function(index) {
- 								if(quiz_questions[index]['questionType'] == 'text') {
- 									how_to_correct = false;
- 									return;
- 								}
- 							});
-
-
- 							// Here we correct as a multiple choice quiz, ie answer will be provided right away.
- 							if(how_to_correct) {
-	 							for(key in quiz_questions) {
-
-	 								var question = quiz_questions[key];
-		 							var question_alternatives = [];
-
-		 							$('#' + question['questionID']).find('.alternative').each(function(index) {
-		 								var alternative_checked = $(this).find('#alternativeYN').is(':checked');
-		 								question_alternatives.push({"alternativeChecked" : alternative_checked});
-		 							}); 
-
-		 							var correct = true;
-
-		 							// Compare chosen alternatives with the right ones
-		 							for(var i = 0; i < question_alternatives.length; i++) {
-		 								if(question_alternatives[i]['alternativeChecked'] != question['questionAlternatives'][i]['alternativeChecked']) {
-		 									// Here we have different answers, let user know and store as failed
-		 									$('#quizWrong').remove();
-		 									$('#quizContainer').append('<p id="quizWrong" style="color: red;">Not all answers where correct</p>')
-		 									return false;
-		 								}
-		 							}
-	 							}
-
-	 							// Here ALL questions where correct
-	 							$('#quizWrong').remove();
-	 							
-	 							// Save quiz as passed an move on in life :D
-								saveUserQuiz(quiz_id);
-
- 							} else {
- 								// Here we send all answer in such way that a mentor must correct it.
-
- 								var answers = [];
-		
-								for(key in quiz_questions) {
-
-									var question = { "questionID" : quiz_questions[key]['questionID'] };
-									question['quizID'] = quiz_id;
-									question['courseID'] = course_id;
-									question['corrected'] = "false";
-								
-								
-									if(quiz_questions[key].questionType == "text"){
-										// Here we have a text question
-									
-										question['questionAnswer'] = $('#' + quiz_questions[key]['questionID']).find('#questionAnswer').val();
-
-									} else {
-										// Here we have a mulitple choice question
-										
-										var question_alternatives = [];
-
-			 							$('#' + question['questionID']).find('.alternative').each(function(index) {
-			 								var alternative_checked = $(this).find('#alternativeYN').is(':checked');
-			 								question_alternatives.push({"alternativeChecked" : alternative_checked});
-			 							});
-
-			 							question['questionAlternatives'] = question_alternatives;
-									}
-
- 									//saveUserAnswers(question);
- 									answers.push(question);
-									
- 									// Go to main page
- 									
- 								}
-								
-								
- 								saveUserAnswers(answers); 	
-			  				}	
-						}
-					});
-				}
-			});
-			
-			});
 		}
-
+		$('#main_div').append(main_layout);
 		displayQuizInformation();
 
 	</script>

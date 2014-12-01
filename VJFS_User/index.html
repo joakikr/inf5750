@@ -19,27 +19,8 @@
 <body>
 
 
- <div class="container" id="main_div">
+	 <div class="container" id="main_div">
 
-	<div class="row">
-
-		<!-- padd content to center -->
-		<div class="col-xs-3"></div>
-		
-			<div class="col-xs-6 list-group">
-
-				<div class="page-header">
-						<h1>Information</h1>
-				</div>
-
-
-				<div id ="courses">
-
-				</div>
-
-			</div>
-
-		</div>
 	</div>
 
 	
@@ -53,14 +34,47 @@
  	<script src="js/main.js"></script>
  	<script src="js/course.js"></script>
 	<script src="js/quiz.js"></script>
+	<script src="js/mobilecheck.js"></script>
 
  	<script>
+
+ 		var main_layout = '<div class="row">';
+
+		if(!mobileCheck()) {
+
+			main_layout += '<div class="col-xs-3"></div>';
+			main_layout += '<div class="col-xs-6 list-group">';
+			
+			main_layout += '<div class="page-header">';
+			main_layout += '<h1>Information</h1>'
+			main_layout += '</div>';
+		
+			main_layout += '<div id="courses"';
+			main_layout += '</div>';
+
+			main_layout += '</div>';
+
+			main_layout += '</div>';
+
+
+		}else{
+			main_layout += '<div class="page-header">';
+			main_layout += '<h1>Information</h1>'
+			main_layout += '</div>';
+		
+			main_layout += '<div id="courses"';
+			main_layout += '</div>';
+
+			main_layout += '</div>';
+
+		}
+
+		$('#main_div').append(main_layout);
+
 		 $(document).ready(function(){
 			displayCourses();
-			 });
+		});
 	</script>
-
-
 
 </body>
 </html>
