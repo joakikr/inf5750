@@ -334,16 +334,17 @@ function saveCorrection(quiz_id, student_username) {
                         url: completeUrl,
                         dataType: 'json'
                 }).success(function(quizes) {
-                        if(quizes == null) {
-                            quizes = {"quizes" : []}
-                        }
                         quizes['quizes'].push({"quizID" : quiz_id});
                         postData(JSON.stringify(quizes), completeUrl);
                 }).error(function(error) {
+                        quizes = {"quizes" : []}
+                        quizes['quizes'].push({"quizID" : quiz_id});
+                        postData(JSON.stringify(quizes), completeUrl);
                         console.log(error);
                         return;
                 });
-                postData(JSON.stringify(result), questionUrl);
+                var postString = '{"questions":' + JSON.stringify(result) + '}';
+                postData(postString, questionUrl);
         }).error(function(error) {
                 //Handle error
                 console.log(error);

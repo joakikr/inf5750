@@ -17,7 +17,7 @@ function displayCourses() {
             for(key in courses['courses']) {
                 var course = '<li class="list-group-item clearfix">';
                 course += '<a href="content/course.html?course_id=' + courses['courses'][key].courseID + '">' + courses['courses'][key].courseTitle + '</a>';
-                course += '<button type="button" class="btn btn-default pull-right" id="deleteCourse" onclick="deleteCourse(' + courses['courses'][key].courseID + ');">Delete</button>';
+                course += '<button type="button" class="btn btn-danger pull-right" id="deleteCourse" onclick="deleteCourse(' + courses['courses'][key].courseID + ');">Delete</button>';
                 course += '</li>';
                 $('#courses').append(course);
             }

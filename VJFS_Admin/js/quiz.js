@@ -16,7 +16,7 @@ function displayQuizes(course) {
     // Display Quiz header and add new quiz button
     $('#course').append(' <label class="list-group-item active">Quiz</label>');
     $('#course').append('<ul class="list-group-item list-group" id="courseQuiz"></ul>');
-    $('#course').append('<a href="quiz.html?course_id=' + course.courseID + '" class="list-group-item btn btn-default">New Quiz</a>');
+    $('#course').append('<a href="quiz.html?course_id=' + course.courseID + '" class="btn btn-block btn btn-info">New Quiz</a>');
 
 
     getQuizes(function(quizes) {
@@ -28,7 +28,7 @@ function displayQuizes(course) {
             for(key in course_quizes) {
                 var quiz = '<li class="list-group-item clearfix">';
                 quiz += '<a href="quiz.html?quiz_id=' + course_quizes[key].quizID + '&course_id=' + course['courseID'] + '">' + course_quizes[key].quizTitle + '</a>';
-                quiz += '<button type="button" class="btn btn-default pull-right" id="deleteQuiz" onclick="deleteQuiz(' + course['courseID'] + ', ' + course_quizes[key].quizID + ');">Delete</button>';
+                quiz += '<button type="button" class="btn btn-danger pull-right" id="deleteQuiz" onclick="deleteQuiz(' + course['courseID'] + ', ' + course_quizes[key].quizID + ');">Delete</button>';
                 quiz += '</li>';
                 $('#courseQuiz').append(quiz);
             }

@@ -26,7 +26,7 @@ function displayAttendants(course) {
 
                         var user = '<li class="list-group-item clearfix">';
                         user += '<label>' + attendantName + ' (' + attendantUsername + ')</label>';
-                        user += '<button type="button" class="btn btn-default pull-right" id="deleteAttendant"';
+                        user += '<button type="button" class="btn btn-danger pull-right" id="deleteAttendant"';
                         user += 'onclick="deleteAttendant(' + course['courseID'] + ', \'' + attendantUsername + '\');">Delete</button>';
                         user += '</li>';
                         $('#attendants').append(user);
@@ -48,7 +48,7 @@ function displayAttendants(course) {
                         '<input class="typeahead form-control" id="attendantUsername" type="text" placeholder="Attendant name">' +
                     '</div>' +
                     '<br>' +
-                    '<button type="button" class="btn btn-default" onclick="addAttendant(' + course['courseID'] + ');">Add Attendant</button>' +
+                    '<button type="button" class="btn btn-info" onclick="addAttendant(' + course['courseID'] + ');">Add Attendant</button>' +
                 '</div>' +
             '</form>' +
         '</div>');
@@ -79,7 +79,7 @@ function displayMentors(course) {
 
                         var user = '<li class="list-group-item clearfix">';
                         user += '<label>' + mentorName + ' (' + mentorUsername + ')</label>';
-                        user += '<button type="button" class="btn btn-default pull-right" id="deleteAttendant"';
+                        user += '<button type="button" class="btn btn-danger pull-right" id="deleteAttendant"';
                         user += 'onclick="deleteAttendant(' + course['courseID'] + ', \'' + mentorUsername + '\');">Delete</button>';
                         user += '</li>';
                         $('#mentors').append(user);
@@ -101,7 +101,7 @@ function displayMentors(course) {
                         '<input class="typeahead form-control" id="mentorUsername" type="text" placeholder="Mentor name">' +
                     '</div>' +
                 '<br>' +
-                '<button type="button" class="btn btn-default" onclick="addMentor(' + course['courseID'] + ');">Add Mentor</button>' +
+                '<button type="button" class="btn btn-info" onclick="addMentor(' + course['courseID'] + ');">Add Mentor</button>' +
                 '</div>' +
             '</form>' +
         '</div>');

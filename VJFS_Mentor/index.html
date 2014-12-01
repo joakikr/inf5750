@@ -42,12 +42,12 @@
                 <!-- Here courses will be appended -->
         main_layout +=  '<ul class="list-group-item" id="courses"></ul>';
         main_layout +=  '</div>';
-        main_layout += '</div>';
       } else {
         main_layout += '<label class="list-group-item active">Courses</label>';
                 <!-- Here courses will be appended -->
         main_layout +=  '<ul class="list-group-item" id="courses"></ul>';
       }
+      main_layout += '</div>';
       $('#main_div').append(main_layout);
       $(document).ready(function() {
            displayCourses();

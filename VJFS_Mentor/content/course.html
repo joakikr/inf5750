@@ -41,12 +41,12 @@
                 <!-- Here students will be appended -->
         main_layout +=  '<ul class="list-group-item" id="students"></ul>';
         main_layout +=  '</div>';
-        main_layout += '</div>';
       } else {
         main_layout += '<label class="list-group-item active">Students</label>';
                 <!-- Here students will be appended -->
         main_layout +=  '<ul class="list-group-item" id="students"></ul>';
       }
+      main_layout += '</div>';
       $('#main_div').append(main_layout);
 	var url = window.location;
 	var course_id = getURLParameter(url, 'course_id');

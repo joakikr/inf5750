@@ -15,8 +15,8 @@ function displayQuestions(quiz) {
     // Display Question header and add new question button
     $('#quiz').append(' <label class="list-group-item active">Question</label>');
     $('#quiz').append('<ul class="list-group-item list-group" id="quizQuestion"></ul>');
-    $('#quiz').append('<a href="question_text.html?quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '" class="list-group-item btn btn-default">New Text Question</a>');
-    $('#quiz').append('<a href="question_multiplechoice.html?quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '" class="list-group-item btn btn-default">New Mulitple Choice Question</a>');
+    $('#quiz').append('<a href="question_text.html?quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '" class="btn-block btn btn-info">New Text Question</a>');
+    $('#quiz').append('<a href="question_multiplechoice.html?quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '" class="btn-block btn btn-info">New Mulitple Choice Question</a>');
 
     getQuestions(function(questions) {
         if(questions != null) {
@@ -27,7 +27,7 @@ function displayQuestions(quiz) {
                 var file = quiz_questions[key].questionType == 'text' ? 'question_text.html' : 'question_multiplechoice.html';
                 var question = '<li class="list-group-item clearfix">';
                 question += '<a href="' + file + '?question_id=' + quiz_questions[key].questionID + '&quiz_id=' + quiz.quizID + '&course_id=' + quiz.courseID + '">' + quiz_questions[key].questionTitle + '</a>';
-                question += '<button type="button" class="btn btn-default pull-right" id="deleteQuestion" onclick="deleteQuestion(' + quiz['quizID'] + ', ' + quiz_questions[key].questionID + ');">Delete</button>';
+                question += '<button type="button" class="btn btn-danger pull-right" id="deleteQuestion" onclick="deleteQuestion(' + quiz['quizID'] + ', ' + quiz_questions[key].questionID + ');">Delete</button>';
                 question += '</li>';
                 $('#quizQuestion').append(question);
             }
@@ -249,7 +249,7 @@ function addAlternative(alternative_checked, alternative_value) {
                                 '</div>' +
                                 '<div class="col-lg-3">' +
                                     '<div class="input-group pull-right">' +
-                                        '<button type="button" class="btn btn-default" onclick="deleteAlternative(' + alternative_id + ');">Delete</button>' +
+                                        '<button type="button" class="btn btn-danger" onclick="deleteAlternative(' + alternative_id + ');">Delete</button>' +
                                     '</div>' +
                                 '</div>' +
                             '</div>');
