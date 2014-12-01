@@ -33,6 +33,6 @@ function getURLParameter(url, parameter_key)
 * @returns {string} : the currently root url for the app
 */
 function getAppRoot() {
-	return getHostRoot() + '/apps/Simple_VJFS_User';
+	return getHostRoot() + '/apps/VJFS_User';
 }
 
