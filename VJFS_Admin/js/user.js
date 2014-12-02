@@ -79,8 +79,8 @@ function displayMentors(course) {
 
                         var user = '<li class="list-group-item clearfix">';
                         user += '<label>' + mentorName + ' (' + mentorUsername + ')</label>';
-                        user += '<button type="button" class="btn btn-danger pull-right" id="deleteAttendant"';
-                        user += 'onclick="deleteAttendant(' + course['courseID'] + ', \'' + mentorUsername + '\');">Delete</button>';
+                        user += '<button type="button" class="btn btn-danger pull-right" id="deleteMentor"';
+                        user += 'onclick="deleteMentor(' + course['courseID'] + ', \'' + mentorUsername + '\');">Delete</button>';
                         user += '</li>';
                         $('#mentors').append(user);
 
@@ -280,11 +280,11 @@ function deleteMentor(course_id, mentorUsername) {
 
             // Get attendant to remove
             var mentor = $.grep(course[0]['courseMentors'], function(e) { return e.mentorUsername == mentorUsername; });
-            var mentor_index = course[0]['courseMentors'].indexOf(attendant[0]);
+            var mentor_index = course[0]['courseMentors'].indexOf(mentor[0]);
 
             // Remove attendant from course
             course[0]['courseMentors'].splice(mentor_index, 1);
-
+            
             // Update courses on server and go back to course page
             setCourses(JSON.stringify(courses), function() {
                 window.location.href = window.location.href;
