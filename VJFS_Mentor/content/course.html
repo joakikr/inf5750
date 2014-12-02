@@ -32,20 +32,9 @@
     <script src="../js/mentor.js"></script>
     <script>
       var main_layout = '<div class="row">';
-      if(!mobileCheck()) {
-        <!-- padd content to center -->
-        main_layout += '<div class="col-xs-3"></div>';
-
-        main_layout += '<div class="col-xs-6 list-group">';
-        main_layout += '<label class="list-group-item active">Students</label>';
-                <!-- Here students will be appended -->
-        main_layout +=  '<ul class="list-group-item" id="students"></ul>';
-        main_layout +=  '</div>';
-      } else {
-        main_layout += '<label class="list-group-item active">Students</label>';
-                <!-- Here students will be appended -->
-        main_layout +=  '<ul class="list-group-item" id="students"></ul>';
-      }
+      main_layout += '<label class="list-group-item active">Students</label>';
+      <!-- Here students will be appended -->
+      main_layout +=  '<ul class="list-group-item" id="students"></ul>';
       main_layout += '</div>';
       $('#main_div').append(main_layout);
 	var url = window.location;

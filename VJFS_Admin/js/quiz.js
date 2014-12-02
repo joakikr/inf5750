@@ -91,6 +91,8 @@ function saveQuiz(course_id, quiz_id) {
     // Retrieve quiz title and quiz level from form
     var quizTitle =  $('#quizTitle').val();
     var quizLevel = $('#quizLevel').val();
+    var quizDescription = JSON.stringify($('#quizDescription').code());
+
 
     // Quiz title cannot be empty: tell user and return
     if(quizTitle.isEmpty()) {
@@ -112,9 +114,10 @@ function saveQuiz(course_id, quiz_id) {
             var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
             quiz[0].quizTitle = quizTitle;
             quiz[0].quizLevel = quizLevel;
+            quiz[0].quizDescription = quizDescription;
         } else {
             // Here we have a new quiz
-            quizes['quizes'].push( {"quizID" : getUniqueID(), "courseID" : course_id, "quizTitle" : quizTitle, "quizLevel" : quizLevel } );
+            quizes['quizes'].push( {"quizID" : getUniqueID(), "courseID" : course_id, "quizTitle" : quizTitle, "quizDescription" : quizDescription, "quizLevel" : quizLevel } );
         }
 
         // Update quizes on server and go to menu over quizes

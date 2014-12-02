@@ -32,39 +32,24 @@
     <script src="../js/mentor.js"></script>
     <script>
       var main_layout = '<div class="row">';
-      if(!mobileCheck()) {
-        <!-- padd content to center -->
-        main_layout += '<div class="col-xs-3"></div>';
-
-        main_layout += '<div class="col-xs-6 list-group" id="QuizContainer">';
-        main_layout += '<label class="list-group-item active">Answers</label>';
-                <!-- Here quizes will be appended -->
-                 main_layout += '<div class="list-group-item" id="quiz_info">';
-		  <!--Quiz information-->
-	         main_layout += '</div>';
-	         main_layout += '<div class="list-group-item" id="question_list">';
-		  <!--Questions will appear here-->
-	         main_layout += '</div>';
-        main_layout +=  '</div>';
-      } else {
-        main_layout += '<div id="QuizContainer">';
-        main_layout += '<label class="list-group-item active">Answers</label>';
-                <!-- Here quizes will be appended -->
-                main_layout += '<div class="list-group-item" id="quiz_info">';
-		  <!--Quiz information-->
-	         main_layout += '</div>';
-	         main_layout += '<div class="list-group-item" id="question_list">';
-		  <!--Questions will appear here-->
-	         main_layout += '</div>';
-      }
+      main_layout += '<div id="QuizContainer">';
+      main_layout += '<label class="list-group-item active">Answers</label>';
+      <!-- Here quizes will be appended -->
+      main_layout += '<div class="list-group-item" id="quiz_info">';
+      <!--Quiz information-->
+      main_layout += '</div>';
+      main_layout += '<div class="list-group-item" id="question_list">';
+      <!--Questions will appear here-->
+      main_layout += '</div>';
       main_layout += '</div>';
       $('#main_div').append(main_layout);
       main_layout += '</div>';
 	var url = window.location;
 	var quiz_id = getURLParameter(url, 'quiz_id');
 	var student_id = getURLParameter(url, 'student_id');
+	var course_id = getURLParameter(url, 'course_id');
       $(document).ready(function() {
-        displayQuestions(quiz_id, student_id);
+        displayQuestions(quiz_id, student_id, course_id);
       });
     </script>
   </body>

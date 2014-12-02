@@ -88,7 +88,6 @@ function saveCourse(course_id) {
 
     // Retrieve course title and course description from form
     var courseTitle =  $('#courseTitle').val(); //form.courseTitle.value;
-    var courseDescription = JSON.stringify($('#courseDescription').code());
 
     // Course title cannot be empty: tell user and return
     if(courseTitle.isEmpty()) {
@@ -108,10 +107,9 @@ function saveCourse(course_id) {
             // Here we must update given course_id
             var course = $.grep(courses['courses'], function(e){ return e.courseID == course_id; });
             course[0].courseTitle = courseTitle;
-            course[0].courseDescription = courseDescription;
         } else {
             // Here we have a new course
-            courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseDescription" : courseDescription, "courseAttendants" : [], "courseMentors" : [] } );
+            courses['courses'].push( {"courseID" : getUniqueID(), "courseTitle" : courseTitle, "courseAttendants" : [], "courseMentors" : [] } );
         }
 
         // Update courses on server and go to menu over courses
