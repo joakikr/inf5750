@@ -19,6 +19,33 @@ function displayQuizInformation(){
 	});
 }
 
+function displayCourseInformation(){
+
+	var url = window.location;
+
+	var quiz_id = getURLParameter(url, 'course_id');
+
+	getCourses(function(courses) {
+
+		if(courses != null) {
+		
+			// Display courses
+			for(key in courses['courses']) {
+
+				var keu =  courses['courses'][key].courseID;
+				if(quiz_id == keu){
+					var desc = JSON.parse(courses['courses'][key].courseDescription);
+					var test =  '<div class="panel-body" >'+desc+'</div>'
+					$('#quiz_info').append(test);
+				}
+			}
+
+		}
+
+	});
+}
+
+
 function displayQuestions(quiz){
 
 
