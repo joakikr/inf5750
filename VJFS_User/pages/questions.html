@@ -36,38 +36,20 @@
 
 		var main_layout = '<div class="row">';
 
-		if(!mobileCheck()) {
+
+		main_layout += '<div id="quizContainer">';
+
+		main_layout += '<div class="page-header" id="quiz_info">';
+		main_layout += '</div>';
+
+		main_layout += '<div id="question_list">';
+		main_layout += '</div>';
+
+		main_layout += '<button type="button" class="btn btn-success btn-block" onclick="sendToServer(); return false;">Send</a>';
+	
+		main_layout += '</div>';
 
 		
-			main_layout += '<div class="col-xs-3"></div>';
-			main_layout += '<div class="col-xs-6 list-group" id="quizContainer">';
-			
-			main_layout += '<div class="page-header" id="quiz_info">';
-			main_layout += '</div>';
-
-			main_layout += '<div class="list-group-item" id="question_list">';
-			main_layout += '</div>';
-
-			main_layout += '<button type="button" class="btn btn-default" onclick="sendToServer(); return false;">Send</a>';
-
-			main_layout += '</div>';
-			main_layout += '</div>';
-
-		} else {
-
-			main_layout += '<div id="quizContainer">';
-
-			main_layout += '<div class="page-header" id="quiz_info">';
-			main_layout += '</div>';
-
-			main_layout += '<div id="question_list">';
-			main_layout += '</div>';
-
-			main_layout += '<button type="button" class="btn btn-success btn-block" onclick="sendToServer(); return false;">Send</a>';
-		
-			main_layout += '</div>';
-
-		}
 		$('#main_div').append(main_layout);
 		displayQuizInformation();
 

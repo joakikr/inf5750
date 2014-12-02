@@ -40,34 +40,14 @@
 
  		var main_layout = '<div class="row">';
 
-		if(!mobileCheck()) {
+		main_layout += '<div class="page-header">';
+		main_layout += '<h1>Information</h1>'
+		main_layout += '</div>';
+	
+		main_layout += '<div id="courses"';
+		main_layout += '</div>';
 
-			main_layout += '<div class="col-xs-3"></div>';
-			main_layout += '<div class="col-xs-6 list-group">';
-			
-			main_layout += '<div class="page-header">';
-			main_layout += '<h1>Information</h1>'
-			main_layout += '</div>';
-		
-			main_layout += '<div id="courses"';
-			main_layout += '</div>';
-
-			main_layout += '</div>';
-
-			main_layout += '</div>';
-
-
-		}else{
-			main_layout += '<div class="page-header">';
-			main_layout += '<h1>Information</h1>'
-			main_layout += '</div>';
-		
-			main_layout += '<div id="courses"';
-			main_layout += '</div>';
-
-			main_layout += '</div>';
-
-		}
+		main_layout += '</div>';
 
 		$('#main_div').append(main_layout);
 
