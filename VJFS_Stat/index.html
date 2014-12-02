@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VJFS_Stats</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+<!--     <link href="css/main.css" rel="stylesheet"> -->
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+
+
+ <div class="container" id="main_div">
+
+
+    </div>
+
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/course.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/Chart.js"></script>
+    <script stc="js/question.js"></script>
+
+    <script>
+        var main_layout = '<div class="row">';
+        if(!mobileCheck()){
+            main_layout += '<div class="col-xs-3"></div>';
+            main_layout += '<div class="col-xs-6 list-group">';
+            main_layout += '<label class="list-group-item active">Statistics</label>';;
+            main_layout += '<form role="form" class="list-group-item">';
+            main_layout += '<div class="form-group" id="courses">';
+            main_layout += '</div>';
+            main_layout += '<div class="form-group">';
+            main_layout += '<label>Quizes in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat" width="300" height="400"></canvas>';
+            main_layout += '</div>';
+            main_layout +=  '<div class="form-group">';
+            main_layout += '<label>Questions in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat2" width="300" height="400"></canvas>';
+            main_layout += '</div>';
+            main_layout += '<div class="form-group">';
+            main_layout += '<label>Attendants in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat3" width="300" height="400"></canvas>';
+            main_layout += '</div>';
+            main_layout += '<label>Finished quized in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat4" width="300" height="400"></canvas>';
+            main_layout += '</div>';
+            main_layout += '</form>';
+            main_layout += '</div>';
+        }else{
+            main_layout += '<label class="list-group-item active">Statistics</label>';;
+            main_layout += '<form role="form" class="list-group-item">';
+            main_layout += '<div class="form-group" id="courses">';
+            main_layout += '</div>';
+            main_layout += '<div class="form-group">';
+            main_layout += '<label>Quizes in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat"></canvas>';
+            main_layout += '</div>';
+            main_layout += '<div class="form-group">';
+            main_layout += '<label>Questions in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat2"></canvas>';
+            main_layout += '</div>';
+            main_layout += '<div class="form-group">';
+            main_layout += '<label>Attendants in course</label>';
+            main_layout += '<br>';
+            main_layout += '</br>';
+            main_layout += '<canvas id="coursestat3"></canvas>';
+            main_layout += '</div>';
+            main_layout += '</form>';  
+        }
+            //main_layout += '</div>';
+         $('#main_div').append(main_layout);
+         $(document).ready(function(){
+            /*
+            var canvas1 = document.getElementById(coursestat);
+            var canvas2 = document.getElementById(coursestat2);
+            var parent = document.getElementById(main_div);
+            canvas1.width = parent.offsetWidth;
+            canvas1.height = parent.offsetHeight;
+            canvas2.width = parent.offsetWidth;
+            canvas2.height = parent.offsetHeight;
+            */
+            displayStats();
+             });
+    </script>
+    
+
+
+</body>
+</html>
+

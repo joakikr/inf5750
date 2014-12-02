@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VJFS_Admin - Course</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	 <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet">
+
+	<!-- Dropdown Suggetion Style -->
+  	<link href="../css/dropdown.css" rel="stylesheet">
+
+	<!-- Summmernote -->
+	<link href="../summernote/summernote.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+  </head>
+  <body>
+
+  	<br>
+	<div class="container">
+
+  		<div class="row">
+  			<!-- padd content to center -->
+  			<div class="col-xs-3"></div>
+
+  			<div class="col-xs-6 list-group" id="courseContainer">
+				<div id="course">
+					<label class="list-group-item active" id="courseHeader"></label>
+
+					<form role="form" class="list-group-item">
+						<div class="form-group">
+							<label for="courseTitle">Title</label>
+							<input type="text" class="form-control"
+								   id="courseTitle" name="courseTitle" placeholder="What is the title for the course?">
+						</div>
+						<div class="form-group">
+							<label for="courseDescription">Description</label>
+							<!--
+							<textarea class="form-control" rows="6" cols="60"
+									  id="courseDescription" name="courseDescription" placeholder="What is the description for the course?"></textarea>
+							-->
+							<div id="courseDescription"></div>
+						</div>
+
+						<button type="button" class="btn btn-default list-group-item" id="courseSave" onclick="saveCourse(course_id);"></button>
+					</form>
+				</div>
+
+  			</div>
+		</div>
+	</div>
+	<br>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+  	<script src="../js/main.js"></script>
+	<script src="../js/course.js"></script>
+	<script src="../js/quiz.js"></script>
+	<script src="../js/user.js"></script>
+	<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+	<script src="../summernote/summernote.min.js"></script>
+	<script>
+
+		// Fetch URL
+		var url = window.location;
+
+		// Check if a specific course is chosen
+		var course_id = getURLParameter(url, 'course_id');
+
+		// Need to check if admin is logged in
+		isCustomizer(function(isCustomizer){
+
+			if(!isCustomizer) {
+				$('body').empty();
+				$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
+				return;
+			}
+
+			// Ready whenever you are - document!
+			$(document).ready(function(){
+
+				// Set up summernote WYSIWYG editor
+				$('#courseDescription').summernote({
+					toolbar: [
+						//[groupname, [button list]]
+
+						['style', ['bold', 'italic', 'underline', 'strikethrough', 'style', 'clear']],
+						['font', ['strikethrough']],
+						['para', ['ul', 'ol', 'paragraph']],
+						['insert', ['link','picture']],
+						['misc', ['fullscreen', 'undo', 'redo', 'help']]
+					]
+				});
+
+				if(course_id != null) {
+
+					// Retrieve course
+					getCourse(course_id, function(course) {
+
+						if(course != null) {
+							// Display course and a save button
+							// Remember that courseDescription is a textarea, so must un escape \n before displaying content
+							$('#courseHeader').html(course['courseTitle']);
+							$('#courseTitle').val(course['courseTitle']);
+							//$('#courseDescription').val(course['courseDescription'].replace(/\\\\n/g, '\n'));
+							$('#courseDescription').code(JSON.parse(course['courseDescription']));
+							$('#courseSave').html('Save Course');
+
+							// Display quiz's for course
+							displayQuizes(course);
+
+							// Display attendant's for course
+							displayAttendants(course);
+
+							// Display mentor's for course
+							displayMentors(course);
+						}
+					});
+				} else {
+					// Display a new course label and an add course button
+					$('#courseHeader').html('New Course');
+					$('#courseSave').html('Add Course');
+				}
+			});
+		});
+
+
+  	</script>
+  </body>
+</html>
