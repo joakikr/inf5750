@@ -21,14 +21,14 @@ function displayCourses() {
 					if($("#courses:contains('"+courses['courses'][key].courseTitle+"')").length == 0) {
 
 						var attendants =  courses['courses'][key].courseAttendants;
-						var desc = JSON.parse(courses['courses'][key].courseDescription);
+					
 
 						for(keyY in attendants){
 				
 							if(attendants[keyY].attendantUsername === userr){
 								var l = '<div class="panel panel-default">'
 								l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
-								l +=  '<div class="panel-body" >'+desc+'</div>'
+							
 								l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
 								l += '</div>'
 					
@@ -85,7 +85,7 @@ function displayQuizesHelper(course){
 				if($("#"+course['courseID']+":contains('"+course_quizes[quiz_key].quizTitle+"')").length == 0) {
 
 						var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';				
-						t += course['courseID']+'" class="list-group-item">';
+						t += course['courseID']+'" id="'+course_quizes[quiz_key].quizID_link+'" class="list-group-item">';
 						t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
 						t += '<div id='+course_quizes[quiz_key].quizID+'></div>'
 						t +='</a>';
@@ -104,14 +104,15 @@ function displayQuizesHelper(course){
 			if(user_quizes != null){  
 			  
 				for(key in user_quizes['quizes']){
+
 					$('#'+user_quizes['quizes'][key].quizID).html("");
 					$('#'+user_quizes['quizes'][key].quizID).append('<span class="label label-success">Finished</span>');
 					
-				
 				}
    		
 			}
    		});
+
 
    		//Add yellow label for quizes pending correction
 		//Add red label for quizes that were not approved
@@ -137,7 +138,6 @@ function displayQuizesHelper(course){
    			
    		});
 
-		
  	});
 
 }

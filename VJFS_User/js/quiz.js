@@ -51,11 +51,17 @@ function saveUserQuiz(quiz_id) {
 
     getUserQuizes(function(quizes) {
 
-        // Check if this is the first quiz
+
+     var url = window.location;
+     var course_id = getURLParameter(url, 'course_id');
+          // Check if this is the first quiz
         if(quizes == null) {
-            quizes = '{ "quizID" : ' + quiz_id + ' }';
-            quizes = '{ "quizes" : [' + quizes + '] }';
-            quizes = JSON.parse(quizes);
+
+            var text = '{ "quizes" : [' +
+            '{ "quizID":"'+quiz_id+'" , "courseID":"'+course_id+'" } ]}';
+
+
+             quizes = JSON.parse(text);
         } else {
 
           //  console.log(quizes['quizes'].length)
@@ -71,7 +77,7 @@ function saveUserQuiz(quiz_id) {
             }
 
             if(!isUpdated){
-                quizes['quizes'].push( {"quizID" : quiz_id} );
+                quizes['quizes'].push( {"quizID" : quiz_id, "courseID": course_id} );
             }
 
         }
@@ -133,7 +139,6 @@ function saveUserAnswers(answers){
 
     getUserQuestions(function(questions) {
 
- 
         // Check if this is the first quiz
         if(questions == null) {
            questions = { "questions" : answers };

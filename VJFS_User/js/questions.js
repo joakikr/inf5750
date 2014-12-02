@@ -12,37 +12,15 @@ function displayQuizInformation(){
 			var l = '<h2>'+ quiz['quizTitle'] +'</h2>'
 
 			$('#quiz_info').append(l);
+			if(quiz['quizDescription']){
+				var desc = JSON.parse(quiz['quizDescription']);
+				var test =  '<div class="panel-body" >'+desc+'</div>'
+				$('#quiz_info').append(test);
+			}
 
-			displayCourseInformation();
 			displayQuestions(quiz);
 		
 		}
-	});
-}
-
-function displayCourseInformation(){
-
-	var url = window.location;
-
-	var quiz_id = getURLParameter(url, 'course_id');
-
-	getCourses(function(courses) {
-
-		if(courses != null) {
-		
-			// Display courses
-			for(key in courses['courses']) {
-
-				var keu =  courses['courses'][key].courseID;
-				if(quiz_id == keu){
-					var desc = JSON.parse(courses['courses'][key].courseDescription);
-					var test =  '<div class="panel-body" >'+desc+'</div>'
-					$('#quiz_info').append(test);
-				}
-			}
-
-		}
-
 	});
 }
 
@@ -68,6 +46,7 @@ function displayQuestions(quiz){
  				tmp += '<div class="row">'
  				tmp += '<div class="col-xs-3"></div>';
 				tmp += '<div class="col-xs-6">';
+
 				tmp += '<form role="form" id="alternatives_"'+quiz_questions[key].questionID+'>';
 
 
@@ -93,7 +72,7 @@ function displayQuestions(quiz){
 
 				tmp += '</form>'
 				tmp += '</div>'
-				tmp += '</div>'
+					tmp += '</div>'
 				tmp += '</div>'
 				tmp += '</div>'
 
@@ -233,11 +212,16 @@ function sendToServer() {
 							} else {
 								// Here we send all answer in such way that a mentor must correct it.
 
-								var answers = [];
+							var answers = [];
+							var test = 123
 	
 							for(key in quiz_questions) {
 
+
+
+
 								var question = { "questionID" : quiz_questions[key]['questionID'] };
+								test = quiz_id;
 								question['quizID'] = quiz_id;
 								question['courseID'] = course_id;
 								question['corrected'] = "false";
@@ -266,9 +250,12 @@ function sendToServer() {
 								
 									// Go to main page
 									
-								}
-														
-								saveUserAnswers(answers); 	
+							}
+
+				
+							saveUserAnswers(answers); 
+								
+						
 		  				}	
 					}
 				});
