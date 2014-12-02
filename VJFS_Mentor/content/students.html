@@ -47,8 +47,9 @@
 	var url = window.location;
 	var quiz_id = getURLParameter(url, 'quiz_id');
 	var student_id = getURLParameter(url, 'student_id');
+	var course_id = getURLParameter(url, 'course_id');
       $(document).ready(function() {
-        displayQuestions(quiz_id, student_id);
+        displayQuestions(quiz_id, student_id, course_id);
       });
     </script>
   </body>

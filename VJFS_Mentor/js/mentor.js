@@ -16,6 +16,7 @@ function displayCourses() {
                         for(var key in courses['courses']) {
                             if(containsMentor(username, courses['courses'][key]['courseMentors'])) {
                                 if($("#courses:contains('"+courses['courses'][key].courseTitle+"')").length == 0) {
+                                    console.log($("#courses"));
                                     var id = courses['courses'][key].courseID;
                                     var course = '<li id='+id+' class="list-group-item clearfix">';
                                     course += '<a href="content/course.html?course_id=' +
@@ -26,6 +27,17 @@ function displayCourses() {
                                     coursePending(courses['courses'][key]['courseAttendants'], id);
                                 }
                             }
+                            $("#courses li").each(function( title ) {
+                                    var checker = 0;
+                                    for(var key2 in courses['courses']) {
+                                        if(($(this).text().indexOf(courses['courses'][key2].courseTitle)) < 0) {
+                                            checker++;
+                                        }
+                                    }
+                                    if(checker == courses['courses'].length) {
+                                        //Should remove div here
+                                    }
+                            });
                         }
                     }
                 });
@@ -128,7 +140,7 @@ function displayQuizes(course_id, student_id) {
                 var quiz_id = q[key].quizID;
                 if($("#quizes:contains('"+q[key].quizTitle+"')").length == 0) {
                     var quiz = '<li id='+quiz_id+' class="list-group-item clearfix">';
-                    quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '">'+ q[key].quizTitle + '</a>';
+                    quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '&quiz_id=' + course_id +'">'+ q[key].quizTitle + '</a>';
                     quiz += '</li>';
                     $('#quizes').append(quiz);
                     quizPending(quiz_id, student_id);
@@ -169,7 +181,7 @@ function getQuizes(course_id, student_id, handler) {
 }
 
 
-function displayQuestions(quiz_id, student_id, quizses) {
+function displayQuestions(quiz_id, student_id, course_id, quizses) {
     var allCorrect = 1;
     // Get Questions as json object
     getQuestions(quiz_id, student_id, function(userQuestions, quizQuestions) {
@@ -244,7 +256,7 @@ function displayQuestions(quiz_id, student_id, quizses) {
                     $('#question_list').append(tmp);
                 }
             }
-            $('#question_list').append('<button type="button" class="btn btn-success btn-block" onclick="saveCorrection(quiz_id, student_id);">SAVE</button>');
+            $('#question_list').append('<button type="button" class="btn btn-success btn-block" onclick="saveCorrection(quiz_id, student_id, course_id);">SAVE</button>');
         });
 }
 
@@ -305,7 +317,7 @@ function getCourse(course_id, handler) {
 }
 
 
-function saveCorrection(quiz_id, student_username) {
+function saveCorrection(quiz_id, student_username, course_id) {
     var radios = document.getElementsByName('correct');
     var allCorrect = 1;
     var amountChecked = 0;
@@ -340,13 +352,12 @@ function saveCorrection(quiz_id, student_username) {
                         url: completeUrl,
                         dataType: 'json'
                 }).success(function(quizes) {
-                        quizes['quizes'].push({"quizID" : quiz_id});
+                        quizes['quizes'].push({"quizID" : quiz_id, "courseID" : course_id});
                         postData(JSON.stringify(quizes), completeUrl);
                 }).error(function(error) {
                         quizes = {"quizes" : []}
-                        quizes['quizes'].push({"quizID" : quiz_id});
+                        quizes['quizes'].push({"quizID" : quiz_id, "courseID" : course_id});
                         postData(JSON.stringify(quizes), completeUrl);
-                        console.log(error);
                         return;
                 });
                 var postString = '{"questions":' + JSON.stringify(result) + '}';
