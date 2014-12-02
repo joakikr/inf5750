@@ -12,6 +12,9 @@ function displayCourses() {
             // Get courses as json object
             getCourses(function(courses) {
                     if(courses != null) {
+			// Clear courses
+			$('#courses').empty();
+			
                         // Display courses
                         for(var key in courses['courses']) {
                             if(containsMentor(username, courses['courses'][key]['courseMentors'])) {
