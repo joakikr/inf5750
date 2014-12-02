@@ -1,7 +1,6 @@
 /**
  * Created by Trøtteman on 18.11.14.
  */
-var ment_count = 0;
 function displayCourses() {
 
     // Get URL to retrieve json object from
@@ -192,7 +191,7 @@ function getQuizes(course_id, student_id, handler) {
             }).success(function(userQuizes) {
                    for(key in quizes['quizes']) {
                        var ID = quizes['quizes'][key].quizID;
-                       if(containsQuiz(ID, userQuizes['questions'])) {
+                       if(containsQuiz(ID, course_id, userQuizes['questions'])) {
                            q.push(quizes['quizes'][key]);
                        }
                    }
@@ -422,14 +421,15 @@ function containsMentor(value, array) {
     return false;
 }
 
-function containsQuiz(value, array) {
+function containsQuiz(value, course, array) {
     for(var key in array) {
-        if(array[key].quizID == value) {
+        if(array[key].quizID == value && array[key].courseID == course) {
             return true;
         }
     }
     return false;
 }
+
 
 function containsCourse(value, array) {
     for(var key in array) {
