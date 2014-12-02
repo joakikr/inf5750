@@ -34,13 +34,25 @@ function displayCourses() {
 					
 								$('#courses').append(l);
 								break;
-								
+
 							}
 						}
-						
+                                                $("#courses li").each(function( title ) {
+                                                    var checker = 0;
+                                                    for(var key2 in courses['courses']) {
+                                                        if(($(this).text().indexOf(courses['courses'][key2].courseTitle)) < 0) {
+                                                            checker++;
+                                                        }
+                                                    }
+                                                    if(checker == courses['courses'].length) {
+                                                        //Should remove div here
+                                                        console.log("Hello");
+                                                        $('#' + $(this).prop('id')).remove();
+                                                    }
+                                               });
 					}
 					displayQuizesHelper(courses['courses'][key])
-									
+
 				}
 			}
 		});
@@ -93,10 +105,21 @@ function displayQuizesHelper(course){
 						$('#'+course['courseID']).append(t)			
 
 				}
-						
+                                $("#"+course['courseID']+" li").each(function( title ) {
+                                    var checker = 0;
+                                    for(var key2 in course_quizes) {
+                                        if(($(this).text().indexOf(course_quizes[key2].quizTitle)) < 0) {
+                                            checker++;
+                                        }
+                                    }
+                                    if(checker == courses['courses'].length) {
+                                        //Should remove div here
+                                        console.log("Hello");
+                                        $('#' + $(this).prop('id')).remove();
+                                    }
+                               });
 			}
-			
-   		}
+  		}
 		
 		//Add green label for finished quiz
    		getUserQuizes(function(user_quizes) {
