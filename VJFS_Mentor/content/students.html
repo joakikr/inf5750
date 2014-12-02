@@ -32,31 +32,15 @@
     <script src="../js/mentor.js"></script>
     <script>
       var main_layout = '<div class="row">';
-      if(!mobileCheck()) {
-        <!-- padd content to center -->
-        main_layout += '<div class="col-xs-3"></div>';
-
-        main_layout += '<div class="col-xs-6 list-group" id="QuizContainer">';
-        main_layout += '<label class="list-group-item active">Answers</label>';
-                <!-- Here quizes will be appended -->
-                 main_layout += '<div class="list-group-item" id="quiz_info">';
-		  <!--Quiz information-->
-	         main_layout += '</div>';
-	         main_layout += '<div class="list-group-item" id="question_list">';
-		  <!--Questions will appear here-->
-	         main_layout += '</div>';
-        main_layout +=  '</div>';
-      } else {
-        main_layout += '<div id="QuizContainer">';
-        main_layout += '<label class="list-group-item active">Answers</label>';
-                <!-- Here quizes will be appended -->
-                main_layout += '<div class="list-group-item" id="quiz_info">';
-		  <!--Quiz information-->
-	         main_layout += '</div>';
-	         main_layout += '<div class="list-group-item" id="question_list">';
-		  <!--Questions will appear here-->
-	         main_layout += '</div>';
-      }
+      main_layout += '<div id="QuizContainer">';
+      main_layout += '<label class="list-group-item active">Answers</label>';
+      <!-- Here quizes will be appended -->
+      main_layout += '<div class="list-group-item" id="quiz_info">';
+      <!--Quiz information-->
+      main_layout += '</div>';
+      main_layout += '<div class="list-group-item" id="question_list">';
+      <!--Questions will appear here-->
+      main_layout += '</div>';
       main_layout += '</div>';
       $('#main_div').append(main_layout);
       main_layout += '</div>';
