@@ -18,24 +18,29 @@ function displayCourses() {
 				// Display courses
 				for(key in courses['courses']) {
 
-					var attendants =  courses['courses'][key].courseAttendants;
-					var desc = JSON.parse(courses['courses'][key].courseDescription);
+					if($("#courses:contains('"+courses['courses'][key].courseTitle+"')").length == 0) {
 
-					for(keyY in attendants){
-						if(attendants[keyY].attendantUsername === userr){
-							var l = '<div class="panel panel-default">'
-							l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
-							l +=  '<div class="panel-body" >'+desc+'</div>'
-							l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
-							l += '</div>'
+						var attendants =  courses['courses'][key].courseAttendants;
+						var desc = JSON.parse(courses['courses'][key].courseDescription);
+
+						for(keyY in attendants){
 				
-							$('#courses').append(l);
-							break;
-							
+							if(attendants[keyY].attendantUsername === userr){
+								var l = '<div class="panel panel-default">'
+								l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
+								l +=  '<div class="panel-body" >'+desc+'</div>'
+								l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
+								l += '</div>'
+					
+								$('#courses').append(l);
+								break;
+								
+							}
 						}
+						
 					}
 					displayQuizesHelper(courses['courses'][key])
-							
+									
 				}
 			}
 		});
@@ -76,21 +81,21 @@ function displayQuizesHelper(course){
 			});
 
 			for(quiz_key in course_quizes) {
-				
-				if($('#'+course['courseID']).length){
 
-					var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';				
-					t += course['courseID']+'" class="list-group-item">';
-					t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
-					t += '<div id='+course_quizes[quiz_key].quizID+'></div>'
-					t +='</a>';
+				if($("#"+course['courseID']+":contains('"+course_quizes[quiz_key].quizTitle+"')").length == 0) {
 
-					$('#'+course['courseID']).append(t)
-				}else{
+						var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';				
+						t += course['courseID']+'" class="list-group-item">';
+						t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
+						t += '<div id='+course_quizes[quiz_key].quizID+'></div>'
+						t +='</a>';
+
+						$('#'+course['courseID']).append(t)			
 
 				}
-				
+						
 			}
+			
    		}
 		
 		//Add green label for finished quiz

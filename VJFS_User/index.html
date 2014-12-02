@@ -52,7 +52,10 @@
 		$('#main_div').append(main_layout);
 
 		 $(document).ready(function(){
-			displayCourses();
+
+		 	window.setInterval(function () { 
+				displayCourses();
+			 }, 1000);
 		});
 	</script>
 

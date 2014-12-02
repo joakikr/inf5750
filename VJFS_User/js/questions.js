@@ -13,6 +13,7 @@ function displayQuizInformation(){
 
 			$('#quiz_info').append(l);
 
+			displayCourseInformation();
 			displayQuestions(quiz);
 		
 		}
