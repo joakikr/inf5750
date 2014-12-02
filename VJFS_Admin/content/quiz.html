@@ -140,7 +140,7 @@
 										// Display quiz and a save button
 										$('#quizHeader').html(quiz['quizTitle']);
 										$('#quizTitle').val(quiz['quizTitle']);
-										$('#quizDescription').code(JSON.parse(quiz['quizDescription']));
+										if(quiz['quizDescription']) $('#quizDescription').code(JSON.parse(quiz['quizDescription']));
 										$('#quizLevel').val(quiz['quizLevel']);
 										$('#quizSave').html('Save Quiz');
 
