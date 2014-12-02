@@ -1,7 +1,7 @@
 /**
  * Created by Trøtteman on 18.11.14.
  */
-
+var ment_count = 0;
 function displayCourses() {
 
     // Get URL to retrieve json object from
@@ -16,7 +16,6 @@ function displayCourses() {
                         for(var key in courses['courses']) {
                             if(containsMentor(username, courses['courses'][key]['courseMentors'])) {
                                 if($("#courses:contains('"+courses['courses'][key].courseTitle+"')").length == 0) {
-                                    console.log($("#courses"));
                                     var id = courses['courses'][key].courseID;
                                     var course = '<li id='+id+' class="list-group-item clearfix">';
                                     course += '<a href="content/course.html?course_id=' +
@@ -27,18 +26,20 @@ function displayCourses() {
                                     coursePending(courses['courses'][key]['courseAttendants'], id);
                                 }
                             }
-                            $("#courses li").each(function( title ) {
-                                    var checker = 0;
-                                    for(var key2 in courses['courses']) {
-                                        if(($(this).text().indexOf(courses['courses'][key2].courseTitle)) < 0) {
-                                            checker++;
-                                        }
-                                    }
-                                    if(checker == courses['courses'].length) {
-                                        //Should remove div here
-                                    }
-                            });
                         }
+                        $("#courses li").each(function( title ) {
+                            var checker = 0;
+                            for(var key2 in courses['courses']) {
+                                if(($(this).text().indexOf(courses['courses'][key2].courseTitle)) < 0 || !containsMentor(username, courses['courses'][key2]['courseMentors'])) {
+                                    checker++;
+                                }
+                           }
+                           if(checker == courses['courses'].length) {
+                                //Should remove div here
+                                console.log("Hello");
+                                $('#' + $(this).prop('id')).remove();
+                            }
+                       });
                     }
                 });
         });
@@ -111,7 +112,20 @@ function displayStudents(course_id) {
                     studentPending(name, course_id);
                 }
             }
-        });
+            $("#students li").each(function( title ) {
+               var checker = 0;
+               for(var key2 in students) {
+                   if(($(this).text().indexOf(students[key2].attendantName)) < 0) {
+                       checker++;
+                   }
+               }
+               if(checker == students.length) {
+                   //Should remove div here
+                   console.log("Hello");
+                   $('#' + $(this).prop('id')).remove();
+                }
+           });
+   });
 }
 
 function quizPending(quiz_id, student_username) {
@@ -146,6 +160,19 @@ function displayQuizes(course_id, student_id) {
                     quizPending(quiz_id, student_id);
                 }
            }
+            $("#quizes li").each(function( title ) {
+               var checker = 0;
+               for(var key2 in q) {
+                   if(($(this).text().indexOf(q[key2].quizTitle)) < 0) {
+                       checker++;
+                   }
+               }
+               if(checker == q.length) {
+                   //Should remove div here
+                   console.log("Hello");
+                   $('#' + $(this).prop('id')).remove();
+                }
+           });
         });
 }
 
