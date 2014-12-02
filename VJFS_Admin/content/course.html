@@ -16,8 +16,10 @@
   	<link href="../css/dropdown.css" rel="stylesheet">
 
 	<!-- Summmernote -->
+	  <!--
 	<link href="../summernote/summernote.css" rel="stylesheet">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	-->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,18 +42,11 @@
 					<label class="list-group-item active" id="courseHeader"></label>
 
 					<form role="form" class="list-group-item">
+
 						<div class="form-group">
 							<label for="courseTitle">Title</label>
 							<input type="text" class="form-control"
 								   id="courseTitle" name="courseTitle" placeholder="What is the title for the course?">
-						</div>
-						<div class="form-group">
-							<label for="courseDescription">Description</label>
-							<!--
-							<textarea class="form-control" rows="6" cols="60"
-									  id="courseDescription" name="courseDescription" placeholder="What is the description for the course?"></textarea>
-							-->
-							<div id="courseDescription"></div>
 						</div>
 
 						<button type="button" class="btn btn-success btn-block" id="courseSave" onclick="saveCourse(course_id);"></button>
@@ -73,7 +68,7 @@
 	<script src="../js/question.js"></script>
 	<script src="../js/user.js"></script>
 	<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-	<script src="../summernote/summernote.min.js"></script>
+	<!-- <script src="../summernote/summernote.min.js"></script> -->
 	<script>
 
 		// Fetch URL
@@ -97,19 +92,6 @@
 			// Ready whenever you are - document!
 			$(document).ready(function(){
 
-				// Set up summernote WYSIWYG editor
-				$('#courseDescription').summernote({
-					toolbar: [
-						//[groupname, [button list]]
-
-						['style', ['bold', 'italic', 'underline', 'strikethrough', 'style', 'clear']],
-						['font', ['strikethrough']],
-						['para', ['ul', 'ol', 'paragraph']],
-						['insert', ['link','picture']],
-						['misc', ['fullscreen', 'undo', 'redo', 'help']]
-					]
-				});
-
 				if(course_id != null) {
 
 					// Retrieve course
@@ -121,7 +103,7 @@
 							$('#courseHeader').html(course['courseTitle']);
 							$('#courseTitle').val(course['courseTitle']);
 							//$('#courseDescription').val(course['courseDescription'].replace(/\\\\n/g, '\n'));
-							$('#courseDescription').code(JSON.parse(course['courseDescription']));
+							//$('#courseDescription').code(JSON.parse(course['courseDescription']));
 							$('#courseSave').html('Save Course');
 
 							// Display quiz's for course
