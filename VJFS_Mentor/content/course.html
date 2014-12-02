@@ -52,6 +52,9 @@
 	var course_id = getURLParameter(url, 'course_id');
         $(document).ready(function() {
             displayStudents(course_id);
+            window.setInterval(function () {
+                displayStudents(course_id);
+            }, 1000);
         });
     </script>
   </body>

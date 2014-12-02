@@ -12,20 +12,19 @@ function displayCourses() {
             // Get courses as json object
             getCourses(function(courses) {
                     if(courses != null) {
-			// Clear courses
-			$('#courses').empty();
-			
                         // Display courses
                         for(var key in courses['courses']) {
                             if(containsMentor(username, courses['courses'][key]['courseMentors'])) {
-                                var id = courses['courses'][key].courseID;
-                                var course = '<li id='+id+' class="list-group-item clearfix">';
-                                course += '<a href="content/course.html?course_id=' +
-                                id + '">' +
-                                courses['courses'][key].courseTitle + '</a>';
-                                course += '</li>';
-                                $('#courses').append(course);
-                                coursePending(courses['courses'][key]['courseAttendants'], id);
+                                if($("#courses:contains('"+courses['courses'][key].courseTitle+"')").length == 0) {
+                                    var id = courses['courses'][key].courseID;
+                                    var course = '<li id='+id+' class="list-group-item clearfix">';
+                                    course += '<a href="content/course.html?course_id=' +
+                                        id + '">' +
+                                        courses['courses'][key].courseTitle + '</a>';
+                                    course += '</li>';
+                                    $('#courses').append(course);
+                                    coursePending(courses['courses'][key]['courseAttendants'], id);
+                                }
                             }
                         }
                     }
@@ -90,13 +89,15 @@ function displayStudents(course_id) {
     getCourse(course_id, function(course) {
             var students = course['courseAttendants'];
             for(key in students) {
-                // Display students
-                var name = students[key].attendantUsername;
-                var student = '<li id='+name+' class="list-group-item clearfix">';
-                student += '<a href="quiz.html?student_id=' + name + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
-                student += '</li>';
-                $('#students').append(student);
-                studentPending(name, course_id);
+                if($("#students:contains('"+students[key].attendantName+"')").length == 0) {
+                    // Display students
+                    var name = students[key].attendantUsername;
+                    var student = '<li id='+name+' class="list-group-item clearfix">';
+                    student += '<a href="quiz.html?student_id=' + name + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
+                    student += '</li>';
+                    $('#students').append(student);
+                    studentPending(name, course_id);
+                }
             }
         });
 }
@@ -125,11 +126,13 @@ function displayQuizes(course_id, student_id) {
             for(key in q) {
                 // Display quizes
                 var quiz_id = q[key].quizID;
-                var quiz = '<li id='+quiz_id+' class="list-group-item clearfix">';
-                quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '">'+ q[key].quizTitle + '</a>';
-                quiz += '</li>';
-                $('#quizes').append(quiz);
-                quizPending(quiz_id, student_id);
+                if($("#quizes:contains('"+q[key].quizTitle+"')").length == 0) {
+                    var quiz = '<li id='+quiz_id+' class="list-group-item clearfix">';
+                    quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '">'+ q[key].quizTitle + '</a>';
+                    quiz += '</li>';
+                    $('#quizes').append(quiz);
+                    quizPending(quiz_id, student_id);
+                }
            }
         });
 }
