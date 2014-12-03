@@ -10,12 +10,12 @@ function displayQuizInformation(){
 		if(quiz != null) {
 
 			var l = '<h2>'+ quiz['quizTitle'] +'</h2>'
-
 			$('#quiz_info').append(l);
+
 			if(quiz['quizDescription']){
 				var desc = JSON.parse(quiz['quizDescription']);
 				var test =  '<div class="panel-body" >'+desc+'</div>'
-				$('#quiz_info').append(test);
+				$('#quiz_description').append(test);
 			}
 
 			displayQuestions(quiz);
