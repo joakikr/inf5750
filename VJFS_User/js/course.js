@@ -26,7 +26,7 @@ function displayCourses() {
 						for(keyY in attendants){
 				
 							if(attendants[keyY].attendantUsername === userr){
-								var l = '<div class="panel panel-default" id='+courses['courses'][key].courseTitle +'>'
+								var l = '<div class="panel panel-default">'
 								l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
 							
 								l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
@@ -37,27 +37,11 @@ function displayCourses() {
 
 							}
 						}
-                      
+                    
 					}
-
 					displayQuizesHelper(courses['courses'][key])
 
 				}
-
-				$("#courses div").each(function( title ) {
-	                var checker = 0;
-
-	                for(var key2 in courses['courses']) {
-	                    if(($(this).text().indexOf(courses['courses'][key2].courseTitle)) < 0) {
-	                        checker++;
-	                    }
-	                }
-	                if(checker == courses['courses'].length) {
-	                    //Should remove div here
-	               
-	                    $('#' + $(this).prop('id')).remove();
-	                }
-           		});
 			}
 		});
 
@@ -109,7 +93,7 @@ function displayQuizesHelper(course){
 						$('#'+course['courseID']).append(t)			
 
 				}
- 
+     
 			}
   		}
 		
@@ -199,19 +183,15 @@ function getQuiz(quiz_id, handler) {
 	
 	getQuizes(function(quizes) {
 
-		if(quizes != null){
-
-			// Retrieve quiz based on quiz_id
-			var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
-			
-			// Result is an array, but should only be one element so using [0]
-			if(quiz[0] == null) {
-				handler(null);;
-				return;
-			}
-			// Get quiz from quizes and call handler function on it
-			handler(quiz[0]);
-
+		// Retrieve quiz based on quiz_id
+		var quiz = $.grep(quizes['quizes'], function(e){ return e.quizID == quiz_id; });
+		
+		// Result is an array, but should only be one element so using [0]
+		if(quiz[0] == null) {
+			handler(null);;
+			return;
 		}
+		// Get quiz from quizes and call handler function on it
+		handler(quiz[0]);
 	});
 }
