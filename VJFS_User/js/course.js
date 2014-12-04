@@ -111,7 +111,7 @@ function displayQuizesHelper(course){
 				if($("#"+course['courseID']+":contains('"+course_quizes[quiz_key].quizTitle+"')").length == 0) {
 
 						var t='<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';				
-						t += course['courseID']+'" id="'+course_quizes[quiz_key].quizID_link+'" class="list-group-item">';
+						t += course['courseID']+'" id="'+course_quizes[quiz_key].quizID+'_list" class="list-group-item">';
 						t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
 						t += '<div id='+course_quizes[quiz_key].quizID+'></div>'
 						t +='</a>';
@@ -121,6 +121,47 @@ function displayQuizesHelper(course){
 				}
      
 			}
+
+			//TEST
+			
+			var div = document.getElementById(course['courseID'])
+			// get an array of child nodes
+			divChildren = div.childNodes;
+		
+			//loop all courses added to the list
+			for (var i=0; i<divChildren.length; i++) {
+			
+				console.log(divChildren[i])
+				
+				var found = 0;
+					for(quiz_key2 in course_quizes) {
+					
+						if(course_quizes[quiz_key2].quizID+'_list' === divChildren[i].id){
+							found = 1;
+							break;
+						}
+					
+					}
+					if(found == 0){
+						divChildren[i].remove();
+					}
+					found = 0;
+				
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
   		}
 		
 		//Add green label for finished quiz
