@@ -26,11 +26,12 @@ function displayCourses() {
 						for(keyY in attendants){
 				
 							if(attendants[keyY].attendantUsername === userr){
-								var l = '<div class="panel panel-default">'
-								l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'
-							
-								l += '<div class="panel-footer" id='+courses['courses'][key].courseID+'></div>'
-								l += '</div>'
+										
+									
+								var l = '<ul class="list-group-item" id='+courses['courses'][key].courseID+'_list>'
+								l +=  '<div class="panel-heading"><h4>'+ courses['courses'][key].courseTitle +'</h4></div>'							
+								l += '<ul class="list-group-item-clearfix" id='+courses['courses'][key].courseID+'></ul>'
+								l += '</ul>'
 					
 								$('#courses').append(l);
 								break;
@@ -40,6 +41,31 @@ function displayCourses() {
                     
 					}
 					displayQuizesHelper(courses['courses'][key])
+
+				}
+				//TEST
+				
+				var div = document.getElementById('courses')
+				// get an array of child nodes
+				divChildren = div.childNodes;
+			
+				//loop all courses added to the list
+				for (var i=0; i<divChildren.length; i++) {
+						
+					var found = 0;
+					for(key2 in courses['courses']) {
+					
+	
+						if(courses['courses'][key2].courseID+'_list' === divChildren[i].id){
+							found = 1;
+							break;
+						}
+					
+					}
+					if(found == 0){
+						divChildren[i].remove();
+					}
+					found = 0;
 
 				}
 			}
