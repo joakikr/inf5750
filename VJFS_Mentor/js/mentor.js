@@ -18,12 +18,12 @@ function displayCourses() {
                                     var id = courses['courses'][key].courseID;
                                     var course = '<li id='+id+' class="list-group-item clearfix">';
                                     course += '<a href="content/course.html?course_id=' +
-                                        id + '">' +
-                                        courses['courses'][key].courseTitle + '</a>';
+                                    id + '">' +
+                                    courses['courses'][key].courseTitle + '</a>';
                                     course += '</li>';
                                     $('#courses').append(course);
-                                    coursePending(courses['courses'][key]['courseAttendants'], id);
                                 }
+                                coursePending(courses['courses'][key]['courseAttendants'], courses['courses'][key].courseID);
                             }
                         }
                         $("#courses li").each(function( title ) {
@@ -108,8 +108,8 @@ function displayStudents(course_id) {
                     student += '<a href="quiz.html?student_id=' + name + '&course_id=' + course_id + '">'+ students[key].attendantName + '</a>';
                     student += '</li>';
                     $('#students').append(student);
-                    studentPending(name, course_id);
                 }
+                studentPending(name, course_id);
             }
             $("#students li").each(function( title ) {
                var checker = 0;
@@ -156,8 +156,8 @@ function displayQuizes(course_id, student_id) {
                     quiz += '<a href="students.html?student_id=' + student_id + '&quiz_id=' + quiz_id + '&quiz_id=' + course_id +'">'+ q[key].quizTitle + '</a>';
                     quiz += '</li>';
                     $('#quizes').append(quiz);
-                    quizPending(quiz_id, student_id);
                 }
+                quizPending(quiz_id, student_id);
            }
             $("#quizes li").each(function( title ) {
                var checker = 0;
@@ -168,7 +168,6 @@ function displayQuizes(course_id, student_id) {
                }
                if(checker == q.length) {
                    //Should remove div here
-                   console.log("Hello");
                    $('#' + $(this).prop('id')).remove();
                 }
            });
