@@ -131,7 +131,6 @@ function displayQuizesHelper(course){
 			//loop all courses added to the list
 			for (var i=0; i<divChildren.length; i++) {
 			
-				console.log(divChildren[i])
 				
 				var found = 0;
 					for(quiz_key2 in course_quizes) {

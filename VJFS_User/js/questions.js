@@ -206,8 +206,32 @@ function sendToServer() {
  							// Here ALL questions where correct
  							$('#quizWrong').remove();
  							
- 							// Save quiz as passed an move on in life :D
-							saveUserQuiz(quiz_id);
+								// Save quiz as passed an move on in life :D
+								//Check if allready saved
+								getUserQuizes(function(quizes) {
+								 
+									var isUpdated = false;
+									for(var i = 0; i < quizes['quizes'].length; i++) {
+								
+										if(quizes['quizes'][i].quizID === quiz_id){
+											isUpdated = true;
+											break;
+										}
+
+									}
+
+									if(!isUpdated){
+										saveUserQuiz(quiz_id);
+									}
+									else{
+										 var r = window.confirm("Quiz allready approved, did not send to mentor for correction")
+										 if (r == true) {
+											window.location.href = getAppRoot();
+										} else {
+											
+										} 
+									}
+								});
 
 							} else {
 								// Here we send all answer in such way that a mentor must correct it.
@@ -253,7 +277,33 @@ function sendToServer() {
 							}
 
 				
-							saveUserAnswers(answers); 
+								//Check if allready saved
+								getUserQuizes(function(quizes) {
+								 
+									var isUpdated = false;
+									for(var i = 0; i < quizes['quizes'].length; i++) {
+								
+										if(quizes['quizes'][i].quizID === quiz_id){
+											isUpdated = true;
+											break;
+										}
+
+									}
+
+									if(!isUpdated){
+										saveUserAnswers(answers); 
+									}
+									else{
+										 var r = window.confirm("Quiz allready approved, did not send to mentor for correction")
+										 if (r == true) {
+											window.location.href = getAppRoot();
+										} else {
+											
+										} 
+									}
+								});
+				
+
 								
 						
 		  				}	
