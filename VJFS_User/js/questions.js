@@ -278,6 +278,7 @@ function sendToServer() {
 
 				
 								//Check if allready saved
+								//If allready approved, dont send again
 								getUserQuizes(function(quizes) {
 								 
 									var isUpdated = false;
