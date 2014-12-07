@@ -134,3 +134,85 @@ function isCustomizer(handler) {
 		}
 	});
 }
+function navBarElements(){
+	isCourseAttendant(function(isCourseAttendant) {
+		if(!isCourseAttendant){
+			document.getElementById("showcourse").style.display = "none";
+			console.log();
+		}
+	});
+	isCourseMentor(function(isCourseMentor) {
+		if(!isCourseMentor){
+			document.getElementById("showmentor").style.display = "none";
+		}
+	});
+	isCustomizer(function(isCustomizer) {
+		if(!isCustomizer) {
+			document.getElementById("showadmin").style.display = "none";
+			document.getElementById("showstat").style.display = "none";
+		}
+	});
+}
+
+function isCourseAttendant(handler){
+	var meurl = getHostRoot() + '/api/me';
+	var courseurl = getHostRoot() + '/api/systemSettings/VJFS_courses';
+	$.ajax({
+		url: meurl,
+		dataType: 'json'
+	}).success(function(userinfo) {
+		$.ajax({
+			url: courseurl,
+			dataType: 'json'
+		}).success(function(courses) {
+			var isAttendant = false;
+			var userid = userinfo['id'];
+			//console.log(userid);
+			for(key in courses['courses']){
+				for(keys in courses['courses'][key]['courseAttendants']){
+					if(courses['courses'][key]['courseAttendants'][keys].attendantID === userid){
+						isAttendant = true;
+						break;
+					}
+				}
+			}
+			if(isAttendant){
+				handler(true);
+			} else {
+				handler(false);
+			}
+		});
+
+	});
+}
+function isCourseMentor(handler){
+	var meurl = getHostRoot() + '/api/me';
+	var courseurl = getHostRoot() + '/api/systemSettings/VJFS_courses';
+	$.ajax({
+		url: meurl,
+		dataType: 'json'
+	}).success(function(userinfo) {
+		$.ajax({
+			url: courseurl,
+			dataType: 'json'
+		}).success(function(courses) {
+			var isMentor = false;
+			var userid = userinfo['id'];
+			//console.log(userid);
+			for(key in courses['courses']){
+				for(keys in courses['courses'][key]['courseMentors']){
+					if(courses['courses'][key]['courseMentors'][keys].mentorID === userid){
+						isMentor = true;
+						break;
+					}
+				}
+			}
+			if(isMentor){
+				handler(true);
+			} else {
+				handler(false);
+			}
+		});
+
+	});
+}
