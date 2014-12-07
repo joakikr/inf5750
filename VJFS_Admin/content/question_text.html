@@ -20,8 +20,23 @@
     <![endif]-->
   </head>
   <body>
+  <nav class="navbar navbar-default" role="navigation">
+	  <div class="navbar-header">
+		  <a class="navbar-brand" href="#">DHIS2 Quiz Companion</a>
+	  </div>
+	  <div id="navbar">
 
-	<div class="container">
+		  <ul class="nav navbar-nav">
+			  <li id="showstat"><a href="../../VJFS_Stat/index.html">Statistics</a></li>
+			  <li id="showadmin" class="active"><a href="../../VJFS_Admin/index.html">Administration</a></li>
+			  <li id="showmentor"><a href="../../VJFS_Mentor/index.html">Mentor</a></li>
+			  <li id="showcourse"><a href="../../VJFS_User/index.html">Take Course</a></li>
+		  </ul>
+
+	  </div>
+  </nav>
+
+	<div class="container" id="main_div">
   		
   		<div class="row">
   			<!-- padd content to center -->
@@ -65,7 +80,7 @@
 	<script src="../js/quiz.js"></script>
 	<script src="../js/question.js"></script>
   	<script>
-
+		navBarElements();
 		// Fetch URL
 		var url = window.location;
 
@@ -81,8 +96,8 @@
 		isCustomizer(function(isCustomizer){
 
 			if(!isCustomizer) {
-				$('body').empty();
-				$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
+				$('#main_div').empty();
+				$('#main_div').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
 				return;
 			}
 

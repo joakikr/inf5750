@@ -80,7 +80,16 @@
 	<script src="../js/quiz.js"></script>
 	<script src="../js/question.js"></script>
 	<script>
+		navBarElements();
+		// Need to check if admin is logged in
+		isCourseAttendant(function(isCourseAttendant) {
 
+			if (!isCourseAttendant) {
+				$('#main_div').empty();
+				$('#main_div').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be enrolled in course to use this App</label></div>');
+				return;
+			}
+		});
 		// Fetch URL
 		var url = window.location;
 

@@ -20,6 +20,21 @@
     <![endif]-->
   </head>
   <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">DHIS2 Quiz Companion</a>
+      </div>
+      <div id="navbar">
+
+        <ul class="nav navbar-nav">
+          <li id="showstat"><a href="../../VJFS_Stat/index.html">Statistics</a></li>
+          <li id="showadmin"><a href="../../VJFS_Admin/index.html">Administration</a></li>
+          <li id="showmentor" class="active"><a href="../../VJFS_Mentor/index.html">Mentor</a></li>
+          <li id="showcourse"><a href="../../VJFS_User/index.html">Take Course</a></li>
+        </ul>
+
+      </div>
+    </nav>
     <div class="container" id="main_div">
       <!-- Javascript will fill this container based on browser -->
     </div>
@@ -31,6 +46,16 @@
     <script src="../js/main.js"></script>
     <script src="../js/mentor.js"></script>
     <script>
+      navBarElements();
+      // Need to check if admin is logged in
+      isCourseMentor(function(isCourseMentor) {
+
+        if (!isCourseMentor) {
+          $('#main_div').empty();
+          $('#main_div').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be mentor to use this App</label></div>');
+          return;
+        }
+      });
       var main_layout = '<div class="row">';
       main_layout += '<label class="list-group-item active">Students</label>';
       <!-- Here students will be appended -->
