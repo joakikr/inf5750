@@ -47,6 +47,17 @@
     <script src="js/main.js"></script>
     <script src="js/mentor.js"></script>
     <script>
+        navBarElements();
+        // Need to check if admin is logged in
+        isCourseMentor(function(isCourseMentor) {
+
+            if (!isCourseMentor) {
+                $('#main_div').empty();
+                $('#main_div').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be mentor to use this App</label></div>');
+                return;
+            }
+        });
+
       var main_layout = '<div class="row">';
       main_layout += '<label class="list-group-item active">Courses</label>';
       <!-- Here courses will be appended -->
