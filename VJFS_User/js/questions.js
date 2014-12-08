@@ -211,13 +211,16 @@ function sendToServer() {
 								getUserQuizes(function(quizes) {
 								 
 									var isUpdated = false;
-									for(var i = 0; i < quizes['quizes'].length; i++) {
-								
-										if(quizes['quizes'][i].quizID === quiz_id){
-											isUpdated = true;
-											break;
-										}
+									
+									if(quizes != null){
+										for(var i = 0; i < quizes['quizes'].length; i++) {
+									
+											if(quizes['quizes'][i].quizID === quiz_id){
+												isUpdated = true;
+												break;
+											}
 
+										}
 									}
 
 									if(!isUpdated){
@@ -282,15 +285,9 @@ function sendToServer() {
 								getUserQuizes(function(quizes) {
 								 
 									var isUpdated = false;
-									for(var i = 0; i < quizes['quizes'].length; i++) {
-								
-										if(quizes['quizes'][i].quizID === quiz_id){
-											isUpdated = true;
-											break;
-										}
-
+									
+									if(quizes != null){
 									}
-
 									if(!isUpdated){
 										saveUserAnswers(answers); 
 									}
@@ -303,10 +300,7 @@ function sendToServer() {
 										} 
 									}
 								});
-				
-
-								
-						
+	
 		  				}	
 					}
 				});

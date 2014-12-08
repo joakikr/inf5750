@@ -95,20 +95,22 @@ function getUserQuestions(handler) {
 
     getMyUserName(function(user){
 
-        var username = user.userCredentials.username
-    // Get URL from where to fetch quiz's json
-        var url = getHostRoot() + '/api/systemSettings/VJFS_'+username+'_questions';
+		if(user != null){
+	
+			var username = user.userCredentials.username
+		// Get URL from where to fetch quiz's json
+			var url = getHostRoot() + '/api/systemSettings/VJFS_'+username+'_questions';
 
-        // Get question's as json object and on success use handler function
-        $.ajax({
-            url: url,
-            dataType: 'json'
-        }).success(function(questions) {
-            handler(questions);
-        }).error(function(error) {
-            handler(null);
-        });
-
+			// Get question's as json object and on success use handler function
+			$.ajax({
+				url: url,
+				dataType: 'json'
+			}).success(function(questions) {
+				handler(questions);
+			}).error(function(error) {
+				handler(null);
+			});
+		}
     });
 }
 

@@ -613,6 +613,8 @@ th {
 .glyphicon-plane:before {
   content: "\e108";
 }
+
+
 .glyphicon-calendar:before {
   content: "\e109";
 }
@@ -4955,6 +4957,7 @@ a.list-group-item:focus {
 .list-group-item.disabled,
 .list-group-item.disabled:hover,
 .list-group-item.disabled:focus {
+  pointer-events:none;
   color: #777;
   cursor: not-allowed;
   background-color: #eee;
