@@ -227,7 +227,7 @@ function sendToServer() {
 										saveUserQuiz(quiz_id);
 									}
 									else{
-										 var r = window.confirm("Quiz allready approved, did not send to mentor for correction")
+										 var r = window.confirm("Quiz already approved, did not send to mentor for correction!:!")
 										 if (r == true) {
 											window.location.href = getAppRoot();
 										} else {
@@ -243,9 +243,6 @@ function sendToServer() {
 							var test = 123
 	
 							for(key in quiz_questions) {
-
-
-
 
 								var question = { "questionID" : quiz_questions[key]['questionID'] };
 								test = quiz_id;
@@ -281,18 +278,23 @@ function sendToServer() {
 
 				
 								//Check if allready saved
-								//If allready approved, dont send again
 								getUserQuizes(function(quizes) {
 								 
 									var isUpdated = false;
-									
-									if(quizes != null){
+									for(var i = 0; i < quizes['quizes'].length; i++) {
+								
+										if(quizes['quizes'][i].quizID === quiz_id){
+											isUpdated = true;
+											break;
+										}
+
 									}
+									
 									if(!isUpdated){
 										saveUserAnswers(answers); 
 									}
 									else{
-										 var r = window.confirm("Quiz allready approved, did not send to mentor for correction")
+										 var r = window.confirm("Quiz already approved, did not send to mentor for correction")
 										 if (r == true) {
 											window.location.href = getAppRoot();
 										} else {
