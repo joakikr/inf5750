@@ -47,6 +47,10 @@
 	<script src="../js/course.js"></script>
 	<script src="../js/quiz.js"></script>
 	<script>
+		var winW = window.outerWidth;
+		if(winW < 768){
+			$('#navbar').collapse("hide");
+		}
 		navBarElements();
 		// Need to check if admin is logged in
 		isCourseAttendant(function(isCourseAttendant) {

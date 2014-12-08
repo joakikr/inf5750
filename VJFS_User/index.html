@@ -51,6 +51,10 @@
 	<script src="js/mobilecheck.js"></script>
 
  	<script>
+		var winW = window.outerWidth;
+		if(winW < 768){
+			$('#navbar').collapse("hide");
+		}
 		navBarElements();
 		// Need to check if admin is logged in
 		isCourseAttendant(function(isCourseAttendant) {
