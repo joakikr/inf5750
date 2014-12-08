@@ -88,7 +88,9 @@ function studentPending(student_username, course_id) {
             }).success(function(q) {
                 if(q != null) {
                     if(containsCourse(course_id, q['questions'])) {
-                        $('#'+student_username).append('<div><span class="label label-warning">Pending</span></div>');
+                        if($('#'+student_username).find('.pending').length == 0) {
+                            $('#'+student_username).append('<div><span class="label label-warning">Pending</span></div>');
+                        }
                     }
                 }
             }).error(function(error) {
@@ -136,8 +138,9 @@ function quizPending(quiz_id, student_username) {
                 if(q != null) {
                     for(var key in q['questions']){
                         if(q['questions'][key].quizID == quiz_id && q['questions'][key].corrected == "false") {
-                            $('#'+quiz_id).append('<div><span class="label label-warning">Pending</span></div>');
-                            break;
+                            if($('#'+quiz_id).find('.pending').length == 0) {
+                                $('#'+quiz_id).append('<div><span class="label label-warning">Pending</span></div>');
+                                break;
                         }
                     }
                 }
