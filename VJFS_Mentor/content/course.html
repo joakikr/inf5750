@@ -22,9 +22,15 @@
   <body>
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="#">DHIS2 Quiz Companion</a>
       </div>
-      <div id="navbar">
+      <div id="navbar" class="collapse in">
 
         <ul class="nav navbar-nav">
           <li id="showstat"><a href="../../VJFS_Stat/index.html">Statistics</a></li>
@@ -46,6 +52,10 @@
     <script src="../js/main.js"></script>
     <script src="../js/mentor.js"></script>
     <script>
+      var winW = window.outerWidth;
+      if(winW < 768){
+        $('#navbar').collapse("hide");
+      }
       navBarElements();
       // Need to check if admin is logged in
       isCourseMentor(function(isCourseMentor) {
