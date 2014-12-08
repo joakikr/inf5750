@@ -1,7 +1,7 @@
 {
 	"version" : "1.0",
-	"name" : "All in One DHIS2 Quiz Companion",
-	"description" : "All in One Quiz Companion.",
+	"name" : "VJFS Mentor",
+	"description" : "Correct Quiz here.",
 	"launch_path" : "index.html",
 
 	"icons": {
