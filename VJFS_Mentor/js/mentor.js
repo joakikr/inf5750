@@ -35,7 +35,6 @@ function displayCourses() {
                            }
                            if(checker == courses['courses'].length) {
                                 //Should remove div here
-                                console.log("Hello");
                                 $('#' + $(this).prop('id')).remove();
                             }
                        });
@@ -141,6 +140,7 @@ function quizPending(quiz_id, student_username) {
                             if($('#'+quiz_id).find('.pending').length == 0) {
                                 $('#'+quiz_id).append('<div class="pending"><span class="label label-warning">Pending</span></div>');
                                 break;
+                            }
                         }
                     }
                 }
