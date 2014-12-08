@@ -8,7 +8,6 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
     <!-- CSS -->
 <!--     <link href="css/main.css" rel="stylesheet"> -->
     
@@ -17,15 +16,21 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="#">DHIS2 Quiz Companion</a>
+
     </div>
-    <div id="navbar">
+    <div id="navbar" class="collapse in">
 
         <ul class="nav navbar-nav">
             <li id="showstat" class="active"><a href="../VJFS_Stat/index.html">Statistics</a></li>
@@ -33,7 +38,6 @@
             <li id="showmentor"><a href="../VJFS_Mentor/index.html">Mentor</a></li>
             <li id="showcourse"><a href="../VJFS_User/index.html">Take Course</a></li>
         </ul>
-
     </div>
 </nav>
 
@@ -55,139 +59,93 @@
     <script src="js/Chart.js"></script>
 
     <script>
+
         var main_layout = '<div class="row">';
+        var winW = window.outerWidth;
+        if(winW < 768){
+            $('#navbar').collapse("hide");
+        }
         navBarElements();
         isCustomizer(function(isCustomizer) {
-
-
             if(!isCustomizer) {
                 //$('body').empty();
-                //$('body').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
-                document.getElementById("showadmin").style.display = "none";
-                document.getElementById("showstat").style.display = "none";
+                $('#main_div').empty();
+                $('#main_div').html('<br><div class="col-xs-3"></div><div class="container col-xs-6 list-group"><label class="active list-group-item text-center">Must be Superuser to use this App</label></div>');
                 return;
             }
-            if (mobileCheck()) {
-                //console.log(window.innerHeight);
-                main_layout += '<label class="list-group-item active">Statistics</label>';
-                main_layout += '<form role="form" class="list-group-item">';
-                main_layout += '<div class="panel-group" id="accordion">';
-                main_layout += '<div class="form-group" id="courses">';
-                main_layout += '</div>';
+            main_layout += '<label class="list-group-item active">Statistics</label>';
+            main_layout += '<form role="form" class="list-group-item">';
+            main_layout += '<div class="panel-group" id="accordion">';
+            main_layout += '<div class="form-group" id="courses">';
+            main_layout += '</div>';
 
-                main_layout += '<div class="panel panel-default">';
-                main_layout += '<div class="panel-heading">';
-                main_layout += '<h4 class="panel-title">';
-                main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Quizzes in course</a>';
-                main_layout += '</h4>';
-                main_layout += '</div>';
-                main_layout += '<div id="panel1" class="panel-collapse collapse">';
-                main_layout += '<div class="panel-body">';
-                main_layout += '<canvas id="coursestat" width="280" height="500"></canvas>';
-                main_layout += '</div>';
-                main_layout += '</div>';
-                main_layout += '</div>';
+            main_layout += '<div class="panel panel-default">';
+            main_layout += '<div class="panel-heading">';
+            main_layout += '<h4 class="panel-title">';
+            main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Quizzes in course</a>';
+            main_layout += '</h4>';
+            main_layout += '</div>';
+            main_layout += '<div id="panel1" class="panel-collapse collapse">';
+            main_layout += '<div class="panel-body">';
+            main_layout += '<canvas id="coursestat" width="280" height="500"></canvas>';
+            main_layout += '</div>';
+            main_layout += '</div>';
+            main_layout += '</div>';
 
-                main_layout += '<div class="panel panel-default">';
-                main_layout += '<div class="panel-heading">';
-                main_layout += '<h4 class="panel-title">';
-                main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2">Questions in course</a>';
-                main_layout += '</h4>';
-                main_layout += '</div>';
-                main_layout += '<div id="panel2" class="panel-collapse collapse">';
-                main_layout += '<div class="panel-body">';
-                main_layout += '<canvas id="coursestat2" width="280" height="500"></canvas>';
-                main_layout += '</div>';
-                main_layout += '</div>';
-                main_layout += '</div>';
+            main_layout += '<div class="panel panel-default">';
+            main_layout += '<div class="panel-heading">';
+            main_layout += '<h4 class="panel-title">';
+            main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2">Questions in course</a>';
+            main_layout += '</h4>';
+            main_layout += '</div>';
+            main_layout += '<div id="panel2" class="panel-collapse collapse">';
+            main_layout += '<div class="panel-body">';
+            main_layout += '<canvas id="coursestat2" width="280" height="500"></canvas>';
+            main_layout += '</div>';
+            main_layout += '</div>';
+            main_layout += '</div>';
 
-                main_layout += '<div class="panel panel-default">';
-                main_layout += '<div class="panel-heading">';
-                main_layout += '<h4 class="panel-title">';
-                main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel3">Attendants in course</a>';
-                main_layout += '</h4>';
-                main_layout += '</div>';
-                main_layout += '<div id="panel3" class="panel-collapse collapse">';
-                main_layout += '<div class="panel-body">';
-                main_layout += '<canvas id="coursestat3" width="280" height="500"></canvas>';
-                main_layout += '</div>';
-                main_layout += '</div>';
-                main_layout += '</div>';
+            main_layout += '<div class="panel panel-default">';
+            main_layout += '<div class="panel-heading">';
+            main_layout += '<h4 class="panel-title">';
+            main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel3">Attendants in course</a>';
+            main_layout += '</h4>';
+            main_layout += '</div>';
+            main_layout += '<div id="panel3" class="panel-collapse collapse">';
+            main_layout += '<div class="panel-body">';
+            main_layout += '<canvas id="coursestat3" width="280" height="500"></canvas>';
+            main_layout += '</div>';
+            main_layout += '</div>';
+            main_layout += '</div>';
 
-                //main_layout += '<canvas id="coursestat3" width="300" height="500"></canvas>';
+            //main_layout += '<canvas id="coursestat3" width="300" height="500"></canvas>';
 
-                main_layout += '<div class="panel panel-default">';
-                main_layout += '<div class="panel-heading">';
-                main_layout += '<h4 class="panel-title">';
-                main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel4">Mentors in course</a>';
-                main_layout += '</h4>';
-                main_layout += '</div>';
-                main_layout += '<div id="panel4" class="panel-collapse collapse">';
-                main_layout += '<div class="panel-body">';
-                main_layout += '<canvas id="coursestat4" width="280" height="500"></canvas>';
-                main_layout += '</div>';
-                main_layout += '</div>';
-                main_layout += '</div>';
+            main_layout += '<div class="panel panel-default">';
+            main_layout += '<div class="panel-heading">';
+            main_layout += '<h4 class="panel-title">';
+            main_layout += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel4">Mentors in course</a>';
+            main_layout += '</h4>';
+            main_layout += '</div>';
+            main_layout += '<div id="panel4" class="panel-collapse collapse">';
+            main_layout += '<div class="panel-body">';
+            main_layout += '<canvas id="coursestat4" width="280" height="500"></canvas>';
+            main_layout += '</div>';
+            main_layout += '</div>';
+            main_layout += '</div>';
 
-                main_layout += '<div>';
-                main_layout += '</form>';
-                main_layout += '<div>';
+            main_layout += '<div>';
+            main_layout += '</form>';
+            main_layout += '<div>';
 
-            } else {
-                main_layout += '<label class="list-group-item active">Statistics</label>';
-
-                main_layout += '<form role="form" class="list-group-item">';
-                main_layout += '<div class="form-group" id="courses">';
-                main_layout += '</div>';
-                main_layout += '<div class="form-group">';
-                main_layout += '<label>Quizes in course</label>';
-                main_layout += '<br>';
-                main_layout += '</br>';
-                main_layout += '<canvas id="coursestat" width=window.innerWidth*2></canvas>';
-                main_layout += '</div>';
-                main_layout += '<div class="form-group">';
-                main_layout += '<label>Questions in course</label>';
-                main_layout += '<br>';
-                main_layout += '</br>';
-                main_layout += '<canvas id="coursestat2" width=window.innerWidth*2></canvas>';
-                main_layout += '</div>';
-                main_layout += '<div class="form-group">';
-                main_layout += '<label>Attendants in course</label>';
-                main_layout += '<br>';
-                main_layout += '</br>';
-                main_layout += '<canvas id="coursestat3" width=window.innerWidth></canvas>';
-                main_layout += '</div>';
-                main_layout += '</form>';
-            }
             //main_layout += '</div>';
             $('#main_div').append(main_layout);
             $(document).ready(function () {
-                /*
-                var canvas1 = document.getElementById(coursestat);
-                var canvas2 = document.getElementById(coursestat2);
-                var parent = document.getElementById(main_div);
-                canvas1.width = parent.offsetWidth;
-                canvas1.height = parent.offsetHeight;
-                canvas2.width = parent.offsetWidth;
-                canvas2.height = parent.offsetHeight;
-                */
 
                 displayStats();
-                //quizStats();
                  });
             });
     </script>
-    <!--
-    <script>
-        /*
-        coursestat.onclick = function(evt){
-            //clickonChart("coursestat");           
-             var activeBars = myBarChart.getBarsAtEvent(evt);
-             console.log(activeBars);
-        }
-        */
-    </script>
-    //-->
+
     <script>
     function resizeGraph(){
         canvas1 = document.getElementById("coursestat");
