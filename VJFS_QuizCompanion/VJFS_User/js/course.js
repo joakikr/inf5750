@@ -132,8 +132,8 @@ function displayQuizesHelper(course){
 								t += course['courseID']+'" id="'+course_quizes[quiz_key].quizID+'_list" class="list-group-item">';
 							}else{
 							
-								t += '<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';			
-								t += course['courseID']+'" id="'+course_quizes[quiz_key].quizID+'_list" class="list-group-item disabled">';
+								t += '<a href="#';			
+								t += '" id="'+course_quizes[quiz_key].quizID+'_list" class="list-group-item disabled">';
 							}
 
 							t += course_quizes[quiz_key].quizLevel+' - '+course_quizes[quiz_key].quizTitle;
@@ -245,9 +245,11 @@ function displayQuizesHelper(course){
 						for(quiz_key in course_quizes) {
 					
 							if(course_quizes[quiz_key].quizLevel ==i ){
-							
-						
+								//'<a href="pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id=';		
+								//t += course['courseID']+'
+																
 								$('#'+course_quizes[quiz_key].quizID+"_list").removeClass('list-group-item disabled').addClass('list-group-item');
+								document.getElementById(course_quizes[quiz_key].quizID+"_list").href = 'pages/questions.html?quiz_id='+ course_quizes[quiz_key].quizID + '&course_id='+course['courseID'];
 
 							}else{
 							
